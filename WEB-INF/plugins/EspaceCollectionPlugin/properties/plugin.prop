@@ -16,3 +16,18 @@
 
 # LESS
 # channel.less.plugins/{Name}/css/plugin.css:    plugins/{Name}/css/plugin.less
+channel.less.plugins/EspaceEnseignantPlugin/css/plugin.css:    plugins/EspaceCollectionPlugin/css/plugin.less
+channel.css.all.200.fo: plugins/EspaceCollectionPlugin/css/plugin.css
+
+jcmsplugin.socle.site.src.logo: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
+jcmsplugin.espaceCollection.site.src.logo-gpla: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
+
+fr.jcmsplugin.seo.meta-title: Espace collection
+
+## Surcharge module socle
+# Menu principal
+jcmsplugin.socle.site.menu.cat.root: fde_5005
+jcmsplugin.socle.site.submenu.cat.root: fde_5006
+
+# désactive le btn par défaut et ajoute un cat custom
+jcmsplugin.socle.site.header.show.rechercher: false
