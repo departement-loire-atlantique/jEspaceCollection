@@ -116,6 +116,13 @@
     <type name="FicheObjetMediatisee" />
     <type name="FicheObjetBaseDeDonnees" />
     <type name="FicheCollectionneur" />
+    <type name="PortletImageHome" />
+    
+    <templates type="PortletImageHome">
+        <template name="default" file="doPortletImageHomeBoxDisplay.jsp" usage="box">
+            <label xml:lang="fr">Espace collection : gabarit par défaut</label>
+        </template>
+    </templates>
 </types>
   <!-- ============================== Workflows =========================== -->
   <!--                                                                      -->
