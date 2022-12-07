@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<type name="FicheCollection" superclass="com.jalios.jcms.Content" debatable="false" unitFieldEdition="true" audienced="false" categoryTab="true" readRightTab="true" updateRightTab="true" templateTab="true" workflowTab="true" advancedTab="true">
+  <label xml:lang="fr">Fiche collection</label>
+  <title ml="true">
+    <label xml:lang="en">Title</label>
+    <label xml:lang="fr">Titre</label>
+  </title>
+  <fields>
+    <field name="description" editor="wysiwyg" required="true" type="String" searchable="true" abstract="true" wysiwygConfigurationId="default" ml="true">
+      <label xml:lang="en">Description</label>
+      <label xml:lang="fr">Description</label>
+    </field>
+    <field name="visuel" editor="link" required="false" compactDisplay="false" type="generated.CarouselElement" parent="false">
+      <label xml:lang="fr">Visuel</label>
+    </field>
+    <field name="legende" editor="textfield" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Légende</label>
+    </field>
+    <field name="copyright" editor="textfield" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Copyright</label>
+    </field>
+    <field name="navigation" editor="category" required="false" compactDisplay="false" type="java.util.TreeSet" chooser="tree" exclusive="true" root="j_5">
+      <label xml:lang="fr">Navigation</label>
+    </field>
+    <field name="mail" editor="email" required="false" compactDisplay="false" type="String" searchable="true" size="50" ml="true">
+      <label xml:lang="fr">Mail</label>
+    </field>
+  </fields>
+</type>
+

@@ -111,6 +111,12 @@
 	  </templates>
   </types>
  -->
+ <types>
+    <type name="FicheCollection" />
+    <type name="FicheObjetMediatisee" />
+    <type name="FicheObjetBaseDeDonnees" />
+    <type name="FicheCollectionneur" />
+</types>
   <!-- ============================== Workflows =========================== -->
   <!--                                                                      -->
   <!-- workflows         A list of <dependency>.                            -->
