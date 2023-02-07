@@ -10,13 +10,11 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.jalios.jcms.Channel;
 import com.jalios.util.HttpClientUtils;
 
 import fr.digiwin.module.espacecollection.keepeek.exception.KeepeekException;
-import fr.digiwin.module.espacecollection.keepeek.pojo.Media;
 
 public class KeepeekApiManager {
 
@@ -33,11 +31,16 @@ public class KeepeekApiManager {
         return Channel.getChannel().getProperty(PROP_PWD);
     }
 
+    private static String getKeepeekUrl() {
+        return Channel.getChannel().getProperty(PROP_API_URL);
+    }
+
     public static String getUrl(String url) throws KeepeekException {
         String token = getKeepeekLogin() + ":" + getKeepeekPwd();
         String base64Token = Base64.getEncoder().encodeToString(token.getBytes());
 
         CloseableHttpClient httpClient = HttpClientUtils.newHttpClient();
+
         HttpGet httpGet = new HttpGet(url);
         httpGet.addHeader("Authorization", "Basic " + base64Token);
 
@@ -59,17 +62,8 @@ public class KeepeekApiManager {
 
         return null;
     }
-
-    public static Media getMedia(String idMedia) {
-        try {
-            String strMedia = getUrl("api/dam/medias/" + idMedia);
-            Gson gson = new Gson();
-            Media media = gson.fromJson(strMedia, Media.class);
-            return media;
-        } catch (KeepeekException e) {
-            LOGGER.error(e.getLocalizedMessage(), e);
-        }
-
-        return null;
+    
+    public static String getEndPoint(String apiEndPoint) throws KeepeekException {
+        return getUrl(getKeepeekUrl() + apiEndPoint);
     }
 }
