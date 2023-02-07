@@ -1,0 +1,24 @@
+<div class="ds44-lightBG ds44-posRel">
+  <div
+    class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt">
+    <div class="ds44-grid12-offset-2">
+      <%-- <%@ include
+        file='/plugins/EspaceEnseignantPlugin/jsp/filAriane.jspf'%> --%>
+      <h1 class="h1-like">
+        <%=obj.getTitle()%>
+      </h1>
+    </div>
+  </div>
+</div>
+    
+<div class="ds44-img50">
+  <div class="ds44-inner-container">
+    <div class="ds44-grid12-offset-1">
+      <section class="ds44-box ds44-theme">
+        <div class="ds44-innerBoxContainer">
+          <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

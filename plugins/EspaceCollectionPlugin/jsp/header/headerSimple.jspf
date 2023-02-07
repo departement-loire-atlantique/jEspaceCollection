@@ -1,0 +1,12 @@
+<div class="ds44-lightBG ds44-posRel ds44--m-padding-b">
+  <div
+    class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt">
+    <div class="ds44-grid12-offset-2">
+      <%-- <%@ include
+        file='/plugins/EspaceEnseignantPlugin/jsp/filAriane.jspf'%> --%>
+      <h1 class="h1-like">
+        <%=obj.getTitle()%>
+      </h1>
+    </div>
+  </div>
+</div>
