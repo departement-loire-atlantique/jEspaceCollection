@@ -24,6 +24,11 @@ jcmsplugin.espaceCollection.site.src.logo-gpla: plugins/EspaceCollectionPlugin/i
 
 fr.jcmsplugin.seo.meta-title: Espace collection
 
+# Keepeek
+jcmsplugin.espacecollection.keepeek.url: https://dam-gpla.loire-atlantique.fr/
+jcmsplugin.espacecollection.keepeek.login:
+jcmsplugin.espacecollection.keepeek.password.pwd:
+
 ## Surcharge module socle
 # Menu principal
 jcmsplugin.socle.site.menu.cat.root: fde_5005
