@@ -8,7 +8,7 @@ if (data == null) {
 
 FicheCollectionneur obj = (FicheCollectionneur) data;
 %>
-  <section class="ds44-card ds44-js-card ds44-card--contact ds44-box ">
+  <section class="ds44-card ds44-js-card ds44-card--contact ds44-box ds44-darkContext">
       <picture class="ds44-container-imgRatio">
             <jalios:if predicate="<%= Util.notEmpty(obj.getVisuel()) %>">
                 <% CarouselElement image = (CarouselElement)channel.getData(CarouselElement.class, obj.getVisuel().getId()); %>
@@ -16,7 +16,7 @@ FicheCollectionneur obj = (FicheCollectionneur) data;
             </jalios:if>
         </picture>
       
-      <div class="ds44-card__section ds44-darkContext">
+      <div class="ds44-card__section ">
         <p class="ds44-cardSelect pa0 ma0">
             <button class="pas" type="button" aria-describedby="cs6" title="Sélectionner Confort service"><i class="icon icon-star-empty" aria-hidden="true"></i><span class="visually-hidden">Sélection</span></button>
         </p>

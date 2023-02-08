@@ -1,0 +1,50 @@
+ <%@page import="fr.cg44.plugin.socle.SocleUtils"%>
+<%
+    PortletCarousel box = (PortletCarousel) portlet;
+    String themeClair = "tuileVerticaleLight";
+    
+    String titreBloc = Util.notEmpty(box.getTitreDuBloc(userLang, false)) ? box.getTitreDuBloc(userLang) : glp("jcmsplugin.socle.label.encemoment");
+    String sousTitreBloc = box.getSoustitreDuBloc(userLang, false);
+    String positionTitre = Util.notEmpty(box.getPositionTitre()) && !box.getPositionTitre().equals("none") ? "ds44-blockAbsolute--"+box.getPositionTitre() : "";
+%>
+
+<section class='ds44-container-fluid <%= box.getSelectionDuTheme().equals(themeClair) ? " ds44-lightBG ds44-wave-white" : "" %> ds44--xxl-padding-tb'>
+    <div class="ds44-inner-container ds44--mobile--m-padding-b">
+        <header class="txtcenter <%=Util.isEmpty(sousTitreBloc) ? "ds44-mb2" : ""%>">
+            <h2 class="h2-like underline center"><%= titreBloc %></h2>
+            
+            <jalios:if predicate="<%= Util.notEmpty(sousTitreBloc) %>">
+                <p class="ds44-component-chapo ds44-centeredBlock">
+                    <%= HtmlUtil.html2text(sousTitreBloc) %>
+                </p>
+            </jalios:if>
+        </header>
+    </div>
+    
+    <jalios:if predicate="<%= Util.notEmpty(box.getContenusEnAvant()) %>">
+        <div class="ds44-container-large">
+            <jalios:if predicate="<%= box.getContenusEnAvant().length > 1 %>">
+            <div class="grid-12-small-1">
+            </jalios:if>
+            <jalios:foreach name="itContenuEnAvant" type="Content" array="<%= box.getContenusEnAvant() %>" max="2">
+                <jalios:select>
+	                <jalios:if predicate="<%= itContenuEnAvant instanceof Lien %>">
+	                   <%
+	                   Lien itLien = (Lien) itContenuEnAvant;
+	                   String customUrl = SocleUtils.getUrlPubFromLien(itLien);
+	                   Boolean isExterne = SocleUtils.isLienExterne(itLien);
+	                   %>
+	                   <ds:tuileContenuEnAvant content="<%= itContenuEnAvant %>" isUnique="<%= Boolean.toString(box.getContenusEnAvant().length == 1) %>" 
+	                       positionTitre="<%= positionTitre %>" customUrl="<%= customUrl %>" isExterne="<%= isExterne %>"/>
+	                </jalios:if>
+	                <jalios:default>
+	                   <ds:tuileContenuEnAvant content="<%= itContenuEnAvant %>" isUnique="<%= Boolean.toString(box.getContenusEnAvant().length == 1) %>" positionTitre="<%= positionTitre %>"/>
+	                </jalios:default>
+                </jalios:select>
+            </jalios:foreach>
+            <jalios:if predicate="<%= box.getContenusEnAvant().length > 1 %>">
+            </div>
+            </jalios:if>
+        </div>
+    </jalios:if>
+</section>

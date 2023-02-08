@@ -5,7 +5,7 @@
 <%@ include file="/types/PortletQueryForeach/doSort.jspf" %>
 
 <% 
-jcmsContext.addCSSHeader("plugins/EspaceEnseignantPlugin/css/plugin.css");
+jcmsContext.addCSSHeader("plugins/EspaceCollectionPlugin/css/plugin.css");
 %>
 
 <div class="ds44-container-large">

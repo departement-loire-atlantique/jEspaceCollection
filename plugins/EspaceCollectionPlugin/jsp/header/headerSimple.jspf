@@ -4,7 +4,7 @@
     <div class="ds44-grid12-offset-2">
       <%-- <%@ include
         file='/plugins/EspaceEnseignantPlugin/jsp/filAriane.jspf'%> --%>
-      <h1 class="h1-like">
+      <h1 class="h1-like mbs mts bold-txt">
         <%=obj.getTitle()%>
       </h1>
     </div>

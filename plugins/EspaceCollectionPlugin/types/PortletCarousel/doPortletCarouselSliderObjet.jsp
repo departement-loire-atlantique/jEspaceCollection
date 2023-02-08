@@ -12,4 +12,4 @@ jcmsContext.addCSSHeader("plugins/EspaceCollectionPlugin/css/plugin.css");
 %>
 
 
-<%@ include file="/plugins/EspaceCollectionPlugin/types/PortletCarousel/doPortletCarouselBoxDisplay.jspf"%>
+<%@ include file="/plugins/EspaceCollectionPlugin/types/PortletCarousel/doPortletCarouselObjet.jspf"%>

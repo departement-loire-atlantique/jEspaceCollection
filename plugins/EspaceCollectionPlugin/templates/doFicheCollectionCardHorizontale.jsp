@@ -12,7 +12,10 @@ FicheCollection obj = (FicheCollection) data;
   <div class="ds44-flex-container ds44-flex-valign-center">
     <div class="ds44-card__section--horizontal--img">
        <picture class="ds44-container-imgRatio ds44-container-imgRatio--carre">
-         <img src="<%= "image" %>" alt="" class="ds44-imgRatio" />
+            <jalios:if predicate="<%= Util.notEmpty(obj.getVisuel()) %>">
+                <% CarouselElement image = (CarouselElement)channel.getData(CarouselElement.class, obj.getVisuel().getId()); %>
+                    <img src="<%= image.getImage() %>" alt="<%= image.getImageLegend() %>" class="ds44-imgRatio"/>
+            </jalios:if>
       </picture>
    </div>
     <div class="ds44-card__section--horizontal">

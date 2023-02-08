@@ -123,29 +123,25 @@
             <label xml:lang="fr">Espace Collection : gabarit par défaut</label>
         </template>
     </templates>
+
+    <templates type="PortletMiseEnAvantDeContenus">
+        <template name="collectionAccueil" file="doPortletMiseEnAvantDeContenusCollection.jsp" usage="box">
+            <label xml:lang="fr">Espace Collection : gabarit page d'accueil collection</label>
+        </template>
+    </templates>
+
     <templates type="PortletCarousel">
-        <template name="carrousel4Panels" file="doPortletCarouselSliderFourPanels.jsp" usage='full'>
-          <label xml:lang="fr">Espace Collection : gabarit carrousel 4 slide</label>
+        <template name="carrouselCollectionneurs" file="doPortletCarouselSliderCollectionneur.jsp" usage='box'>
+          <label xml:lang="fr">Espace Collection : gabarit carrousel 4 slide collectionneurs</label>
+        </template>  
+        <template name="miseEnAvantObjet" file="doPortletCarouselSliderObjet.jsp" usage='box'>
+          <label xml:lang="fr">Espace Collection : gabarit mise en avant objets incontournables</label>
         </template>  
     </templates>
+
 	 <templates type="PortletQueryForeach">
-	    <template name="departementBox2" file="doPortletQueryForeachDepartementsHome.jsp" usage='box'>
-	      <label xml:lang="fr">Espace Collection : gabarit departements page d'accueil box</label>
-	    </template>
-	    <template name="departementBox" file="doPortletQueryForeachDepartementsHome.jsp" usage='full'>
-	      <label xml:lang="fr">Espace Collection : gabarit departements page d'accueil</label>
-	    </template>
 	    <template name="departement" file="doPortletQueryForeachDepartements.jsp" usage='full'>
-	      <label xml:lang="fr">Espace Collection : gabarit departements</label>
-	    </template>
-	    <template name="collectionneurBox" file="doPortletQueryForeachCollectionneurs.jsp" usage='box'>
-	      <label xml:lang="fr">Espace Collection : gabarit collectionneurs box</label>
-	    </template>
-	    <template name="collectionneur" file="doPortletQueryForeachCollectionneurs.jsp" usage='full'>
-	      <label xml:lang="fr">Espace Collection : gabarit collectionneurs</label>
-	    </template>
-	    <template name="incontournable" file="doPortletQueryForeachIncontournables.jsp" usage='full'>
-	      <label xml:lang="fr">Espace Collection : gabarit oeuvres incontournables</label>
+	      <label xml:lang="fr">Espace Collection : gabarit departements full display</label>
 	    </template>
 	</templates>
 </types>
