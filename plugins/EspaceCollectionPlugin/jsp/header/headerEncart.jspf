@@ -2,10 +2,16 @@
   <div
     class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt">
     <div class="ds44-grid12-offset-2">
-      <%-- <%@ include
-        file='/plugins/EspaceEnseignantPlugin/jsp/filAriane.jspf'%> --%>
+
+				<nav role="navigation" aria-label="Votre position" class="ds44-hide-mobile">
+					<ul class="ds44-list ds44-breadcrumb">
+							<li class="ds44-breadcrumb_item"><a href="/"><i class="icon icon-home icon--medium" aria-hidden="true"></i><span class="visually-hidden">Accueil</span></a></li>
+							<li class="ds44-breadcrumb_item" aria-current="location"><span><%= headerSubTitle %></span></li>
+					</ul>
+				</nav>
+
       <h1 class="h1-like">
-        <%=obj.getTitle()%>
+        <%= headerTitle %>
       </h1>
     </div>
   </div>
@@ -16,7 +22,7 @@
     <div class="ds44-grid12-offset-1">
       <section class="ds44-box ds44-theme">
         <div class="ds44-innerBoxContainer">
-          <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+          <p><%= headerText %></p>
         </div>
       </section>
     </div>

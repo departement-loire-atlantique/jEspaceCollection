@@ -35,10 +35,18 @@ jcmsplugin.socle.site.header.show.rechercher: false
 
 # Media Template
 media.data-template.card-home.FicheCollectionneur: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionneurCardHome.jsp
-media.data-template.card.FicheCollectionneur: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionneurCardHome.jsp
+media.data-template.card.FicheCollectionneur: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionneurCard.jsp
 
 media.data-template.card-search.FicheObjetBaseDeDonnees: /plugins/EspaceCollectionPlugin/templates/doFicheObjetBaseDeDonneesCardSearch.jsp
 media.data-template.card.FicheObjetBaseDeDonnees: /plugins/EspaceCollectionPlugin/templates/doFicheObjetBaseDeDonneesCard.jsp
 
 media.data-template.card-verticale.FicheCollection: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionCardVerticale.jsp
 media.data-template.card-horizontale.FicheCollection: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionCardHorizontale.jsp
+
+
+# Portlet ref
+jcmsplugin.espaceCollection.portlet-liste-collectionneurs.chooser-publication: oga_5177
+jcmsplugin.espaceCollection.portlet-liste-objet-incontournables.chooser-publication: 
+
+# Texte
+jcmsplugin.espaceCollection.portlet-liste-collectionneurs.title-main-tuile:  L’armateur d’art : Thomas I Dobrée

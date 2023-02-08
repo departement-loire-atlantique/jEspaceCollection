@@ -125,8 +125,14 @@
     </templates>
 
     <templates type="PortletMiseEnAvantDeContenus">
-        <template name="collectionAccueil" file="doPortletMiseEnAvantDeContenusCollection.jsp" usage="box">
-            <label xml:lang="fr">Espace Collection : gabarit page d'accueil collection</label>
+        <template name="accueilCollections" file="doPortletMiseEnAvantDeContenusCollectionsHome.jsp" usage="box">
+            <label xml:lang="fr">Espace Collection : gabarit page d'accueil collections</label>
+        </template>
+        <template name="listeCollections" file="doPortletMiseEnAvantDeContenusCollectionsListe.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit liste des collections</label>
+        </template>
+        <template name="listeCollectionneurs" file="doPortletMiseEnAvantDeContenusCollectionneursListe.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit liste des collectionneurs</label>
         </template>
     </templates>
 
@@ -139,11 +145,6 @@
         </template>  
     </templates>
 
-	 <templates type="PortletQueryForeach">
-	    <template name="departement" file="doPortletQueryForeachDepartements.jsp" usage='full'>
-	      <label xml:lang="fr">Espace Collection : gabarit departements full display</label>
-	    </template>
-	</templates>
 </types>
   <!-- ============================== Workflows =========================== -->
   <!--                                                                      -->

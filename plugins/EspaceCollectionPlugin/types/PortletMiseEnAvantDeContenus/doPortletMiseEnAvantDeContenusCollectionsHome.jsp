@@ -49,8 +49,13 @@ if (Util.notEmpty(collection)) {
     </div>
 
     <div class="txtcenter ds44-container-large ">
-        <button class="ds44-btnStd ds44-btnStd--large ds44-btnFullMobile" type="button" data-target="#overlay-sites-applis" data-js="ds44-modal"><span class="ds44-btnInnerText"><%= glp("jcmsplugin.espaceCollection.departement.header.home.button") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
-    </div>
+			<jalios:link data="<%= box.getLienInterne() %>">
+        <button class="ds44-btnStd ds44-btnStd--large ds44-btnFullMobile" type="button" data-target="#overlay-sites-applis" data-js="ds44-modal">
+					<span class="ds44-btnInnerText"><%= glp("jcmsplugin.espaceCollection.departement.header.home.button") %></span>
+					<i class="icon icon-long-arrow-right" aria-hidden="true"></i>
+				</button>
+			</jalios:link>
+		</div>
 
 </section>
 </div>

@@ -4,8 +4,17 @@ jcmsplugin.espaceCollection.header.maj: Mis à jour le
 jcmsplugin.espaceCollection.objet.tuile.ajout-selection: Ajouter à ma selection
 jcmsplugin.espaceCollection.objet.tuile.fiche-bdd: Accéder à la fiche base de données
 
-jcmsplugin.espaceCollection.departement.header.home.main-title: Les 10 départements spécifiques du musée Dobrée
-jcmsplugin.espaceCollection.departement.header.home.subtitle: Le pôle conservation des collections est structuré en 10 départements spécifiques.
 jcmsplugin.espaceCollection.departement.header.home.button: Explorez les départements de collection
 
+jcmsplugin.espaceCollection.departement.header.liste.image: Bienvenue à la découverte des collections du musée Dobrée.
+jcmsplugin.espaceCollection.departement.header.liste.fil-ariane: Explorez les collections
+
 jcmsplugin.espaceCollection.collectionneur.header.home.button: Découvrez tous les collectionneurs
+
+jcmsplugin.espaceCollection.collectionneur.liste.title.collectionneurs: Découvrez les collectionneurs de manière chronologique
+
+# Edition Module
+jcmsplugin.espaceCollection.portlet-liste-collectionneurs: Portlet Liste collectionneurs
+jcmsplugin.espaceCollection.portlet-liste-objet-incontournables: Portlet Objet incontournables
+
+jcmsplugin.espaceCollection.portlet-liste-collectionneurs.title-main-tuile: Texte tuile mise en avant page liste collectionneurs

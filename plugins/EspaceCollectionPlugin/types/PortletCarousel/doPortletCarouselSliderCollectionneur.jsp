@@ -6,7 +6,7 @@
 <%
 String cssSliderSize = "grid-4-small-1";
 String sliderAmounts = "4";
-String template = "card";
+String template = "card-home";
 
 jcmsContext.addCSSHeader("plugins/EspaceCollectionPlugin/css/plugin.css");
 %>
