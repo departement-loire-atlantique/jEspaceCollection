@@ -1,6 +1,5 @@
 package fr.digiwin.module.espacecollection.keepeek;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -8,7 +7,7 @@ import java.util.stream.Collectors;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
-import com.jalios.jcms.HttpUtil;
+import com.jalios.util.Util;
 
 import fr.digiwin.module.espacecollection.keepeek.exception.KeepeekException;
 import fr.digiwin.module.espacecollection.keepeek.pojo.Media;
@@ -37,26 +36,44 @@ public class KeepeekApiEndPoint {
 
     public static SearchResult searchMedia(String text, Map<String, List<String>> queryMap, String sort, int page,
             int size) {
+        
+        StringBuilder params = new StringBuilder();
+        
+        if(Util.notEmpty(text)) {
+            params.append("q=").append(text).append("&");
+        }
 
         // build "f" param
-        List<String> queryList = queryMap.entrySet()
-                .stream()
-                .map(entry -> entry.getValue()
-                        .stream()
-                        .map(val -> entry.getKey() + ":" + val)
-                        .collect(Collectors.toList()))
-                .flatMap(List::stream)
-                .collect(Collectors.toList());
-        String query = queryList
-                .stream()
-                .map(s -> "f=" + s)
-                .collect(Collectors.joining("&"));
+        if(Util.notEmpty(queryMap)) {
+            List<String> queryList = queryMap.entrySet()
+                    .stream()
+                    .map(entry -> entry.getValue()
+                            .stream()
+                            .map(val -> entry.getKey() + ":" + val)
+                            .collect(Collectors.toList()))
+                    .flatMap(List::stream)
+                    .collect(Collectors.toList());
+            String query = queryList
+                    .stream()
+                    .map(s -> "f=" + s)
+                    .collect(Collectors.joining("&"));
+            if(Util.notEmpty(query)) {
+                params.append(query).append("&");
+            }
+        }
 
-        //
-        String param = "q=" + text + "&" + query + "&sort=" + sort + "&page=" + page + "&size=" + size;
+        if(Util.notEmpty(sort)) {
+            params.append("sort=").append(sort).append("&");
+        }
+        if(Util.notEmpty(page)) {
+            params.append("page=").append(page).append("&");
+        }
+        if(Util.notEmpty(size)) {
+            params.append("size=").append(size).append("&");
+        }
 
         try {
-            String strSearchResult = KeepeekApiManager.getEndPoint("api/dam/search/media?" + param);
+            String strSearchResult = KeepeekApiManager.getEndPoint("api/dam/search/media?" + params);
 
             Gson gson = new Gson();
             SearchResult result = gson.fromJson(strSearchResult, SearchResult.class);
