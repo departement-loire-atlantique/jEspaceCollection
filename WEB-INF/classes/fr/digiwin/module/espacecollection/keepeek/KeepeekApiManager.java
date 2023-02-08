@@ -39,7 +39,7 @@ public class KeepeekApiManager {
         String token = getKeepeekLogin() + ":" + getKeepeekPwd();
         String base64Token = Base64.getEncoder().encodeToString(token.getBytes());
 
-        CloseableHttpClient httpClient = HttpClientUtils.newHttpClient();
+        CloseableHttpClient httpClient = HttpClientUtils.newHttpClient(20000);
 
         HttpGet httpGet = new HttpGet(url);
         httpGet.addHeader("Authorization", "Basic " + base64Token);
@@ -57,10 +57,9 @@ public class KeepeekApiManager {
 
             return strResponse;
         } catch (IOException e) {
-            LOGGER.error(e.getLocalizedMessage(), e);
+//            LOGGER.error(e.getLocalizedMessage(), e);
+            throw new KeepeekException(e.getLocalizedMessage(), e);
         }
-
-        return null;
     }
     
     public static String getEndPoint(String apiEndPoint) throws KeepeekException {
