@@ -117,6 +117,23 @@
     <type name="FicheObjetBaseDeDonnees" />
     <type name="FicheCollectionneur" />
     <type name="PortletImageHome" />
+
+    
+    <templates type="FicheObjetMediatisee">
+        <template name="default" file="doFicheObjetMediatiseeFullDisplay.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit par défaut</label>
+        </template>
+    </templates>
+    <templates type="FicheCollection">
+        <template name="default" file="doFicheCollectionFullDisplay.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit par défaut</label>
+        </template>
+    </templates>
+    <templates type="FicheCollectionneur">
+        <template name="default" file="doFicheCollectionneurFullDisplay.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit par défaut</label>
+        </template>
+    </templates>
     
     <templates type="PortletImageHome">
         <template name="default" file="doPortletImageHomeBoxDisplay.jsp" usage="box">
@@ -133,6 +150,9 @@
         </template>
         <template name="listeCollectionneurs" file="doPortletMiseEnAvantDeContenusCollectionneursListe.jsp" usage="full">
             <label xml:lang="fr">Espace Collection : gabarit liste des collectionneurs</label>
+        </template>
+        <template name="listeObjets" file="doPortletMiseEnAvantDeContenusObjetsListe.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit liste des objets incontournables</label>
         </template>
     </templates>
 

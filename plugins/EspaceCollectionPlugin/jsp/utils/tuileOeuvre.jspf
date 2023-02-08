@@ -1,23 +1,14 @@
 <section class="ds44-box ds44-theme">
-	<%
-	if (Util.notEmpty(obj.getGalerieDeVisuels())) {
-	%>
-	<%@ include
-		file='/plugins/EspaceEnseignantPlugin/jsp/utils/imageCarrousel.jspf'%>
-	<%
-	} else if (Util.notEmpty(obj.getVisuel())) {
-	%>
-	<%@ include
-		file='/plugins/EspaceEnseignantPlugin/jsp/utils/imageCredits.jspf'%>
-	<%
-	}
-	%>
+
+	<jalios:if predicate="<%=Util.notEmpty(obj.getGalerieDeVisuels())%>">
+		<%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/imageCarrousel.jspf'%>
+	</jalios:if>
 
 	<div class="ds44-innerBoxContainer">
 		<div class="grid-2-small-1 ds44-grid12-offset-1">
 			<div class="col">
 
-				<jalios:if predicate="<%=Util.notEmpty(obj)%>">
+				<%-- <jalios:if predicate="<%=Util.notEmpty(obj)%>">
 					<p class="ds44-docListElem ds44-mt-std">
 						<i class="icon icon-directory  ds44-docListIco" aria-hidden="true"></i>
 					</p>
@@ -27,20 +18,20 @@
 					<p class="ds44-docListElem ds44-mt-std">
 						<i class="icon icon-position  ds44-docListIco" aria-hidden="true"></i>
 					</p>
-				</jalios:if>
+				</jalios:if> --%>
 
 			</div>
 
 			<div class="col">
 					<p class="ds44-docListElem ds44-mt-std">
-						<i class="icon icon-info  ds44-docListIco" aria-hidden="true"></i>
+						<%-- <i class="icon icon-info  ds44-docListIco" aria-hidden="true"></i>
 
 						<jalios:if predicate="<%=Util.notEmpty(obj.getMatiere(userLang))%>">
 							<p class="ds44-docListElem"><%= obj.getMatiere(userLang) %></p>
 						</jalios:if>
 						<jalios:if predicate="<%=Util.notEmpty(obj.getDimensionsEtPoids(userLang))%>">
 							<p class="ds44-docListElem"><%= obj.getDimensionsEtPoids(userLang) %></p>
-						</jalios:if>
+						</jalios:if> --%>
 					</p>
 			</div>
 

@@ -10,7 +10,10 @@ FicheObjetBaseDeDonnees obj = (FicheObjetBaseDeDonnees) data;
 %>
   <section class="ds44-card ds44-js-card ds44-card--contact ds44-box ds44-bgGray ">
       <picture class="ds44-container-imgRatio">
-        <%-- image --%>
+         <jalios:if predicate="<%= Util.notEmpty(obj.getVisuel()) %>">
+              <% CarouselElement image = (CarouselElement)channel.getData(CarouselElement.class, obj.getVisuel().getId()); %>
+              <img src="<%= image.getImage() %>" alt="<%= image.getImageLegend() %>" class="ds44-imgRatio"/>
+          </jalios:if>
       </picture>
       
       <div class="ds44-card__section">
@@ -20,16 +23,15 @@ FicheObjetBaseDeDonnees obj = (FicheObjetBaseDeDonnees) data;
                 <%=obj.getTitle()%>
               </jalios:link>
             </p>
-            <hr class="mbs" aria-hidden="true" />
             <jalios:if predicate="<%= Util.notEmpty(obj.getDateEpoque()) %>">
               <p class="ds44-docListElem ds44-mt-std">
-                <i class="icon icon-tag ds44-docListIco" aria-hidden="true">
+                <i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
                 <%= obj.getDateEpoque() %>
               </p>
             </jalios:if>
             <jalios:if predicate="<%= Util.notEmpty(obj.getNumeroDinventaire()) %>">
               <p class="ds44-docListElem ds44-mt-std">
-                <i class="icon icon-date ds44-docListIco" aria-hidden="true">
+                <i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i>
                 <%= obj.getNumeroDinventaire() %>
               </p>
             </jalios:if>

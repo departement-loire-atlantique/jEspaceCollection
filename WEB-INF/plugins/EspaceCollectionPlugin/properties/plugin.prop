@@ -45,8 +45,9 @@ media.data-template.card-horizontale.FicheCollection: /plugins/EspaceCollectionP
 
 
 # Portlet ref
+jcmsplugin.espaceCollection.portlet-liste-collections.chooser-publication: oga_5167
 jcmsplugin.espaceCollection.portlet-liste-collectionneurs.chooser-publication: oga_5177
-jcmsplugin.espaceCollection.portlet-liste-objet-incontournables.chooser-publication: 
+jcmsplugin.espaceCollection.portlet-liste-objet-incontournables.chooser-publication: oga_5185
 
 # Texte
 jcmsplugin.espaceCollection.portlet-liste-collectionneurs.title-main-tuile:  L’armateur d’art : Thomas I Dobrée

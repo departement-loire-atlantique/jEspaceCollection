@@ -49,7 +49,7 @@ if (Util.notEmpty(collection)) {
     </div>
 
     <div class="txtcenter ds44-container-large ">
-			<jalios:link data="<%= box.getLienInterne() %>">
+			<jalios:link id='<%= channel.getProperty("jcmsplugin.espaceCollection.portlet-liste-collections") %>'>
         <button class="ds44-btnStd ds44-btnStd--large ds44-btnFullMobile" type="button" data-target="#overlay-sites-applis" data-js="ds44-modal">
 					<span class="ds44-btnInnerText"><%= glp("jcmsplugin.espaceCollection.departement.header.home.button") %></span>
 					<i class="icon icon-long-arrow-right" aria-hidden="true"></i>

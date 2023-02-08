@@ -24,11 +24,10 @@ FicheCollectionneur obj = (FicheCollectionneur) data;
             </jalios:link>
           </p>
           <hr class="mbs" aria-hidden="true" />
-          <p class="ds44-docListElem ds44-mt-std">
-            <i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
-            <%-- <%= obj.getDescription() %> --%>
-            Lorem ipsum dolor sit amet. Aenean pulvinar nec risus gravida mollis.
-          </p>
+          <jalios:wysiwyg css="ds44-docListElem ds44-mt-std">
+              <i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
+              <%= obj.getDescription() %>
+            </jalios:wysiwyg>
           <jalios:if predicate="<%= Util.notEmpty(obj.getDateDeNaissance()) && Util.notEmpty(obj.getDateDeMort()) %>">
             <p class="ds44-docListElem ds44-mt-std">
             <i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
