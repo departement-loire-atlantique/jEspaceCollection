@@ -111,6 +111,13 @@
 	  </templates>
   </types>
  -->
+  <types>
+    <templates type="PortletRechercheFacettes">
+        <template name="default" file="doPortletRechercheFacettesFullDisplay.jsp" usage='full'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+    </templates>
+  </types>
   <!-- ============================== Workflows =========================== -->
   <!--                                                                      -->
   <!-- workflows         A list of <dependency>.                            -->
@@ -438,6 +445,7 @@
     <directory path="docs" />
     <directory path="images" />
     <directory path="jsp" />
+    <directory path="types" />
     <!--    
     <directory path="images" />
     -->

@@ -12,8 +12,8 @@ public class EmbeddedResult {
     @SerializedName("media")
     @Expose
     private List<MediaLight> media;
-    @SerializedName("selected-filter")
-    @Expose
+//    @SerializedName("selected-filter")
+//    @Expose
     private List<SelectedFilter> selectedFilter;
 
     public List<MediaLight> getMedia() {

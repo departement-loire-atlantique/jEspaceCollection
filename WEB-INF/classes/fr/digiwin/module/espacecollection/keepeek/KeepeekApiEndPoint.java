@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
+import com.jalios.jcms.HttpUtil;
 import com.jalios.util.Util;
 
 import fr.digiwin.module.espacecollection.keepeek.exception.KeepeekException;
@@ -30,45 +31,38 @@ public class KeepeekApiEndPoint {
         return null;
     }
 
-    public static SearchResult searchMedia(String text, Map<String, List<String>> queryMap) {
-        return searchMedia(text, queryMap, "creationDate", 1, 20);
+    public static SearchResult searchMedia(String text, KeepeekSearchQuery searchQuery) {
+        return searchMedia(text, searchQuery, "creationDate desc", 1, 20);
     }
 
-    public static SearchResult searchMedia(String text, Map<String, List<String>> queryMap, String sort, int page,
+    public static SearchResult searchMedia(String text, KeepeekSearchQuery searchQuery, int page, int size) {
+        return searchMedia(text, searchQuery, "creationDate desc", page, size);
+    }
+
+    public static SearchResult searchMedia(String text, KeepeekSearchQuery searchQuery, String sort, int page,
             int size) {
-        
+
         StringBuilder params = new StringBuilder();
-        
-        if(Util.notEmpty(text)) {
-            params.append("q=").append(text).append("&");
+
+        if (Util.notEmpty(text)) {
+            params.append("q=").append(HttpUtil.encodeForURL(text)).append("&");
         }
 
         // build "f" param
-        if(Util.notEmpty(queryMap)) {
-            List<String> queryList = queryMap.entrySet()
-                    .stream()
-                    .map(entry -> entry.getValue()
-                            .stream()
-                            .map(val -> entry.getKey() + ":" + val)
-                            .collect(Collectors.toList()))
-                    .flatMap(List::stream)
-                    .collect(Collectors.toList());
-            String query = queryList
-                    .stream()
-                    .map(s -> "f=" + s)
-                    .collect(Collectors.joining("&"));
-            if(Util.notEmpty(query)) {
+        if (Util.notEmpty(searchQuery)) {
+            String query = searchQuery.build();
+            if (Util.notEmpty(query)) {
                 params.append(query).append("&");
             }
         }
 
-        if(Util.notEmpty(sort)) {
-            params.append("sort=").append(sort).append("&");
+        if (Util.notEmpty(sort)) {
+            params.append("sort=").append(HttpUtil.encodeForURL(sort)).append("&");
         }
-        if(Util.notEmpty(page)) {
+        if (Util.notEmpty(page)) {
             params.append("page=").append(page).append("&");
         }
-        if(Util.notEmpty(size)) {
+        if (Util.notEmpty(size)) {
             params.append("size=").append(size).append("&");
         }
 

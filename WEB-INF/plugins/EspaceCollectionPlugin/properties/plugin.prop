@@ -29,6 +29,9 @@ jcmsplugin.espacecollection.keepeek.url: https://dam-gpla.loire-atlantique.fr/
 jcmsplugin.espacecollection.keepeek.login:
 jcmsplugin.espacecollection.keepeek.password.pwd:
 
+# recherche
+$jcmsplugin.socle.recherche.facettes.portal: fde_5017
+
 ## Surcharge module socle
 # Menu principal
 jcmsplugin.socle.site.menu.cat.root: fde_5005
