@@ -57,7 +57,7 @@ List<MediaLight> collection = null;
 if(Util.notEmpty(text) || !searchQuery.isEmpty()){
     searchResult = KeepeekApiEndPoint.searchMedia(text, searchQuery, pager, maxResult);
 
-    collection = searchResult.getEmbeddedResult().getMedia();
+    collection = searchResult.getEmbeddedResult().getMedias();
 }
 
 

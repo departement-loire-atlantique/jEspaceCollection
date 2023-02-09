@@ -1,16 +1,15 @@
 package fr.digiwin.module.espacecollection.keepeek;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jalios.jcms.HttpUtil;
 import com.jalios.util.Util;
 
+import fr.digiwin.module.espacecollection.keepeek.deserializer.EmbeddedResultDeserializer;
 import fr.digiwin.module.espacecollection.keepeek.exception.KeepeekException;
+import fr.digiwin.module.espacecollection.keepeek.pojo.EmbeddedResult;
 import fr.digiwin.module.espacecollection.keepeek.pojo.Media;
 import fr.digiwin.module.espacecollection.keepeek.pojo.SearchResult;
 
@@ -69,7 +68,11 @@ public class KeepeekApiEndPoint {
         try {
             String strSearchResult = KeepeekApiManager.getEndPoint("api/dam/search/media?" + params);
 
-            Gson gson = new Gson();
+            GsonBuilder gsonBuild = new GsonBuilder();
+            gsonBuild.registerTypeAdapter(EmbeddedResult.class, new EmbeddedResultDeserializer());
+
+            Gson gson = gsonBuild.create();
+
             SearchResult result = gson.fromJson(strSearchResult, SearchResult.class);
 
             return result;

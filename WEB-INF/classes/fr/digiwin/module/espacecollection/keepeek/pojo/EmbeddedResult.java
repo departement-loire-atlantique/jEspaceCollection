@@ -9,19 +9,19 @@ import com.google.gson.annotations.SerializedName;
 @Generated("jsonschema2pojo")
 public class EmbeddedResult {
 
-    @SerializedName("media")
-    @Expose
-    private List<MediaLight> media;
+//    @SerializedName("media")
+//    @Expose
+    private List<MediaLight> medias;
 //    @SerializedName("selected-filter")
 //    @Expose
     private List<SelectedFilter> selectedFilter;
 
-    public List<MediaLight> getMedia() {
-        return media;
+    public List<MediaLight> getMedias() {
+        return medias;
     }
 
-    public void setMedia(List<MediaLight> media) {
-        this.media = media;
+    public void setMedias(List<MediaLight> media) {
+        this.medias = media;
     }
 
     public List<SelectedFilter> getSelectedFilter() {
@@ -38,7 +38,7 @@ public class EmbeddedResult {
         sb.append(Embedded.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("media");
         sb.append('=');
-        sb.append(((this.media == null)?"<null>":this.media));
+        sb.append(((this.medias == null)?"<null>":this.medias));
         sb.append(',');
         sb.append("selectedFilter");
         sb.append('=');
