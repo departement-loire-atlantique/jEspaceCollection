@@ -52,6 +52,21 @@ if(Util.notEmpty(booleanParams)){
     }
 }
 
+// String[] cidBranches = request.getParameterValues("cidBranches");
+String[] cids = request.getParameterValues("cids");
+if (Util.notEmpty(cids)) {
+    for (String itCid : cids){
+        Category itCat = Channel.getChannel().getCategory(itCid);
+        if (Util.notEmpty(itCat) && itCat.canBeReadBy(loggedMember)) {
+            String idThesaurus = itCat.getDescription();
+            String keyQuery = Util.getFirst(itCat.getSynonyms());
+            if (Util.notEmpty(idThesaurus) && Util.notEmpty(keyQuery)) {
+                searchQuery.add(keyQuery, idThesaurus);
+            }
+        }
+    }
+}
+
 SearchResult searchResult = null;
 List<MediaLight> collection = null;
 if(Util.notEmpty(text) || !searchQuery.isEmpty()){
