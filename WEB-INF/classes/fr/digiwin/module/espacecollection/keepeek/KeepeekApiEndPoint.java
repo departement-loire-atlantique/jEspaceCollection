@@ -42,6 +42,10 @@ public class KeepeekApiEndPoint {
             int size) {
 
         StringBuilder params = new StringBuilder();
+        
+        // default filter 
+        params.append("fq=folderId:22&");// 22 => Fiches objets de collections
+//        params.append("f=metamodelId:4&");// 4 => 1. Fiches objets de collections KO
 
         if (Util.notEmpty(text)) {
             params.append("q=").append(HttpUtil.encodeForURL(text)).append("&");
