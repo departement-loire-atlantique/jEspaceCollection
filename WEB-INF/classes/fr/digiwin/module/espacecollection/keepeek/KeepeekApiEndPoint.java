@@ -8,10 +8,13 @@ import com.jalios.jcms.HttpUtil;
 import com.jalios.util.Util;
 
 import fr.digiwin.module.espacecollection.keepeek.deserializer.EmbeddedResultDeserializer;
+import fr.digiwin.module.espacecollection.keepeek.deserializer.EmbeddedThesaurusTreeDeserializer;
 import fr.digiwin.module.espacecollection.keepeek.exception.KeepeekException;
 import fr.digiwin.module.espacecollection.keepeek.pojo.EmbeddedResult;
+import fr.digiwin.module.espacecollection.keepeek.pojo.EmbeddedThesaurusTree;
 import fr.digiwin.module.espacecollection.keepeek.pojo.Media;
 import fr.digiwin.module.espacecollection.keepeek.pojo.SearchResult;
+import fr.digiwin.module.espacecollection.keepeek.pojo.ThesaurusTree;
 
 public class KeepeekApiEndPoint {
 
@@ -42,8 +45,8 @@ public class KeepeekApiEndPoint {
             int size) {
 
         StringBuilder params = new StringBuilder();
-        
-        // default filter 
+
+        // default filter
         params.append("fq=folderId:22&");// 22 => Fiches objets de collections
 //        params.append("f=metamodelId:4&");// 4 => 1. Fiches objets de collections KO
 
@@ -83,6 +86,24 @@ public class KeepeekApiEndPoint {
         } catch (KeepeekException e) {
             LOGGER.error(e.getLocalizedMessage(), e);
         }
+        return null;
+    }
+
+    public static ThesaurusTree getThesaurusTree(String idThesaurus) {
+        try {
+            String strThesaurusTree = KeepeekApiManager.getEndPoint("api/dam/thesaurus-tree/" + idThesaurus);
+
+            GsonBuilder gsonBuild = new GsonBuilder();
+            gsonBuild.registerTypeAdapter(EmbeddedThesaurusTree.class, new EmbeddedThesaurusTreeDeserializer());
+
+            Gson gson = gsonBuild.create();
+
+            ThesaurusTree thesaurusTree = gson.fromJson(strThesaurusTree, ThesaurusTree.class);
+            return thesaurusTree;
+        } catch (KeepeekException e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+        }
+
         return null;
     }
 }

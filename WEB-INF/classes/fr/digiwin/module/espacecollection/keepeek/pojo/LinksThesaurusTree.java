@@ -1,58 +1,60 @@
 
 package fr.digiwin.module.espacecollection.keepeek.pojo;
 
+import java.util.List;
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("jsonschema2pojo")
-public class Links__1 {
+public class LinksThesaurusTree {
 
     @SerializedName("self")
     @Expose
-    private Self__1 self;
-    @SerializedName("kpk:field")
+    private Self self;
+    @SerializedName("curies")
     @Expose
-    private KpkField kpkField;
+    private List<Cury> curies;
     @SerializedName("kpk:thesaurus")
     @Expose
-    private KpkThesaurus__1 kpkThesaurus;
+    private KpkThesaurus kpkThesaurus;
 
-    public Self__1 getSelf() {
+    public Self getSelf() {
         return self;
     }
 
-    public void setSelf(Self__1 self) {
+    public void setSelf(Self self) {
         this.self = self;
     }
 
-    public KpkField getKpkField() {
-        return kpkField;
+    public List<Cury> getCuries() {
+        return curies;
     }
 
-    public void setKpkField(KpkField kpkField) {
-        this.kpkField = kpkField;
+    public void setCuries(List<Cury> curies) {
+        this.curies = curies;
     }
 
-    public KpkThesaurus__1 getKpkThesaurus() {
+    public KpkThesaurus getKpkThesaurus() {
         return kpkThesaurus;
     }
 
-    public void setKpkThesaurus(KpkThesaurus__1 kpkThesaurus) {
+    public void setKpkThesaurus(KpkThesaurus kpkThesaurus) {
         this.kpkThesaurus = kpkThesaurus;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Links__1 .class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Links.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("self");
         sb.append('=');
         sb.append(((this.self == null)?"<null>":this.self));
         sb.append(',');
-        sb.append("kpkField");
+        sb.append("curies");
         sb.append('=');
-        sb.append(((this.kpkField == null)?"<null>":this.kpkField));
+        sb.append(((this.curies == null)?"<null>":this.curies));
+        sb.append(',');
         sb.append("kpkThesaurus");
         sb.append('=');
         sb.append(((this.kpkThesaurus == null)?"<null>":this.kpkThesaurus));

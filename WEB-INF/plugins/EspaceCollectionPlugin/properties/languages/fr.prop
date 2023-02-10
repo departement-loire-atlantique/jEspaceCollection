@@ -2,3 +2,6 @@
 jcmsplugin.espacecollection.keepeek.url: Url Keepeek
 jcmsplugin.espacecollection.keepeek.login: Login Keepeek
 jcmsplugin.espacecollection.keepeek.password: Mot de passe Keepeek
+
+# recherche
+$jcmsplugin.espacecollection.recherche.filtre.Keepeek.root: Categorie racine des filtres de la recherche
