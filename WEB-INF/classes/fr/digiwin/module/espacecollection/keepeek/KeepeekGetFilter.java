@@ -1,9 +1,7 @@
 package fr.digiwin.module.espacecollection.keepeek;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,7 +30,7 @@ public class KeepeekGetFilter {
     }
 
     public void process() {
-        LOGGER.trace("Start process get filters");
+        LOGGER.info("Start process get filters");
         this.root = Channel.getChannel().getCategory(PROP_ID_FILTRE_ROOT);
 
         if (Util.isEmpty(this.root)) {
@@ -44,6 +42,7 @@ public class KeepeekGetFilter {
         LOGGER.trace(subRoot);
 
         subRoot.forEach((cat, deep) -> this.syncProcess(cat, deep));
+        LOGGER.info("End process get filters");
     }
 
     private void syncProcess(Category cat, Integer deep) {

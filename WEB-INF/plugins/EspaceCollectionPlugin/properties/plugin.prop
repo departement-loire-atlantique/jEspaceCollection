@@ -32,6 +32,7 @@ jcmsplugin.espacecollection.keepeek.password.pwd:
 # recherche
 $jcmsplugin.socle.recherche.facettes.portal: fde_5017
 $jcmsplugin.espacecollection.recherche.filtre.Keepeek.root.chooser-category: por_5176
+jcmsplugin.espacecollection.recherche.filtre.Keepeek.get.schedule: 00 05 * * * *
 
 ## Surcharge module socle
 # Menu principal
