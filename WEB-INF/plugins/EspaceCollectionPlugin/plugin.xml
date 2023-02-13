@@ -207,7 +207,7 @@
  
   <java-classes>
     <java package="fr.digiwin.module.espacecollection" />
-  </java-classes
+  </java-classes>
   <!-- ========================== Plugin Components ======================= -->
   <!--                                                                      -->
   <!-- Plugin Components are Java classes implementing the PluginComponent  -->
