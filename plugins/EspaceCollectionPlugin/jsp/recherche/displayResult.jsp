@@ -128,7 +128,7 @@ session.setAttribute("isSearchFacetLink", true);
     JsonObject itJsonObject = new JsonObject();
     
     itJsonObject.addProperty("value", itMediaLight.getTitle());
-    itJsonObject.addProperty("id", -1);
+    itJsonObject.addProperty("id", itMediaLight.getId());
     
     JsonObject itMetaJsonObject = new JsonObject();
     itMetaJsonObject.addProperty("url", "TODO");
