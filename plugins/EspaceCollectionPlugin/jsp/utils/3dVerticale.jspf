@@ -1,0 +1,18 @@
+<jalios:if predicate="<%= Util.notEmpty(obj.getUrlSketchfab()) %>">
+<div class="colPush ds44-mb3">
+  <section class="ds44-box ds44-theme ds44-bgTriangle-left">
+    <div class="ds44-flex-container ds44-box--push">
+      <picture class="ds44-boxPushPic">
+        <img src="<%= channel.getProperty("jcmsplugin.espaceCollection.image.src.cube-3d")%>" alt="image cube 3d" />
+      </picture>
+      <div class="ds44-boxPushContent">
+        <p role="heading" aria-level="2" class="ds44-pushTitle"><%= glp("jcmsplugin.espaceCollection.objet.3d.title") %></p>
+        <p><%= glp("jcmsplugin.espaceCollection.objet.3d.desc") %></p>
+        <a href="<%= obj.getUrlSketchfab() %>" target="_blank" class="mtm"><button class="ds44-btnStd" type="button" title="Je découvre une balade">
+        <span class="ds44-btnInnerText"><%= glp("jcmsplugin.espaceCollection.objet.3d.btn") %></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i>
+        </button></a>
+      </div>
+    </div>
+  </section>
+</div>
+</jalios:if>

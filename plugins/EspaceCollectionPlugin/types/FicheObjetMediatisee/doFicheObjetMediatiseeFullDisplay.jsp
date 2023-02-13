@@ -19,7 +19,10 @@
         <jalios:wysiwyg><%= obj.getDescription() %></jalios:wysiwyg>
       </div>
     </div>
+	<%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/share.jspf'%>
 	</section>
+  
+	<%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/3dHorizontale.jspf'%>
 </section>
 
 <%-- **********4A616C696F73204A434D53 *** SIGNATURE BOUNDARY * DO NOT EDIT ANYTHING BELOW THIS LINE *** --%><%

@@ -2,13 +2,10 @@
   <div
     class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt">
     <div class="ds44-grid12-offset-2">
-
-				<nav role="navigation" aria-label="Votre position" class="ds44-hide-mobile">
-					<ul class="ds44-list ds44-breadcrumb">
-							<li class="ds44-breadcrumb_item"><a href="/"><i class="icon icon-home icon--medium" aria-hidden="true"></i><span class="visually-hidden">Accueil</span></a></li>
-							<li class="ds44-breadcrumb_item" aria-current="location"><span><%= headerSubTitle %></span></li>
-					</ul>
-				</nav>
+				<!-- Fil d'ariane -->
+      <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id"))%>'>
+        <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' />
+      </jalios:if>
 
       <h1 class="h1-like">
         <%= headerTitle %>

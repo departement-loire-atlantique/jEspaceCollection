@@ -124,6 +124,11 @@
             <label xml:lang="fr">Espace Collection : gabarit par défaut</label>
         </template>
     </templates>
+    <templates type="FicheObjetBaseDeDonnees">
+        <template name="default" file="doFicheObjetBaseDeDonneesFullDisplay.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit par défaut</label>
+        </template>
+    </templates>
     <templates type="FicheCollection">
         <template name="default" file="doFicheCollectionFullDisplay.jsp" usage="full">
             <label xml:lang="fr">Espace Collection : gabarit par défaut</label>

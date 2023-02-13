@@ -1,0 +1,71 @@
+<% 
+if(Util.notEmpty(obj.getGalerieDeVisuels())) {
+    Carousel carrousel = (Carousel)channel.getData(Carousel.class, obj.getGalerieDeVisuels().getId());
+    CarouselElement[] listeElem = carrousel.getElements1();
+%>
+<ul class="grid-3-tiny-1 ds44-mosaique ds44-gutter ds44-list">
+
+    <% 
+      for(int i = 0; i < 3; i++) {
+      CarouselElement itElem = listeElem[i];
+    %>
+    <li>
+      <figure class="ds44-legendeContainer ds44-container-imgRatio ds44-container-imgZoom " data-target="#overlay-mosaique" data-js="ds44-modal" role="figure" aria-label="<%= itElem.getImageCopyright() %>">
+        <button type="button" title="Ouvir la boîte de dialogue : <%= itElem.getTitle() %>">
+          <img src="<%= itElem.getImage() %>" alt="<%= itElem.getImageLegend() %>" class="ds44-imgRatio">
+        </button>
+        <jalios:if predicate="<%= Util.notEmpty(itElem.getImageCopyright()) %>">
+            <figcaption class="ds44-imgCaption"><%= itElem.getImageCopyright() %></figcaption>
+        </jalios:if>
+      </figure>
+    </li>
+    <% } %>
+</ul>
+
+<ul class="grid-3-tiny-1 ds44-mosaique ds44-gutter ds44-list">
+    <% 
+      for(int i = 3; i < 5; i++) {
+      CarouselElement itElem = listeElem[i];
+    %>
+    <% if(i < 4) { %>
+    <li>
+        <figure class="ds44-legendeContainer ds44-container-imgRatio ds44-container-imgZoom ds44-container-imgRatio--A4" data-target="#overlay-mosaique" data-js="ds44-modal" role="figure" aria-label="Légende associée © Copyright">
+          <button type="button" title="Ouvir la boîte de dialogue : <%= itElem.getTitle() %>">
+            <img src="<%= itElem.getImage() %>" alt="<%= itElem.getImageLegend() %>" class="ds44-imgRatio">
+          </button>
+          <jalios:if predicate="<%= Util.notEmpty(itElem.getImageCopyright()) %>">
+              <figcaption class="ds44-imgCaption"><%= itElem.getImageCopyright() %></figcaption>
+          </jalios:if>
+        </figure>
+    </li>
+    
+    <% } else { %>
+    <li class="col-2">
+        <figure class="ds44-legendeContainer ds44-container-imgRatio ds44-container-imgZoom " data-target="#overlay-mosaique" data-js="ds44-modal" role="figure" aria-label="Légende associée © Copyright">
+          <button type="button" title="Ouvir la boîte de dialogue : <%= itElem.getTitle() %>">
+            <img src="<%= itElem.getImage() %>" alt="<%= itElem.getImageLegend() %>" class="ds44-imgRatio">
+          </button>
+          <jalios:if predicate="<%= Util.notEmpty(itElem.getImageCopyright()) %>">
+              <figcaption class="ds44-imgCaption"><%= itElem.getImageCopyright() %></figcaption>
+          </jalios:if>
+        </figure>
+    </li>
+    <% } 
+      }%>
+</ul>
+<% } %>
+
+<section class="ds44-modal-container" id="overlay-mosaique" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="overlay-test-title">
+    <div class="ds44-modal-box">
+        <h1 id="overlay-test-title" class="h2-like visually-hidden" aria-hidden="true">Titre de l'overlay</h1>
+        <button class="ds44-btnOverlay--modale ds44-btnOverlay--closeOverlay" type="button" title="Fermer la boîte de dialogue : [titre de la modale]" data-js="ds44-modal-action-close">
+            <i class="icon icon-cross icon--xlarge" aria-hidden="true"></i><span class="ds44-btnInnerText--bottom">Fermer</span>
+        </button>
+        <div class="ds44-modal-gab ds44-mt3 txtcenter">
+            <figure class="ds44-legendeContainer ds44-container-imgRatio center">
+                <img src="../../assets/images/img_article_bigger@2x.jpg" alt="" class="ds44-imgRatio">
+                <figcaption class="ds44-imgCaption" aria-describedby="image1">Légende associée © Copyright</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>

@@ -10,6 +10,9 @@
       <label xml:lang="en">Description</label>
       <label xml:lang="fr">Description</label>
     </field>
+    <field name="visuel" editor="link" required="false" compactDisplay="false" type="generated.CarouselElement" parent="false">
+      <label xml:lang="fr">Visuel</label>
+    </field>
     <field name="galerieDeVisuels" editor="link" required="false" compactDisplay="false" type="generated.Carousel" parent="false">
       <label xml:lang="fr">Galerie de visuels</label>
     </field>
@@ -27,6 +30,15 @@
     </field>
     <field name="urlSketchfab" editor="url" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" openWindow="false">
       <label xml:lang="fr">URL sketchfab</label>
+    </field>
+    <field name="numeroDinventaire" editor="textfield" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true" descriptionType="tooltip">
+      <label xml:lang="fr">Numéro d’inventaire</label>
+    </field>
+    <field name="dateEpoque" editor="textfield" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Date / époque</label>
+    </field>
+    <field name="oeuvresLiees" editor="link" required="false" compactDisplay="false" type="generated.ListeDeContenus" parent="false">
+      <label xml:lang="fr">Oeuvres liées</label>
     </field>
   </fields>
 </type>

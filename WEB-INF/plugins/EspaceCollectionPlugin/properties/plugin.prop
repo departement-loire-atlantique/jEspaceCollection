@@ -22,12 +22,15 @@ channel.css.all.200.fo: plugins/EspaceCollectionPlugin/css/plugin.css
 jcmsplugin.socle.site.src.logo: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
 jcmsplugin.espaceCollection.site.src.logo-gpla: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
 
+jcmsplugin.espaceCollection.image.src.cube-3d: plugins/EspaceCollectionPlugin/images/cube-3d.png
+
 fr.jcmsplugin.seo.meta-title: Espace collection
 
 ## Surcharge module socle
 # Menu principal
 jcmsplugin.socle.site.menu.cat.root: fde_5005
 jcmsplugin.socle.site.submenu.cat.root: fde_5006
+jcmsplugin.socle.portlet.filariane.id: oga_5201
 
 # désactive le btn par défaut et ajoute un cat custom
 jcmsplugin.socle.site.header.show.rechercher: false
@@ -38,7 +41,7 @@ media.data-template.card-home.FicheCollectionneur: /plugins/EspaceCollectionPlug
 media.data-template.card.FicheCollectionneur: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionneurCard.jsp
 
 media.data-template.card-search.FicheObjetBaseDeDonnees: /plugins/EspaceCollectionPlugin/templates/doFicheObjetBaseDeDonneesCardSearch.jsp
-media.data-template.card.FicheObjetBaseDeDonnees: /plugins/EspaceCollectionPlugin/templates/doFicheObjetBaseDeDonneesCard.jsp
+media.data-template.card.FicheObjetMediatisee: /plugins/EspaceCollectionPlugin/templates/doFicheObjetMediatiseeCard.jsp
 
 media.data-template.card-verticale.FicheCollection: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionCardVerticale.jsp
 media.data-template.card-horizontale.FicheCollection: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionCardHorizontale.jsp

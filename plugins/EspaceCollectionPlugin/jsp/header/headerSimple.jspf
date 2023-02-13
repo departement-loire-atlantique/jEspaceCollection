@@ -2,9 +2,11 @@
   <div
     class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt">
     <div class="ds44-grid12-offset-2">
-      <%-- <%@ include
-        file='/plugins/EspaceEnseignantPlugin/jsp/filAriane.jspf'%> --%>
-      <h1 class="h1-like mbs mts bold-txt">
+				<!-- Fil d'ariane -->
+      <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id"))%>'>
+        <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' />
+      </jalios:if>
+      <h1 class="h1-like">
         <%=obj.getTitle()%>
       </h1>
     </div>

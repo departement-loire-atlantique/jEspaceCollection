@@ -6,7 +6,7 @@ if (data == null) {
   return;
 }
 
-FicheObjetBaseDeDonnees obj = (FicheObjetBaseDeDonnees) data;
+FicheObjetMediatisee obj = (FicheObjetMediatisee) data;
 %>
   <section class="ds44-card ds44-js-card ds44-card--contact ds44-box ds44-bgGray ">
       <picture class="ds44-container-imgRatio">
@@ -33,6 +33,14 @@ FicheObjetBaseDeDonnees obj = (FicheObjetBaseDeDonnees) data;
               <p class="ds44-docListElem ds44-mt-std">
                 <i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i>
                 <%= obj.getNumeroDinventaire() %>
+              </p>
+            </jalios:if>
+            <jalios:if predicate="<%= Util.notEmpty(obj.getTypologie(loggedMember)) %>">
+              <p class="ds44-docListElem ds44-mt-std">
+                <i class="icon icon-directory ds44-docListIco" aria-hidden="true"></i>
+                <jalios:foreach collection="<%= obj.getTypologie(loggedMember) %>" type="Category" name="itCategory" >
+                    <%= itCategory.getName() %>
+                </jalios:foreach>
               </p>
             </jalios:if>
         </div>
