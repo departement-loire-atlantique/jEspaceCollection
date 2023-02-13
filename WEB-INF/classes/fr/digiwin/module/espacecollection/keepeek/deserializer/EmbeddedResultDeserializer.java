@@ -11,6 +11,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
+import com.jalios.util.Util;
 
 import fr.digiwin.module.espacecollection.keepeek.pojo.EmbeddedResult;
 import fr.digiwin.module.espacecollection.keepeek.pojo.MediaLight;
@@ -24,7 +25,9 @@ public class EmbeddedResultDeserializer implements JsonDeserializer<EmbeddedResu
         Gson gson = new Gson();
         EmbeddedResult embeddedResult = gson.fromJson(jsonElem, EmbeddedResult.class);
         List<MediaLight> values = null;
-        if (embeddedResultObj.get("media").isJsonArray()) {
+        if (null == embeddedResultObj.get("media")) {
+            embeddedResult.setMedias(new ArrayList<MediaLight>());
+        } else if (embeddedResultObj.get("media").isJsonArray()) {
             values = gson.fromJson(embeddedResultObj.get("media"), new TypeToken<List<MediaLight>>() {
             }.getType());
         } else {
