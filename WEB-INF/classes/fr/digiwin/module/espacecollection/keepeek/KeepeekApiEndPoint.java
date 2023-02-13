@@ -10,6 +10,7 @@ import com.jalios.util.Util;
 import fr.digiwin.module.espacecollection.keepeek.deserializer.EmbeddedResultDeserializer;
 import fr.digiwin.module.espacecollection.keepeek.deserializer.EmbeddedThesaurusTreeDeserializer;
 import fr.digiwin.module.espacecollection.keepeek.exception.KeepeekException;
+import fr.digiwin.module.espacecollection.keepeek.pojo.AutocompleteThesaurus;
 import fr.digiwin.module.espacecollection.keepeek.pojo.EmbeddedResult;
 import fr.digiwin.module.espacecollection.keepeek.pojo.EmbeddedThesaurusTree;
 import fr.digiwin.module.espacecollection.keepeek.pojo.Media;
@@ -100,6 +101,34 @@ public class KeepeekApiEndPoint {
 
             ThesaurusTree thesaurusTree = gson.fromJson(strThesaurusTree, ThesaurusTree.class);
             return thesaurusTree;
+        } catch (KeepeekException e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+        }
+
+        return null;
+    }
+    
+    public static AutocompleteThesaurus getAutocompleteThesaurus(String idThesaurus, String text) {
+        String params = "type=thesaurus&";
+        
+        if(Util.notEmpty(idThesaurus)) {
+            params += "thesaurusId=" + idThesaurus + "&";
+        }
+        
+        if(Util.notEmpty(text)) {
+            params += "q=" + HttpUtil.encodeForURL(text);
+        }
+        
+        try {
+            String strAutocomplete = KeepeekApiManager.getEndPoint("api/dam/search/autocomplete?" + params);
+
+            GsonBuilder gsonBuild = new GsonBuilder();
+
+            Gson gson = gsonBuild.create();
+
+            LOGGER.warn(strAutocomplete);
+            AutocompleteThesaurus autocomplete = gson.fromJson(strAutocomplete, AutocompleteThesaurus.class);
+            return autocomplete;
         } catch (KeepeekException e) {
             LOGGER.error(e.getLocalizedMessage(), e);
         }

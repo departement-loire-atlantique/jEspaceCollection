@@ -17,6 +17,9 @@ public class Links__1 {
     @SerializedName("kpk:thesaurus")
     @Expose
     private KpkThesaurus__1 kpkThesaurus;
+    @SerializedName("kpk:thesaurus-tree-node")
+    @Expose
+    private KpkThesaurusTreeNode kpkThesaurusTreeNode;
 
     public Self__1 getSelf() {
         return self;
@@ -41,6 +44,13 @@ public class Links__1 {
     public void setKpkThesaurus(KpkThesaurus__1 kpkThesaurus) {
         this.kpkThesaurus = kpkThesaurus;
     }
+    public KpkThesaurusTreeNode getKpkThesaurusTreeNode() {
+        return kpkThesaurusTreeNode;
+    }
+
+    public void setKpkThesaurusTreeNode(KpkThesaurusTreeNode kpkThesaurusTreeNode) {
+        this.kpkThesaurusTreeNode = kpkThesaurusTreeNode;
+    }
 
     @Override
     public String toString() {
@@ -56,6 +66,9 @@ public class Links__1 {
         sb.append("kpkThesaurus");
         sb.append('=');
         sb.append(((this.kpkThesaurus == null)?"<null>":this.kpkThesaurus));
+        sb.append("kpkThesaurusTreeNode");
+        sb.append('=');
+        sb.append(((this.kpkThesaurusTreeNode == null)?"<null>":this.kpkThesaurusTreeNode));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
