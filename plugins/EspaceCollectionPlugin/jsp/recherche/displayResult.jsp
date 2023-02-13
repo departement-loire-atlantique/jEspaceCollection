@@ -118,9 +118,9 @@ session.setAttribute("isSearchFacetLink", true);
 <%-- skip='<%= (pager - 1) * maxResult  %>' --%>
 <jalios:foreach collection="<%= collection %>" name="itMediaLight" type="MediaLight" max='<%= maxResult %>' >
 
-    <jalios:buffer name="itPubListGabarit"><%       
-	    %>
-        <%= itMediaLight.getTitle() %>
+    <jalios:buffer name="itPubListGabarit">
+	    <% request.setAttribute("idKeepeek", itMediaLight.getId()+""); %>
+        <jalios:include jsp="/plugins/EspaceCollectionPlugin/jsp/ficheObjet/doFicheObjetTuile.jsp" />
         <%    
     %></jalios:buffer><%
     
