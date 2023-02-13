@@ -1,0 +1,67 @@
+<section class="ds44-box ds44-theme">
+
+	<jalios:if predicate="<%=Util.notEmpty(obj.getGalerieDeVisuels())%>">
+		<%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/imageCarrousel.jspf'%>
+	</jalios:if>
+
+	<div class="ds44-innerBoxContainer">
+		<div class="grid-2-small-1 ds44-grid12-offset-1">
+			<div class="col">
+
+
+				<jalios:if predicate="<%= Util.notEmpty(obj.getTypologie(loggedMember)) %>">
+					<p class="ds44-docListElem ds44-mt-std">
+						<i class="icon icon-directory ds44-docListIco" aria-hidden="true"></i>
+						<jalios:foreach collection="<%= obj.getTypologie(loggedMember) %>" type="Category" name="itCategory" >
+								<%= itCategory.getName() %>
+						</jalios:foreach>
+					</p>
+				</jalios:if>
+				
+				<jalios:if predicate="<%=Util.notEmpty(obj.getLieu())%>">
+					<p class="ds44-docListElem ds44-mt-std">
+						<i class="icon icon-position  ds44-docListIco" aria-hidden="true"></i>
+						<%= obj.getLieu().getTitle( )%> </br>
+						<%= obj.getLieu().getNdeVoie(userLang) %> 
+						<%= obj.getLieu().getLibelleDeVoie(userLang) %> </br>
+						<%= obj.getLieu().getCodePostal(userLang) %>
+						<%= obj.getLieu().getCommune().getTitle() %>
+					</p>
+				</jalios:if>
+
+			</div>
+
+			<div class="col">
+					<p class="ds44-docListElem ds44-mt-std">
+						<i class="icon icon-info  ds44-docListIco" aria-hidden="true"></i>
+						<jalios:if predicate="<%=Util.notEmpty(obj.getCaracteristique(userLang))%>">
+							<p class="ds44-docListElem"><%= obj.getCaracteristique(userLang) %></p>
+						</jalios:if>
+					</p>
+			</div>
+
+		</div>
+			<div class="ds44-grid12-offset-1">
+				<a href="#" class="ds44-btnStd ds44-btn--invert margin-txt">  
+						<span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.fiche-bdd")%></span>
+						<i class="icon icon-long-arrow-right" aria-hidden="true"></i>
+				</a>
+				<button class="ds44-btnStd">
+					<i class="icon icon-star-empty" aria-hidden="true"></i> <span
+						class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
+				</button>
+			</div>
+			<div class="ds44-grid12-offset-1">
+				<span>  
+						<i class="icon icon-pdf" aria-hidden="true"></i>
+						<a href="#"><%=glp("jcmsplugin.espaceCollection.objet.tuile.telecharger.pdf")%></a>
+				</span>
+				<span>
+	          <%@ include file='/plugins/EspaceCollectionPlugin/jsp/modal/modalToutesLesImages.jspf'%>
+					<%-- <i class="icon icon-visuel" aria-hidden="true"></i> 
+					<a href="#"><%=glp("jcmsplugin.espaceCollection.objet.tuile.telecharger.images")%></a> --%>
+				</span>
+			</div>
+		</div>
+
+</section>

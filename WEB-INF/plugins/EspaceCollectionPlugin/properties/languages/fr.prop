@@ -1,3 +1,49 @@
+
+jcmsplugin.espaceCollection.header.maj: Mis à jour le 
+jcmsplugin.espaceCollection.title.desc: Description
+jcmsplugin.espaceCollection.title.image: En image
+jcmsplugin.espaceCollection.title.detail: En détails
+jcmsplugin.espaceCollection.btn.valider: Valider
+
+jcmsplugin.espaceCollection.objet.tuile.ajout-selection: Ajouter à ma selection
+jcmsplugin.espaceCollection.objet.tuile.fiche-bdd: Accéder à la fiche base de données
+jcmsplugin.espaceCollection.objet.tuile.fiche-media: Accéder à la fiche médiatisée
+jcmsplugin.espaceCollection.objet.tuile.telecharger.pdf: Télécharger la fiche
+jcmsplugin.espaceCollection.objet.tuile.telecharger.images: Télécharger les images
+
+jcmsplugin.espaceCollection.objet.3d.title: Découvrez cet objet en visualisation 3D
+jcmsplugin.espaceCollection.objet.3d.desc: Retrouvez les collections du musée Dobrée en 3D, au fil du vaste plan de numérisation lancé en 2021.
+jcmsplugin.espaceCollection.objet.3d.btn: Découvrez cet objet
+
+jcmsplugin.espaceCollection.departement.header.home.button: Explorez les départements de collection
+jcmsplugin.espaceCollection.departement.header.liste.image: Bienvenue à la découverte des collections du musée Dobrée.
+jcmsplugin.espaceCollection.departement.header.liste.fil-ariane: Explorez les collections
+
+jcmsplugin.espaceCollection.collectionneur.header.home.button: Découvrez tous les collectionneurs
+jcmsplugin.espaceCollection.collectionneur.liste.title.collectionneurs: Découvrez les collectionneurs de manière chronologique
+jcmsplugin.espaceCollection.collectionneur.liste.title.oeuvre-incontournables: Les oeuvres incontournables du musée Dobrée
+
+jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.identification: Identification
+jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.crea: Création / Exécution
+jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.matiere: Matière et technique
+jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.inscriptions: Inscriptions
+jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.usage: Fonction d’usage
+jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.theme: Thèmes et iconographie
+jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.collecte: Histoire de la collecte
+jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.localisation: Localisation
+jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.autre: Autres renseignements
+
+jcmsplugin.espaceCollection.modal.images.telecharger: Télécharger toutes les images
+jcmsplugin.espaceCollection.modal.images.conditions-utilisation: J’ai lu et j’accepte les Conditions générales d’utilisation du site.
+jcmsplugin.espaceCollection.modal.images.hd :Pour toute demande de photographie Haute Définition, cliquez ici
+
+# Edition Module
+jcmsplugin.espaceCollection.portlet-liste-collections: Portlet Liste collectionneurs
+jcmsplugin.espaceCollection.portlet-liste-collectionneurs: Portlet Liste collectionneurs
+jcmsplugin.espaceCollection.portlet-liste-objet-incontournables: Portlet Objet incontournables
+
+jcmsplugin.espaceCollection.portlet-liste-collectionneurs.title-main-tuile: Texte tuile mise en avant page liste collectionneurs
+
 # Keepeek
 jcmsplugin.espacecollection.keepeek.url: Url Keepeek
 jcmsplugin.espacecollection.keepeek.login: Login Keepeek

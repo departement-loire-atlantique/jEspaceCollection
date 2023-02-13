@@ -4,7 +4,10 @@
 // -------------------------------------------------------------------
 // PLUGINS LESS VARIABLES
 // -------------------------------------------------------------------
-
+@main-color: #FFBED2;
+@light-grey: #E6E6E6;
+@white: #fff;
+@black: #000;
 
 
 // Hook for JCMS
@@ -22,3 +25,69 @@
 //  You can also use implements PortalPolicyFilter.setupHeaders()      
 //                                                                      
 
+H1,
+H2,
+H3,
+H4,
+H5,
+H6,
+p,
+a {
+  font-family: Muli !important;
+  color: @black;
+}
+
+.h2-like {
+  background: transparent !important;
+}
+
+.underline {
+  background: transparent !important;
+  font-weight: bold;
+  border-bottom: 1px solid @main-color;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ds44-card .ds44-cardArrow {
+  color: @main-color !important;
+}
+
+.ds44-card.ds44-card--contact {
+  border-color: @main-color !important;
+}
+
+.ds44-theme {
+  background-color: @main-color !important;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}
+
+a.lien-page {
+  text-decoration: none;
+}
+
+td.table-detail {
+  text-align: left;
+
+  p {
+    width: fit-content;
+  }
+}
+
+hr.mbs {
+  margin-bottom: 2rem;
+}
+
+.ds44-boxPushPic {
+  align-self: center !important;
+}
+
+.ds44-modal-container {
+  display: flex !important;
+}
