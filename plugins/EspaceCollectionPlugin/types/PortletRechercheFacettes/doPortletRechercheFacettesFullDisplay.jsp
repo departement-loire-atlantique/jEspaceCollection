@@ -40,7 +40,23 @@
     <div class="ds44-container-large">
 </jalios:if>
 
-<ds:titleNoBanner title="<%= obj.getTitre(userLang) %>" breadcrumb="true"></ds:titleNoBanner>
+<%-- <ds:titleNoBanner title="<%= obj.getTitre(userLang) %>" breadcrumb="true"></ds:titleNoBanner> --%>
+<div class="">
+    <div class="ds44--xl-padding-t pbs large-w66 mauto">
+        <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")) %>'>
+            <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id") %>'/>
+        </jalios:if>
+        <h1 class="h2-like mbm mtm" id="titre-recherche"><%= obj.getTitre(userLang) %></h1>
+    </div>
+    
+    <div class="ds44-inner-container ds44--mobile--m-padding-b">
+        <header class="ds44--l-padding-b">
+            <p class="/*ds44-component-chapo*/ ds44-centeredBlock">
+                <%= obj.getSoustitre(userLang) %>
+            </p>
+        </header>
+    </div>
+</div>
 
 <div class="ds44-loader-text visually-hidden" tabindex="-1" aria-live="polite"></div>
 <div class="ds44-loader hidden">
