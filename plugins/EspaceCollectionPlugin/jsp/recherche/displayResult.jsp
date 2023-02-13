@@ -31,7 +31,7 @@ int maxResult = box.getMaxResults();
 %><%
 // /plugins/SoclePlugin/jsp/facettes/doQueryText.jspf
 String text = request.getParameter("text");
-if(Util.notEmpty(text)){
+if(Util.notEmpty(text) && !text.matches("^\\d*$")){
     text += "*"; // pour rechercher tous les mots débutent par le terme recherché
 }
 
