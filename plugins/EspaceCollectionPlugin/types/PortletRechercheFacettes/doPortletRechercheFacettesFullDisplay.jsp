@@ -8,7 +8,6 @@
 
 	PortletRechercheFacettes obj = (PortletRechercheFacettes)portlet;
 
-    boolean isInPortletConteneur = Util.notEmpty(request.getAttribute("isInPortletConteneur")) ? true : false;
 
     isInRechercheFacette = isInRechercheFacette || obj.getAfficherResultatDansLannuaire();
     
@@ -36,9 +35,7 @@
 %>
 
 
-<jalios:if predicate="<%= isInPortletConteneur %>">
-    <div class="ds44-container-large">
-</jalios:if>
+<div class="ds44-container-large">
 
 <%-- <ds:titleNoBanner title="<%= obj.getTitre(userLang) %>" breadcrumb="true"></ds:titleNoBanner> --%>
 <div class="">
@@ -332,9 +329,7 @@
 
 </jalios:if>
 
-<jalios:if predicate="<%= isInPortletConteneur %>">
-    </div>
-</jalios:if>
+</div>
 
 <% 
 request.removeAttribute("rechercheId");
