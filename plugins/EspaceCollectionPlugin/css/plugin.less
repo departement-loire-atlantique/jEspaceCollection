@@ -37,6 +37,12 @@ a {
   color: @black;
 }
 
+/* OVERRIDE DS */
+
+h1.h1-like {
+  font-weight: bold;
+}
+
 .h2-like {
   background: transparent !important;
 }
@@ -68,22 +74,6 @@ a {
   background-color: transparent !important;
 }
 
-a.lien-page {
-  text-decoration: none;
-}
-
-td.table-detail {
-  text-align: left;
-
-  p {
-    width: fit-content;
-  }
-}
-
-hr.mbs {
-  margin-bottom: 2rem;
-}
-
 .ds44-boxPushPic {
   align-self: center !important;
 }
@@ -92,6 +82,41 @@ hr.mbs {
   display: flex !important;
 }
 
+/* --- */
+a.lien-page {
+  text-decoration: none;
+}
+
+td.table-detail {
+  text-align: left;
+
+  p.ds44-btnStd--tag {
+    cursor: pointer;
+    background-color: @black !important;
+    color: @white;
+  }
+}
+
+hr.mbs {
+  margin-bottom: 2rem;
+}
+
+.wysiwyg {
+  h3 {
+    font-size: 1.5em;
+    border: none;
+  }
+}
+
+.ds44-docListElem .wysiwyg {
+  strong{
+    font-weight:normal;
+  }
+}
+
+.caracteristique {
+  white-space: pre-line;
+}
 BODY .ds44-btn--contextual,
 BODY .ds44-btnStd.ds44-theme {
     background-color: @main-color !important;
@@ -103,7 +128,6 @@ BODY .ds44-btnStd.ds44-theme {
         border-color: @light-grey;        
     }
 }
-
 
 // ---------------
 // HOME

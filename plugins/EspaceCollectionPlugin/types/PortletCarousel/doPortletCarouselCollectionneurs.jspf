@@ -1,5 +1,3 @@
- <%@page import="generated.FicheActionEducative"%>
-<%@page import="fr.cg44.plugin.socle.SocleUtils"%>
 <%
     PortletCarousel box = (PortletCarousel) portlet;
     String themeClair = "tuileVerticaleLight";
@@ -54,7 +52,7 @@
 		    
                 <div class="txtcenter ds44-container-large ">
                 <jalios:link id='<%= channel.getProperty("jcmsplugin.espaceCollection.portlet-liste-collectionneurs") %>'>
-                    <button class="bg-transparent ds44-btnStd ds44-btnStd--large ds44-btnFullMobile"
+                    <button class="bg-transparent ds44-btnStd ds44-btnFullMobile"
                         type="button" data-target="#overlay-sites-applis"
                         data-js="ds44-modal">
                         <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.collectionneur.header.home.button")%></span><i

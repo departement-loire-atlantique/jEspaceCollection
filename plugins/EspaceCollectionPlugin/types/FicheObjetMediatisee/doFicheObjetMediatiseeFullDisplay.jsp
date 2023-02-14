@@ -23,7 +23,10 @@
 	</section>
   
 	<%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/3dHorizontale.jspf'%>
+
 </section>
+
+<%@ include file='/plugins/EspaceCollectionPlugin/jsp/carrousel/carrouselOeuvresRelation.jspf'%>
 
 <%-- **********4A616C696F73204A434D53 *** SIGNATURE BOUNDARY * DO NOT EDIT ANYTHING BELOW THIS LINE *** --%><%
 %><%-- N7oZMNVL+mCSFp0M8shCKg== --%>

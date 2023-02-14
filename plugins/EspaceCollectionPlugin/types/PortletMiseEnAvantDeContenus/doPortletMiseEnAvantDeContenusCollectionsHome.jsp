@@ -23,7 +23,7 @@ if (Util.notEmpty(collection)) {
     <header class="txtcenter ds44--xl-padding-b ds44-container-large">
       <h2 class="h2-like underline center" id="titreMEA<%= box.getId() %>"><%= box.getTitreVisuel(userLang) %></h2>
 			<jalios:if predicate='<%=Util.notEmpty(box.getSoustitre()) %>'>
-	        <p><%= box.getSoustitre(userLang) %></p>
+	        <p><b><%= box.getSoustitre(userLang) %></b></p>
 	    </jalios:if>
     </header>
 
@@ -50,7 +50,7 @@ if (Util.notEmpty(collection)) {
 
     <div class="txtcenter ds44-container-large ">
 			<jalios:link id='<%= channel.getProperty("jcmsplugin.espaceCollection.portlet-liste-collections") %>'>
-        <button class="ds44-btnStd ds44-btnStd--large ds44-btnFullMobile" type="button" data-target="#overlay-sites-applis" data-js="ds44-modal">
+        <button class="ds44-btnStd ds44-btnFullMobile" type="button" data-target="#overlay-sites-applis" data-js="ds44-modal">
 					<span class="ds44-btnInnerText"><%= glp("jcmsplugin.espaceCollection.departement.header.home.button") %></span>
 					<i class="icon icon-long-arrow-right" aria-hidden="true"></i>
 				</button>

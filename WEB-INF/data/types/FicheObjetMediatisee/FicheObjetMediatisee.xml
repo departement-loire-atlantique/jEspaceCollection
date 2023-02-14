@@ -37,7 +37,10 @@
     <field name="dateEpoque" editor="textfield" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
       <label xml:lang="fr">Date / époque</label>
     </field>
-    <field name="oeuvresLiees" editor="link" required="false" compactDisplay="false" type="generated.ListeDeContenus" parent="false">
+    <field name="ficheObjetBaseDeDonnees" editor="link" required="false" compactDisplay="false" type="generated.FicheObjetBaseDeDonnees" parent="false">
+      <label xml:lang="fr">Fiche objet base de données</label>
+    </field>
+    <field name="oeuvresLiees" editor="link" required="false" compactDisplay="false" type="generated.FicheObjetBaseDeDonnees[]">
       <label xml:lang="fr">Oeuvres liées</label>
     </field>
   </fields>

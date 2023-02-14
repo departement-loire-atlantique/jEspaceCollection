@@ -18,16 +18,16 @@ FicheCollectionneur obj = (FicheCollectionneur) data;
     
     <div class="ds44-card__section">
       <div class="ds44-innerBoxContainer">
-          <p role="heading" aria-level="2" class="h4-like ds44-cardTitle">
+          <p role="heading" aria-level="2" class="ds44-cardTitle">
             <jalios:link data="<%= obj %>" css="ds44-card__globalLink">
               <%=obj.getTitle()%>
             </jalios:link>
           </p>
           <hr class="mbs" aria-hidden="true" />
-          <jalios:wysiwyg css="ds44-docListElem ds44-mt-std">
-              <i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
-              <%= obj.getDescription() %>
-            </jalios:wysiwyg>
+          <jalios:wysiwyg css="ds44-docListElem ds44-mt-std" truncateLength="100" truncateSuffix="...">
+            <i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
+            <%= obj.getDescription() %>
+          </jalios:wysiwyg>
           <jalios:if predicate="<%= Util.notEmpty(obj.getDateDeNaissance()) && Util.notEmpty(obj.getDateDeMort()) %>">
             <p class="ds44-docListElem ds44-mt-std">
             <i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>

@@ -19,7 +19,7 @@
     <div class="ds44-grid12-offset-1">
       <section class="ds44-box ds44-theme">
         <div class="ds44-innerBoxContainer">
-          <p><%= headerText %></p>
+          <p><b><%= headerText %></b></p>
         </div>
       </section>
     </div>

@@ -37,8 +37,7 @@ if(box.getLienInterne() instanceof FicheCollectionneur) {
                 - <%= simpleDateFormat.format(tuileCollectionneur.getDateDeMort()).toUpperCase() %></p>
             </jalios:if>
 
-            <jalios:wysiwyg css="ds44-docListElem ds44-mt-std">
-              <i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
+            <jalios:wysiwyg css="ds44-mt-std">
               <%= tuileCollectionneur.getDescription() %>
             </jalios:wysiwyg>
 

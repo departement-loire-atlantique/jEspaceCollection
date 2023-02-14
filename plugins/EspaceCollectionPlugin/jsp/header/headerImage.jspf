@@ -12,7 +12,7 @@
 					%>
 					<jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' />
 				</jalios:if>
-				
+
 				<h1 class="h1-like ds44-text--colorInvert" id="idTitre1"><%= headerTitle %></h1>
 			</div>
 		</div>
