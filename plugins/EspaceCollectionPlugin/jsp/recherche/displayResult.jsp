@@ -47,7 +47,8 @@ if(Util.notEmpty(booleanParams)){
         } else if(itBoolParam.equalsIgnoreCase("OeuvresIncontournables")) {
             searchQuery.add("tagsInMedia", "40");
         } else if(itBoolParam.equalsIgnoreCase("Avec_Image")) {
-//             searchQuery.add("metaModelType", "40");
+            searchQuery.add("tagsInMedia", "61");
+            searchQuery.add("tagsInMedia", "67");
         }
     }
 }
