@@ -36,6 +36,10 @@ $jcmsplugin.socle.recherche.facettes.portal: fde_5017
 $jcmsplugin.espacecollection.recherche.filtre.Keepeek.root.chooser-category: por_5176
 jcmsplugin.espacecollection.recherche.filtre.Keepeek.get.schedule: 00 05 * * * *
 
+# Home
+jcmsplugin.espacecollection.home.recherche.title: Base de donnée des collections
+jcmsplugin.espacecollection.home.recherche.desc.area: Nous vous invitons à découvrir les trésors qui se cachent dans le musée et les collectionneurs qui ont fait son histoire.
+
 ## Surcharge module socle
 # Menu principal
 jcmsplugin.socle.site.menu.cat.root: fde_5005
