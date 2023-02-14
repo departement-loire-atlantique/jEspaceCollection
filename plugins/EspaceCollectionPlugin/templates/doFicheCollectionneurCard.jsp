@@ -18,7 +18,7 @@ FicheCollectionneur obj = (FicheCollectionneur) data;
     
     <div class="ds44-card__section">
       <div class="ds44-innerBoxContainer">
-          <p role="heading" aria-level="2" class="h4-like ds44-cardTitle">
+          <p role="heading" aria-level="2" class="ds44-cardTitle">
             <jalios:link data="<%= obj %>" css="ds44-card__globalLink">
               <%=obj.getTitle()%>
             </jalios:link>

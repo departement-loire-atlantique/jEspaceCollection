@@ -47,43 +47,47 @@
 
           <section class="ds44-box ds44-theme">
             <div class="ds44-innerBoxContainer">
-              <jalios:if predicate="<%= Util.notEmpty(obj.getNom()) %>">
-                <p class="ds44-docListElem mts">
-                  <i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
-                  <%= obj.getNom() %>
-                </p>
-              </jalios:if>
+              <div class="ds44-mb3">
+                <jalios:if predicate="<%= Util.notEmpty(obj.getNom()) %>">
+                  <p class="ds44-docListElem mts">
+                    <i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
+                    <%= obj.getNom() %>
+                  </p>
+                </jalios:if>
 
-              <jalios:if predicate="<%= Util.notEmpty(obj.getDateDeNaissance()) && Util.notEmpty(obj.getDateDeMort()) %>">
-                <p class="ds44-docListElem ds44-mt-std ds44-mb1">
-                <i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
-                <% 
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY");
-                %>
-                <%= simpleDateFormat.format(obj.getDateDeNaissance()).toUpperCase() %>
-                  - <%= simpleDateFormat.format(obj.getDateDeMort()).toUpperCase() %></p>
-              </jalios:if>
+                <jalios:if predicate="<%= Util.notEmpty(obj.getDateDeNaissance()) && Util.notEmpty(obj.getDateDeMort()) %>">
+                  <p class="ds44-docListElem ds44-mt-std ds44-mb1">
+                  <i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
+                  <% 
+                  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY");
+                  %>
+                  <%= simpleDateFormat.format(obj.getDateDeNaissance()).toUpperCase() %>
+                    - <%= simpleDateFormat.format(obj.getDateDeMort()).toUpperCase() %></p>
+                </jalios:if>
 
-              <jalios:if predicate="<%= Util.notEmpty(obj.getDomaine(loggedMember)) %>">
-                <p class="ds44-docListElem ds44-mt-std ds44-mb2">
-                  <i class="icon icon-directory ds44-docListIco" aria-hidden="true"></i>
-                  <jalios:foreach collection="<%= obj.getDomaine(loggedMember) %>" type="Category" name="itCategory" >
-                      <b><%= itCategory.getName() %></b>
-                  </jalios:foreach>
-                </p>
-              </jalios:if>
-              
-              <jalios:if predicate="<%= Util.notEmpty(obj.getDocumentTelechargeable()) %>">
-                <a href="<%= obj.getDocumentTelechargeable()%>" class="ds44-btnStd ds44-btn--invert ds44-mb1" download> 
-                  <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.btn.telecharger")%></span>
-                  <i class="icon icon-long-arrow-right" aria-hidden="true"></i>
-                </a>
-              </jalios:if>
+                <jalios:if predicate="<%= Util.notEmpty(obj.getDomaine(loggedMember)) %>">
+                  <p class="ds44-docListElem ds44-mt-std ds44-mb2">
+                    <i class="icon icon-directory ds44-docListIco" aria-hidden="true"></i>
+                    <jalios:foreach collection="<%= obj.getDomaine(loggedMember) %>" type="Category" name="itCategory" >
+                        <b><%= itCategory.getName() %></b>
+                    </jalios:foreach>
+                  </p>
+                </jalios:if>
+              </div>
 
-              <button class="ds44-btnStd"> 
-                <i class="icon icon-star-empty" aria-hidden="true"></i>
-                <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
-              </button>
+              <div>
+                <jalios:if predicate="<%= Util.notEmpty(obj.getDocumentTelechargeable()) %>">
+                  <a href="<%= obj.getDocumentTelechargeable()%>" class="ds44-btnStd ds44-btn--invert ds44-mb1" download> 
+                    <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.btn.telecharger")%></span>
+                    <i class="icon icon-long-arrow-right" aria-hidden="true"></i>
+                  </a>
+                </jalios:if>
+
+                <button class="ds44-btnStd"> 
+                  <i class="icon icon-star-empty" aria-hidden="true"></i>
+                  <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
+                </button>
+              </div>
 
             </div>
           </section>

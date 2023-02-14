@@ -21,7 +21,7 @@ FicheObjetBaseDeDonnees obj = (FicheObjetBaseDeDonnees) data;
             <button class="pas" type="button" aria-describedby="cs6" title="Sélectionner Confort service"><i class="icon icon-star-empty" aria-hidden="true"></i><span class="visually-hidden">Sélection</span></button>
         </p>
         <div class="ds44-innerBoxContainer">
-            <p role="heading" aria-level="2" class="h4-like ds44-cardTitle">
+            <p role="heading" aria-level="2" class="ds44-card__title">
               <jalios:link data="<%= obj %>" css="ds44-card__globalLink">
                 <%=obj.getTitle()%>
               </jalios:link>

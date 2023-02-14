@@ -21,6 +21,7 @@
 				<jalios:if predicate="<%=Util.notEmpty(obj.getLieu())%>">
 					<p class="ds44-docListElem ds44-mt-std">
 						<i class="icon icon-position  ds44-docListIco" aria-hidden="true"></i>
+						<%= glp("jcmsplugin.espaceCollection.objet.tuile.retrouvez") %> </br>
 						<%= obj.getLieu().getTitle( )%> </br>
 						<%= obj.getLieu().getNdeVoie(userLang) %> 
 						<%= obj.getLieu().getLibelleDeVoie(userLang) %> </br>

@@ -8,6 +8,7 @@ jcmsplugin.espaceCollection.btn.valider: Valider
 jcmsplugin.espaceCollection.btn.telecharger: Télécharger
 jcmsplugin.espaceCollection.btn.mail: Pour en savoir plus
 
+jcmsplugin.espaceCollection.objet.tuile.retrouvez: Retrouvez cet objet :
 jcmsplugin.espaceCollection.objet.tuile.ajout-selection: Ajouter à ma selection
 jcmsplugin.espaceCollection.objet.tuile.fiche-bdd: Accéder à la fiche base de données
 jcmsplugin.espaceCollection.objet.tuile.fiche-media: Accéder à la fiche médiatisée

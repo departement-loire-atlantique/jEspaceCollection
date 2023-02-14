@@ -18,25 +18,25 @@ FicheObjetMediatisee obj = (FicheObjetMediatisee) data;
       
       <div class="ds44-card__section">
         <div class="ds44-innerBoxContainer">
-            <p role="heading" aria-level="2" class="h4-like ds44-cardTitle">
+            <p role="heading" aria-level="2" class="ds44-cardTitle">
               <jalios:link data="<%= obj %>" css="ds44-card__globalLink">
                 <%=obj.getTitle()%>
               </jalios:link>
             </p>
             <jalios:if predicate="<%= Util.notEmpty(obj.getDateEpoque()) %>">
-              <p class="ds44-docListElem ds44-mt-std">
+              <p class="ds44-docListElem">
                 <i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
                 <%= obj.getDateEpoque() %>
               </p>
             </jalios:if>
             <jalios:if predicate="<%= Util.notEmpty(obj.getNumeroDinventaire()) %>">
-              <p class="ds44-docListElem ds44-mt-std">
+              <p class="ds44-docListElem">
                 <i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i>
                 <%= obj.getNumeroDinventaire() %>
               </p>
             </jalios:if>
             <jalios:if predicate="<%= Util.notEmpty(obj.getTypologie(loggedMember)) %>">
-              <p class="ds44-docListElem ds44-mt-std">
+              <p class="ds44-docListElem">
                 <i class="icon icon-directory ds44-docListIco" aria-hidden="true"></i>
                 <jalios:foreach collection="<%= obj.getTypologie(loggedMember) %>" type="Category" name="itCategory" >
                     <%= itCategory.getName() %>
