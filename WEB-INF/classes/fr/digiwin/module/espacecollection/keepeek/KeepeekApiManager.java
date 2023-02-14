@@ -36,6 +36,11 @@ public class KeepeekApiManager {
     }
 
     public static String getUrl(String url) throws KeepeekException {
+        
+        if(KeepeekApiCache.getInstance().isValid(url, true)) {
+            return KeepeekApiCache.getInstance().getRep(url);
+        }
+        
         String token = getKeepeekLogin() + ":" + getKeepeekPwd();
         String base64Token = Base64.getEncoder().encodeToString(token.getBytes());
 
@@ -54,6 +59,8 @@ public class KeepeekApiManager {
                 JsonObject json = new JsonObject().getAsJsonObject(strResponse);
                 throw new KeepeekException(json.get("message").getAsString(), json.get("status").getAsInt());
             }
+            
+            KeepeekApiCache.getInstance().add(url, strResponse);
 
             return strResponse;
         } catch (IOException e) {
