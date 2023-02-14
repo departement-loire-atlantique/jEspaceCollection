@@ -15,7 +15,7 @@
   <%@ include
     file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%>
 
-  <div class="ds44-inner-container ds44-mt3 ds44--l-padding-t">
+  <div class="ds44-inner-container ds44-mtb3 ds44--l-padding-t">
     <div class="grid-12-small-1">
       <div class="col-7">
         <section class="ds44-contenuArticle" id="section1">
@@ -96,6 +96,8 @@
     </div>
   </div>
 </section>
+
+<%@ include file='/plugins/EspaceCollectionPlugin/jsp/carrousel/carrouselCollectionneurOeuvres.jspf'%>
 
 <%-- **********4A616C696F73204A434D53 *** SIGNATURE BOUNDARY * DO NOT EDIT ANYTHING BELOW THIS LINE *** --%><%
 %><%-- bsJv6FhJmTuU+sAELhsRwg== --%>
