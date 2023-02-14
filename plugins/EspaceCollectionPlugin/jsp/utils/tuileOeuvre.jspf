@@ -13,7 +13,7 @@
 					<p class="ds44-docListElem ds44-mt-std">
 						<i class="icon icon-directory ds44-docListIco" aria-hidden="true"></i>
 						<jalios:foreach collection="<%= obj.getTypologie(loggedMember) %>" type="Category" name="itCategory" >
-								<%= itCategory.getName() %>
+								<b><%= itCategory.getName() %></b>
 						</jalios:foreach>
 					</p>
 				</jalios:if>
@@ -42,10 +42,12 @@
 
 		</div>
 			<div class="ds44-grid12-offset-1">
-				<a href="#" class="ds44-btnStd ds44-btn--invert margin-txt">  
+				<jalios:if predicate="<%=Util.notEmpty(obj.getFicheObjetBaseDeDonnees())%>">
+					<jalios:link data="<%= obj.getFicheObjetBaseDeDonnees() %>" css="ds44-btnStd ds44-btn--invert margin-txt">
 						<span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.fiche-bdd")%></span>
 						<i class="icon icon-long-arrow-right" aria-hidden="true"></i>
-				</a>
+					</jalios:link>
+				</jalios:if>
 				<button class="ds44-btnStd">
 					<i class="icon icon-star-empty" aria-hidden="true"></i> <span
 						class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
@@ -58,8 +60,6 @@
 				</span>
 				<span>
 	          <%@ include file='/plugins/EspaceCollectionPlugin/jsp/modal/modalToutesLesImages.jspf'%>
-					<%-- <i class="icon icon-visuel" aria-hidden="true"></i> 
-					<a href="#"><%=glp("jcmsplugin.espaceCollection.objet.tuile.telecharger.images")%></a> --%>
 				</span>
 			</div>
 		</div>

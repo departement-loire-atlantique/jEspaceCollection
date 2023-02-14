@@ -22,7 +22,7 @@ FicheCollection obj = (FicheCollection) request.getAttribute(PortalManager.PORTA
 %>
 <%
 
-%><%@ include file='/front/doFullDisplay.jspf'%>
+%>
 
 	<section class="ds44-container-large">
 		<%@ include
@@ -33,26 +33,46 @@ FicheCollection obj = (FicheCollection) request.getAttribute(PortalManager.PORTA
 				<div class="col-7">
 					<section class="ds44-contenuArticle" id="section1">
 						<p class="ds44-introduction">
-              <%= obj.getDescription() %>
+							<jalios:wysiwyg>
+              	<%= obj.getDescription() %>
+							</jalios:wysiwyg>
             </p>
 					</section>
+					
+					<%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/share.jspf'%>
 				</div>
 
 				<div class="col-1 grid-offset ds44-hide-tiny-to-medium"></div>
 
-				<aside class="col-4">
-        <section class="ds44-box">
-            <div class="ds44-posRel">
-              <img src="../../assets/images/sample-media.jpg" alt=""
-                class="ds44-box__img ds44-hiddenPrint" /></span>
-            </div>
-					</section>
-					<section class="ds44-box ds44-theme ds44-mb3">
-						<div class="ds44-innerBoxContainer">
-							<p role="heading" aria-level="2" class="ds44-box-heading">
-                Infos pratiques
-              </p>
-						</div>
+				<aside class="col-4 ds44-hide-tinyToLarge ds44-js-aside-summary">
+					<section class="ds44-box">
+						<section class="ds44-box ds44-mb3">
+							<jalios:if predicate="<%= Util.notEmpty(obj.getVisuel()) %>">
+								<% CarouselElement image = (CarouselElement)channel.getData(CarouselElement.class, obj.getVisuel().getId()); %>
+								<picture class="ds44-container-imgRatio">
+										<img src="<%= image.getImage() %>" alt="<%= image.getImageLegend() %>" class="ds44-imgRatio"/>
+										<jalios:if predicate="<%= Util.notEmpty(image.getImageCopyright()) %>">
+												<figcaption class="ds44-imgCaption"><%= image.getImageCopyright() %></figcaption>
+										</jalios:if>
+								</picture>
+							</jalios:if>
+						</section>
+
+            <jalios:if predicate="<%= Util.notEmpty(obj.getMail()) %>">
+							<section class="ds44-box ds44-theme">
+								<div class="ds44-innerBoxContainer">
+									<p role="heading" aria-level="2" class="ds44-box-heading">
+										<%= glp("jcmsplugin.espaceCollection.title.pratique") %>
+									</p>
+									<p class="ds44-docListElem mts">
+										<i class="icon icon-mail ds44-docListIco" aria-hidden="true"></i>
+										<a href="mailto:<%=obj.getMail()%>" title="Contacter par mail : <%=obj.getMail()%>">
+										<%= glp("jcmsplugin.espaceCollection.btn.mail") %>
+										</a>
+									</p>
+								</div>
+							</section>
+						</jalios:if>
 					</section>
 				</aside>
 			</div>

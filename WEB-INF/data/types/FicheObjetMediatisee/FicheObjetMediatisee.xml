@@ -40,6 +40,9 @@
     <field name="oeuvresLiees" editor="link" required="false" compactDisplay="false" type="generated.ListeDeContenus" parent="false">
       <label xml:lang="fr">Oeuvres liées</label>
     </field>
+    <field name="ficheObjetBaseDeDonnees" editor="link" required="false" compactDisplay="false" type="generated.FicheObjetBaseDeDonnees" parent="false">
+      <label xml:lang="fr">Fiche objet base de données</label>
+    </field>
   </fields>
 </type>
 

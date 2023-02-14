@@ -11,8 +11,6 @@
 %><% FicheObjetBaseDeDonnees obj = (FicheObjetBaseDeDonnees)request.getAttribute(PortalManager.PORTAL_PUBLICATION); %><%
 %><%@ include file='/front/doFullDisplay.jspf' %>
 
-
-
 <section class="ds44-container-large">
 	<%@ include file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%>
 
@@ -28,8 +26,8 @@
 
         <section class="ds44-contenuArticle" id="section2">
           <h2 class="h2-like underline center"> <%= glp("jcmsplugin.espaceCollection.title.image") %></h2>
-          <p class="ds44-introduction">
-            <%= obj.getTitle() %>
+          <p class="ds44-mb2">
+            <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.en-image.desc") %>
           </p>
 		    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/imageMosaique.jspf'%>
         </section>
@@ -350,32 +348,37 @@
 
       <div class="col-1 grid-offset ds44-hide-tiny-to-medium"></div>
 
-      <aside class="col-4">
-      <section class="ds44-box ds44-mb3">
-          <jalios:if predicate="<%= Util.notEmpty(obj.getVisuel()) %>">
-              <% CarouselElement image = (CarouselElement)channel.getData(CarouselElement.class, obj.getVisuel().getId()); %>
-              <picture class="ds44-container-imgRatio">
-                  <img src="<%= image.getImage() %>" alt="<%= image.getImageLegend() %>" class="ds44-imgRatio"/>
-                  <jalios:if predicate="<%= Util.notEmpty(image.getImageCopyright()) %>">
-                      <figcaption class="ds44-imgCaption"><%= image.getImageCopyright() %></figcaption>
-                  </jalios:if>
-              </picture>
-          </jalios:if>
-        </section>
-        <section class="ds44-box ds44-theme ds44-mb3">
-          <div class="ds44-innerBoxContainer">
-            <button class="ds44-btnStd ds44-btn--invert"> 
-              <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.fiche-media")%></span>
-              <i class="icon icon-long-arrow-right" aria-hidden="true"></i>
-            </button>
-            <button class="ds44-btnStd"> 
-              <i class="icon icon-star-empty" aria-hidden="true"></i>
-              <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
-            </button>
-            
-	          <%@ include file='/plugins/EspaceCollectionPlugin/jsp/modal/modalToutesLesImages.jspf'%>
-            
-          </div>
+      <aside class="col-4 ds44-hide-tinyToLarge ds44-js-aside-summary">
+        <section class="ds44-box">
+          <section class="ds44-box ds44-mb3 ">
+            <jalios:if predicate="<%= Util.notEmpty(obj.getVisuel()) %>">
+                <% CarouselElement image = (CarouselElement)channel.getData(CarouselElement.class, obj.getVisuel().getId()); %>
+                <picture class="ds44-container-imgRatio">
+                    <img src="<%= image.getImage() %>" alt="<%= image.getImageLegend() %>" class="ds44-imgRatio"/>
+                    <jalios:if predicate="<%= Util.notEmpty(image.getImageCopyright()) %>">
+                        <figcaption class="ds44-imgCaption"><%= image.getImageCopyright() %></figcaption>
+                    </jalios:if>
+                </picture>
+            </jalios:if>
+          </section>
+
+          <section class="ds44-box ds44-theme">
+            <div class="ds44-innerBoxContainer">
+              <jalios:if predicate="<%=Util.notEmpty(obj.getFicheObjetMediatisee())%>">
+                <jalios:link data="<%= obj.getFicheObjetMediatisee() %>" css="ds44-btnStd ds44-btn--invert ds44-mb1">
+                  <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.fiche-media")%></span>
+                  <i class="icon icon-long-arrow-right" aria-hidden="true"></i>
+                </jalios:link>
+              </jalios:if>
+
+              <button class="ds44-btnStd ds44-mb1"> 
+                <i class="icon icon-star-empty" aria-hidden="true"></i>
+                <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
+              </button>
+              
+              <%@ include file='/plugins/EspaceCollectionPlugin/jsp/modal/modalToutesLesImages.jspf'%>
+            </div>
+          </section>
         </section>
       </aside>
     </div>
