@@ -52,3 +52,7 @@ jcmsplugin.espacecollection.keepeek.password: Mot de passe Keepeek
 # recherche
 $jcmsplugin.espacecollection.recherche.filtre.Keepeek.root: Categorie racine des filtres de la recherche
 jcmsplugin.espacecollection.recherche.filtre.Keepeek.get.schedule: Process filter Keepeek
+
+# Home
+jcmsplugin.espacecollection.home.recherche.title: Titre recherche rapide home
+jcmsplugin.espacecollection.home.recherche.desc: Desc recherche rapide home

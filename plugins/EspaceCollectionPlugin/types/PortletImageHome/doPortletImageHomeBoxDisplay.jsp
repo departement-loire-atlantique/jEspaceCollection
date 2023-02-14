@@ -15,6 +15,7 @@ CarouselElement itTuile = obj.getElementDeDiaporama();
     <ds:figurePicture format="principale"
                       imgCss="ds44-headerImg"
                       pictureCss="ds44-pageHeaderContainer__pictureContainer"
+                      figureCss="ds44-pageHeaderContainer__pictureContainer"
                       
                       pub="<%= itTuile %>"
                       image="<%= itTuile.getImage() %>"

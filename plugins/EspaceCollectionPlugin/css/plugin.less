@@ -91,3 +91,38 @@ hr.mbs {
 .ds44-modal-container {
   display: flex !important;
 }
+
+BODY .ds44-btn--contextual,
+BODY .ds44-btnStd.ds44-theme {
+    background-color: @main-color !important;
+    border-color: @main-color;
+    
+    &:hover,
+    &:focus{
+        background-color: @light-grey !important;
+        border-color: @light-grey;        
+    }
+}
+
+
+// ---------------
+// HOME
+.ds44-homepage-container {
+	.ds44-titleContainer--home {
+		.ds44-block {
+			font: normal normal bold 50px/50px Muli;
+			padding-bottom: 15px;
+		}
+		.ds44-ssTitreH1_home {
+			font: normal normal bold 28px/30px Muli;
+		}
+	}
+	
+	.vertical-container {
+		display: table;
+		& > * {
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
+}
