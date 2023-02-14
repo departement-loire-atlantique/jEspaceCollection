@@ -50,7 +50,7 @@ jcmsplugin.socle.site.header.show.rechercher: false
 media.data-template.card-home.FicheCollectionneur: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionneurCardHome.jsp
 media.data-template.card.FicheCollectionneur: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionneurCard.jsp
 
-media.data-template.card-search.FicheObjetBaseDeDonnees: /plugins/EspaceCollectionPlugin/templates/doFicheObjetBaseDeDonneesCardSearch.jsp
+media.data-template.card.FicheObjetBaseDeDonnees: /plugins/EspaceCollectionPlugin/templates/doFicheObjetBaseDeDonneesCard.jsp
 media.data-template.card.FicheObjetMediatisee: /plugins/EspaceCollectionPlugin/templates/doFicheObjetMediatiseeCard.jsp
 
 media.data-template.card-verticale.FicheCollection: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionCardVerticale.jsp

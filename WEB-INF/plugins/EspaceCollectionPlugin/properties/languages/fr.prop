@@ -41,6 +41,8 @@ jcmsplugin.espaceCollection.modal.images.telecharger: Télécharger toutes les i
 jcmsplugin.espaceCollection.modal.images.conditions-utilisation: J’ai lu et j’accepte les Conditions générales d’utilisation du site.
 jcmsplugin.espaceCollection.modal.images.hd :Pour toute demande de photographie Haute Définition, cliquez ici
 
+jcmsplugin.espaceCollection.carrousel.oeuvre-incontournables.title: Oeuvres en relation
+
 # Edition Module
 jcmsplugin.espaceCollection.portlet-liste-collections: Portlet Liste collectionneurs
 jcmsplugin.espaceCollection.portlet-liste-collectionneurs: Portlet Liste collectionneurs
