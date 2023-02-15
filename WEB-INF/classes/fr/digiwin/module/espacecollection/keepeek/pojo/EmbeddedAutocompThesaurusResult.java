@@ -1,6 +1,8 @@
 
 package fr.digiwin.module.espacecollection.keepeek.pojo;
 
+import java.util.List;
+
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -10,13 +12,13 @@ public class EmbeddedAutocompThesaurusResult {
 
     @SerializedName("parent")
     @Expose
-    private Parent parent;
+    private List<Parent> parent;
 
-    public Parent getParent() {
+    public List<Parent> getParent() {
         return parent;
     }
 
-    public void setParent(Parent parent) {
+    public void setParent(List<Parent> parent) {
         this.parent = parent;
     }
 

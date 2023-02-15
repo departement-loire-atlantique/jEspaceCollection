@@ -109,7 +109,7 @@ public class KeepeekApiEndPoint {
     }
     
     public static AutocompleteThesaurus getAutocompleteThesaurus(String idThesaurus, String text) {
-        String params = "type=thesaurus&";
+        String params = "forceArrays=true&type=thesaurus&";
         
         if(Util.notEmpty(idThesaurus)) {
             params += "thesaurusId=" + idThesaurus + "&";
@@ -126,7 +126,6 @@ public class KeepeekApiEndPoint {
 
             Gson gson = gsonBuild.create();
 
-            LOGGER.warn(strAutocomplete);
             AutocompleteThesaurus autocomplete = gson.fromJson(strAutocomplete, AutocompleteThesaurus.class);
             return autocomplete;
         } catch (KeepeekException e) {

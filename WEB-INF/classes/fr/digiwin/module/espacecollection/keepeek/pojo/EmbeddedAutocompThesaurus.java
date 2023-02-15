@@ -2,18 +2,16 @@
 package fr.digiwin.module.espacecollection.keepeek.pojo;
 
 import java.util.List;
-import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
 
-import fr.digiwin.module.espacecollection.keepeek.deserializer.EmbeddedAutocompThesaurusAdapter;
+import javax.annotation.Generated;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 @Generated("jsonschema2pojo")
 public class EmbeddedAutocompThesaurus {
 
     @SerializedName("thesaurus")
-    @JsonAdapter(EmbeddedAutocompThesaurusAdapter.class)
     @Expose
     private List<Thesauru> thesaurus;
 
