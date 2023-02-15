@@ -27,7 +27,7 @@
 	String query = Util.notEmpty(obj.getQueries()) ? obj.getQueries()[0] : "";
 	request.setAttribute("query", query);
 	
-	Boolean hasFonctionsAdditionnelles = obj.getAfficherSelection() || obj.getAfficherPDF() ||  obj.getAfficherCSV();
+	Boolean hasFonctionsAdditionnelles = true; // obj.getAfficherSelection() || obj.getAfficherPDF() ||  obj.getAfficherCSV();
 	Boolean showFiltres = isInRechercheFacette && Util.notEmpty(obj.getFacettesSecondaires()) || hasFonctionsAdditionnelles;
 	request.setAttribute("showFiltres", showFiltres);
 	
@@ -172,9 +172,14 @@
 					<jalios:if predicate="<%= hasFonctionsAdditionnelles %>">
 						<div class="ds44-push ds44-small-fg1 ds44-hide-tiny-to-medium ds44-show-medium">
 							<ul class="ds44-list">
+                                <li class="ds44-docListElem">
+                                    <i class="icon icon-etudes ds44-docListIco" aria-hidden="true"></i>
+                                    <a href="<%= channel.getCategory("por_5206").getDisplayUrl(userLocale) %>">Recherche avancée</a>
+                                    <%-- por_5206 => nav recherche avancée --%>
+                                </li>
 							  <jalios:if predicate="<%= obj.getAfficherSelection() %>">
 								<li class="ds44-docListElem">
-									<i class="icon icon-star-empty ds44-docListIco" aria-hidden="true"></i>
+                                    <i class="icon icon-star-empty ds44-docListIco" aria-hidden="true"></i>
 									<a href="#" title='<%= HttpUtil.encodeForHTMLAttribute(glp("jcmsplugin.socle.recherche.selection")) %>'><%= glp("jcmsplugin.socle.recherche.ma-selection", 0) %></a>
 								</li>
 							  </jalios:if>	
