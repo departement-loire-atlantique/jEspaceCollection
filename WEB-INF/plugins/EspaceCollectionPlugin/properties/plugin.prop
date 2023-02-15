@@ -1,4 +1,9 @@
 
+# a sup en prod
+jcmsplugin.socle.css-urls:https://dev-design.loire-atlantique.fr/css/cd44.css https://dev-design.loire-atlantique.fr/css/icons.css
+jcmsplugin.socle.js-urls:https://dev-design.loire-atlantique.fr/js/cd44.js
+
+
 # ----------------------------------------------------------------------
 # Templates {usage = jcmsplugin.plugin.sample}
 # ----------------------------------------------------------------------
