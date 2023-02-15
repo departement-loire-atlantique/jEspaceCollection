@@ -11,6 +11,7 @@ import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.jalios.jcms.Channel;
 import com.jalios.util.HttpClientUtils;
 
@@ -56,8 +57,11 @@ public class KeepeekApiManager {
             String strResponse = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
 
             if (statusCode != 200) {
-                JsonObject json = new JsonObject().getAsJsonObject(strResponse);
-                throw new KeepeekException(json.get("message").getAsString(), json.get("status").getAsInt());
+                JsonParser jsonParser = new JsonParser();
+                JsonObject json = (JsonObject) jsonParser.parse(strResponse);
+                String message = json.get("message") != null ? json.get("message").getAsString() : "??";
+                int status = json.get("status") != null ? json.get("status").getAsInt() : -1;
+                throw new KeepeekException(message, status);
             }
             
             KeepeekApiCache.getInstance().add(url, strResponse);
