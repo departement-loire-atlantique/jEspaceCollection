@@ -163,10 +163,11 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                                 name="field-text-L1"
                                 request="<%= request %>"
                                 isFacetteObligatoire='<%= false %>'
-                                dataMode="free-text"
                                 dataUrl='<%= "plugins/EspaceCollectionPlugin/jsp/recherche/avancee/acFieldText.jsp?filtre=$parentValue" %>'
                                 label="Une recherche précise, tapez le n° d’inventaire... ou le nom d’une oeuvre."
-                                isLarge="<%= false %>"/>
+                                isLarge="<%= false %>"
+                                dataMode="select-only"/>
+<!--                                 free-text -->
 <!--                         </div> -->
 <!--         </div> -->
         </div>
