@@ -25,7 +25,7 @@
                         </span>
                     </label>
                     <input type="text" id="searchtext"
-                        name="textform-element-por_5166por_5165" value="" <%-- textform-element-por_5166por_5165 => champ rechreche page de recherche --%>
+                        name="textRechercehRapide" value="" <%-- textform-element-por_5166por_5165 => champ rechreche page de recherche --%>
                         class="ds44-inpStd"
                         title="Une recherche précise, le n° d’inventaire..."
                         aria-describedby="inp-rech"
@@ -40,12 +40,15 @@
                 </div>
             </div>
             <button type="submit" class="ds44-fullWBtn ds44-btnStd ds44-btn--contextual"
-                title="Valider votre recherche" name="op" value="recherche">
+                title="Valider votre recherche" data-submit-key="op" data-submit-value="recherche">
                 <span class="ds44-btnInnerText">Rechercher</span><i
                     class="icon icon-long-arrow-right"
                     aria-hidden="true"></i>
             </button>
-            <input type="submit"name="op" value="Recherche avancée KO">
+            <button type="submit" class="ds44-fullWBtn ds44-btnStd--tag"
+                title="Valider votre recherche avancé" data-submit-key="op" data-submit-value="RechercheAV">
+                <span class="ds44-btnInnerText">Recherche avancée</span>
+            </button>
         </form>
     </section>
 </div>
