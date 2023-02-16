@@ -1,4 +1,7 @@
-<%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekSearchQuery"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekConst"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.advSearch.NewAdvSearch"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.search.adv.EModifier"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.search.adv.KeepeekAdvSearchQuery"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.MediaLight"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekApiEndPoint"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.SearchResult"%>
@@ -29,59 +32,56 @@ Integer pager = getIntParameter("page", 1);
 int maxResult = 20; //box.getMaxResults(); TODO
 
 %><%
-// /plugins/SoclePlugin/jsp/facettes/doQueryText.jspf
-String text = request.getParameter("text");
-if(Util.notEmpty(text) && !text.matches("^\\d*$")){
-    text += "*"; // pour rechercher tous les mots débutent par le terme recherché
-}
+String oldIdAdvSearch = Util.getString(session.getAttribute(KeepeekConst.SESSION_ATR_ADV_SEARCH_ID), "");
+String idAdvSearch = "";
 
-KeepeekSearchQuery searchQuery = new KeepeekSearchQuery();
+if (pager > 1 && Util.notEmpty(oldIdAdvSearch)) {
+    idAdvSearch = oldIdAdvSearch;
+} else {
+    int nbL = getIntParameter("nbL", 1);
 
-// /plugins/SoclePlugin/jsp/facettes/doQueryBoolean.jspf
-String[] booleanParams = request.getParameterValues("boolean");
-// OeuvresIncontournables Avec_Image Vue_3D
-if(Util.notEmpty(booleanParams)){
-    for (String itBoolParam : booleanParams) {
-        if (itBoolParam.equalsIgnoreCase("Vue_3D")) {
-            searchQuery.add("tagsInMedia", "52");
-        } else if(itBoolParam.equalsIgnoreCase("OeuvresIncontournables")) {
-            searchQuery.add("tagsInMedia", "40");
-        } else if(itBoolParam.equalsIgnoreCase("Avec_Image")) {
-            searchQuery.add("tagsInMedia", "61");
-            searchQuery.add("tagsInMedia", "67");
-        }
-    }
-}
+    // Prefix
+    String sep = "-";
+    String ligne = "L";
+    String fieldFilter = "filter";
+    String fieldText = "field-text";
+    String fieldModifieur = "field-modifieur";
 
-// String[] cidBranches = request.getParameterValues("cidBranches");
-String[] cids = request.getParameterValues("cids");
-if (Util.notEmpty(cids)) {
-    for (String itCid : cids){
-        Category itCat = Channel.getChannel().getCategory(itCid);
-        if (Util.notEmpty(itCat) && itCat.canBeReadBy(loggedMember)) {
-            String idThesaurus = itCat.getDescription();
-            String keyQuery = Util.getFirst(itCat.getSynonyms());
-            if (Util.notEmpty(idThesaurus) && Util.notEmpty(keyQuery)) {
-                searchQuery.add(keyQuery, idThesaurus);
+    KeepeekAdvSearchQuery advSearchQuery = new KeepeekAdvSearchQuery();
+
+    for (int l = 1; l <= nbL; l++) {
+        String filterVal = getStringParameter(fieldFilter + sep + ligne + l, "", ".*");
+        String textVal = getStringParameter(fieldText + sep + ligne + l, "", ".*");
+        String modifVal = getStringParameter(fieldModifieur + sep + ligne + l, "", ".*");
+
+        if (Util.notEmpty(filterVal)) {
+            String[] filterValSplit = filterVal.split(":");
+            if (filterValSplit.length == 2) {
+                filterVal = filterValSplit[0];
+            } else {
+                filterVal = "";
             }
         }
+
+        if (Util.notEmpty(filterVal) && Util.notEmpty(textVal) && Util.notEmpty(modifVal)) {
+            advSearchQuery.add(filterVal, EModifier.valueOf(modifVal), textVal);
+        }
+    }
+    if (!advSearchQuery.isEmpty()) {
+        NewAdvSearch advSearch = KeepeekApiEndPoint.createAdvancedSearch(advSearchQuery);
+
+        idAdvSearch = advSearch.getId();
     }
 }
 
 SearchResult searchResult = null;
 List<MediaLight> collection = null;
-if(Util.notEmpty(text) || !searchQuery.isEmpty()){
-//     searchResult = KeepeekApiEndPoint.searchMedia(text, searchQuery, pager, maxResult);
+if (Util.notEmpty(idAdvSearch)) {
+    
+    searchResult = KeepeekApiEndPoint.advSearchMedia(idAdvSearch, pager, maxResult);
 
     collection = searchResult.getEmbeddedResult().getMedias();
 }
-
-
-// /types/PortletQueryForeach/doQuery.jspf
-// /plugins/SoclePlugin/jsp/facettes/doQueryCids.jspf
-// /plugins/SoclePlugin/jsp/facettes/doQueryBoolean.jspf
-// /plugins/SoclePlugin/jsp/facettes/doQueryGeoloc.jspf
-// /types/PortletQueryForeach/doSort.jspf
 %>
 
 <%

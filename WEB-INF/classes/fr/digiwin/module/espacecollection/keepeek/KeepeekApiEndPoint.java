@@ -98,6 +98,48 @@ public class KeepeekApiEndPoint {
         return null;
     }
 
+    public static SearchResult advSearchMedia(String id) {
+        return advSearchMedia(id, "creationDate desc", 1, 20);
+    }
+
+    public static SearchResult advSearchMedia(String id, int page, int size) {
+        return advSearchMedia(id, "creationDate desc", page, size);
+    }
+
+    public static SearchResult advSearchMedia(String id, String sort, int page, int size) {
+        if (Util.isEmpty(id)) {
+            return null;
+        }
+
+        StringBuilder params = new StringBuilder();
+
+        if (Util.notEmpty(sort)) {
+            params.append("sort=").append(HttpUtil.encodeForURL(sort)).append("&");
+        }
+        if (Util.notEmpty(page)) {
+            params.append("page=").append(page).append("&");
+        }
+        if (Util.notEmpty(size)) {
+            params.append("size=").append(size).append("&");
+        }
+
+        try {
+            String strSearchResult = KeepeekApiManager.getEndPoint("api/dam/search/advanced/" + id + "/media?" + params);
+
+            GsonBuilder gsonBuild = new GsonBuilder();
+            gsonBuild.registerTypeAdapter(EmbeddedResult.class, new EmbeddedResultDeserializer());
+
+            Gson gson = gsonBuild.create();
+
+            SearchResult result = gson.fromJson(strSearchResult, SearchResult.class);
+
+            return result;
+        } catch (KeepeekException e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+        }
+        return null;
+    }
+
     public static ThesaurusTree getThesaurusTree(String idThesaurus) {
         try {
             String strThesaurusTree = KeepeekApiManager.getEndPoint("api/dam/thesaurus-tree/" + idThesaurus);
@@ -115,18 +157,18 @@ public class KeepeekApiEndPoint {
 
         return null;
     }
-    
+
     public static AutocompleteThesaurus getAutocompleteThesaurus(String idThesaurus, String text) {
         String params = "forceArrays=true&type=thesaurus&";
-        
-        if(Util.notEmpty(idThesaurus)) {
+
+        if (Util.notEmpty(idThesaurus)) {
             params += "thesaurusId=" + idThesaurus + "&";
         }
-        
-        if(Util.notEmpty(text)) {
+
+        if (Util.notEmpty(text)) {
             params += "q=" + HttpUtil.encodeForURL(text);
         }
-        
+
         try {
             String strAutocomplete = KeepeekApiManager.getEndPoint("api/dam/search/autocomplete?" + params);
 
@@ -142,23 +184,28 @@ public class KeepeekApiEndPoint {
 
         return null;
     }
-    
+
     public static NewAdvSearch createAdvancedSearch(KeepeekAdvSearchQuery advSearch) {
-        
+
         HttpSession session = Channel.getChannel().getCurrentServletRequest().getSession();
         if (Util.notEmpty(session)) {
             String idAdvSearch = Util.getString(session.getAttribute(KeepeekConst.SESSION_ATR_ADV_SEARCH_ID), "");
             if (Util.notEmpty(idAdvSearch)) {
-                // TODO delete KEEPEEK & cache ???
+                // TODO delete cache ???
+                try {
+                    KeepeekApiManager.deleteEndPoint("api/dam/search/advanced/"+idAdvSearch);
+                } catch (KeepeekException e) {
+                    LOGGER.error(e.getLocalizedMessage(), e);
+                }
             }
         }
-        
-        if(advSearch.isEmpty()) {
+
+        if (advSearch.isEmpty()) {
             return null; // TODO
         }
-        
+
         JsonArray filters = advSearch.build();
-        
+
         // add def folder
         // 22 => Fiches objets de collections
         JsonObject filterFolder = new JsonObject();
@@ -170,17 +217,15 @@ public class KeepeekApiEndPoint {
         JsonArray values = new JsonArray();
         values.add(22);
         filterFolder.add("values", values);
-        
+
         filters.add(filterFolder);
-        
+
         // build body
         JsonObject filterBody = new JsonObject();
-        JsonObject embedded = new JsonObject(); 
+        JsonObject embedded = new JsonObject();
         embedded.add("filter", filters);
         filterBody.add("_embedded", embedded);
-        
-        LOGGER.warn(filterBody);
-        
+
         try {
             String newAdvSearchStr = KeepeekApiManager.postEndPoint("api/dam/search/advanced", filterBody.toString());
 
@@ -189,12 +234,14 @@ public class KeepeekApiEndPoint {
             Gson gson = gsonBuild.create();
 
             NewAdvSearch newAdvSearch = gson.fromJson(newAdvSearchStr, NewAdvSearch.class);
+
+            session.setAttribute(KeepeekConst.SESSION_ATR_ADV_SEARCH_ID, newAdvSearch.getId());
+
             return newAdvSearch;
-            // TODO  NewAdvSearch
         } catch (KeepeekException e) {
             LOGGER.error(e.getLocalizedMessage(), e);
         }
-        
+
         return null;
     }
 }

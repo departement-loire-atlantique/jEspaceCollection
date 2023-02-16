@@ -6,6 +6,7 @@ import java.util.Base64;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -17,6 +18,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.jalios.jcms.Channel;
 import com.jalios.util.HttpClientUtils;
+import com.jalios.util.Util;
 
 import fr.digiwin.module.espacecollection.keepeek.exception.KeepeekException;
 
@@ -92,7 +94,7 @@ public class KeepeekApiManager {
 
     public static String postUrl(String url, String body) throws KeepeekException {
 
-        // TODO
+        // TODO ?
 //        if (KeepeekApiCache.getInstance().isValid(url, true)) {
 //            return KeepeekApiCache.getInstance().getRep(url);
 //        }
@@ -126,5 +128,35 @@ public class KeepeekApiManager {
 
     public static String postEndPoint(String apiEndPoint, String body) throws KeepeekException {
         return postUrl(getKeepeekUrl() + apiEndPoint, body);
+    }
+    
+    public static String deleteUrl(String url) throws KeepeekException {
+
+        String base64Token = buildToken();
+
+        CloseableHttpClient httpClient = HttpClientUtils.newHttpClient(20000);
+
+        HttpDelete httpDelete = new HttpDelete(url);
+        httpDelete.addHeader("Authorization", "Basic " + base64Token);
+        
+        try {            
+            CloseableHttpResponse response = httpClient.execute(httpDelete);
+
+            String strResponse = "{}";
+            if(Util.notEmpty(response.getEntity())) {
+                strResponse = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+            }
+
+            testStatus(response, strResponse);
+
+            return strResponse;
+        } catch (IOException e) {
+//            LOGGER.error(e.getLocalizedMessage(), e);
+            throw new KeepeekException(e.getLocalizedMessage(), e);
+        }
+    }
+
+    public static String deleteEndPoint(String apiEndPoint) throws KeepeekException {
+        return deleteUrl(getKeepeekUrl() + apiEndPoint);
     }
 }

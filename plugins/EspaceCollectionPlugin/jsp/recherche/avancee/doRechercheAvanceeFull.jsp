@@ -1,3 +1,5 @@
+<%@page import="fr.digiwin.module.espacecollection.keepeek.search.adv.EModifier"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.search.adv.KeepeekAdvSearchQuery"%>
 <%@page import="fr.digiwin.module.espacecollection.CollectionUtil"%>
 <%@ page import="fr.cg44.plugin.socle.SocleUtils"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -95,7 +97,7 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
             %>
 
             <%--        <form role="search" method='<%= channel.getBooleanProperty("jcmsplugin.socle.url-rewriting", false) ? "POST" : "GET" %>' data-seo-url='<%= channel.getProperty("jcmsplugin.socle.url-rewriting")%>' data-search-url="plugins/SoclePlugin/jsp/facettes/displayParameters.jsp" data-is-ajax='<%= isInRechercheFacette ? "true" : "false" %>' data-auto-load='<%= isInRechercheFacette ? "true" : "false" %>' action='<%= isInRechercheFacette ? "plugins/SoclePlugin/jsp/facettes/displayResultDecodeParams.jsp" : seoUrl + "?boxId=" + obj.getId() %>'> --%>
-            <form data-is-ajax="true" data-auto-load="true" action='plugins/EspaceCollectionPlugin/jsp/recherche/avancee/displayResultDecodeParamsAV.jsp'>
+            <form role="search" method='GET' data-is-ajax="true" data-auto-load="true" action='plugins/EspaceCollectionPlugin/jsp/recherche/avancee/displayResultDecodeParamsAV.jsp'>
             
                 <div class="ds44-facetteContainer ds44-bgDark">
 <%-- L1 --%>
@@ -204,27 +206,22 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
 
                                 </div>
 
-                                <div
-                                    class="ds44-select-container hidden"
-                                    aria-hidden="true">
+                                <div class="ds44-select-container hidden" aria-hidden="true">
                                     <div class="ds44-listSelect">
                                         <ul class="ds44-list"
                                             role="listbox"
                                             id="listbox-field-modifieur-L1"
                                             aria-labelledby="button-message-field-modifieur-L1"
                                             aria-required="true">
-                                            <li
-                                                class="ds44-select-list_elem"
-                                                data-value="1"
-                                                tabindex="0"
-                                                role="option">
-                                                Modifieur 1</li>
-                                            <li
-                                                class="ds44-select-list_elem"
-                                                data-value="2"
-                                                tabindex="0"
-                                                role="option">
-                                                Modifieur 2</li>
+                                            <jalios:foreach name="itModif" type="EModifier" array="<%= EModifier.values() %>">
+                                                <li
+                                                    class="ds44-select-list_elem"
+                                                    data-value="<%= itModif.name() %>"
+                                                    tabindex="0"
+                                                    role="option">
+                                                    <%= itModif.lbl %>
+                                                </li>
+                                            </jalios:foreach>
                                         </ul>
                                     </div>
                                 </div>
@@ -245,11 +242,10 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
 
                     </div>
 <%-- L2 --%>
-                    <div
-                        class="ds44-flex-container ds44--l-padding-b ds44-medium-flex-col">
+                    <div class="ds44-flex-container ds44--l-padding-b ds44-medium-flex-col">
 
-                        <div
-                            class="ds44-fieldContainer ds44-fg1 ds44-fieldContainer--select">
+    <div class="ds44-fieldContainer ds44-champsLies ds44-js-linked-fields">
+<!--                         <div class="ds44-fieldContainer ds44-fg1 ds44-fieldContainer--select"> -->
 
                             <div class="ds44-form__container">
 
@@ -309,7 +305,21 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
 
                             </div>
 
-                        </div>
+<!--                         </div> -->
+                        
+<!--                         <div class="ds44-fieldContainer ds44-fg1"> -->
+
+                            <ds:facetteAutoCompletion idFormElement='<%= ServletUtil.generateUniqueDOMId(request, glp("jcmsplugin.socle.facette.form-element")) %>'
+                                name="field-text-L2"
+                                request="<%= request %>"
+                                isFacetteObligatoire='<%= false %>'
+                                dataUrl='<%= "plugins/EspaceCollectionPlugin/jsp/recherche/avancee/acFieldText.jsp?filtre=$parentValue" %>'
+                                label="Une recherche précise, tapez le n° d’inventaire... ou le nom d’une oeuvre."
+                                isLarge="<%= false %>"
+                                dataMode="select-only"/>
+<!--                         </div> -->
+      </div>          
+                        
                         <div
                             class="ds44-fieldContainer ds44-fg1 ds44-fieldContainer--select">
 
@@ -375,41 +385,6 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                             </div>
 
                         </div>
-                        <div class="ds44-fieldContainer ds44-fg1">
-
-                            <div class="ds44-form__container">
-
-                                <div class="ds44-posRel">
-                                    <label for="field-text-L2"
-                                        class="ds44-formLabel"><span
-                                        class="ds44-labelTypePlaceholder"><span>Champ
-                                                standard</span></span></label> <input
-                                        type="text"
-                                        id="field-text-L2"
-                                        name="field-text-L2"
-                                        value="" class="ds44-inpStd"
-                                        title="">
-
-                                    <button class="ds44-reset"
-                                        type="button">
-                                        <i
-                                            class="icon icon-cross icon--sizeL"
-                                            aria-hidden="true"></i><span
-                                            class="visually-hidden">Effacer
-                                            le contenu saisi dans le
-                                            champ : Champ standard</span>
-                                    </button>
-
-
-
-                                </div>
-
-
-
-                            </div>
-
-
-                        </div>
 
                         <div class="ds44-fieldContainer ds44-small-fg1">
                             <button class="ds44-btnStd ds44-red "
@@ -440,6 +415,7 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                     </button>
                 </div>
 
+                <input type="hidden" name="nbL" value="2" data-technical-field/>
             </form>
         </div>
 
