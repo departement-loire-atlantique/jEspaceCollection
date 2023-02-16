@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<type name="FicheCollectionneur" superclass="com.jalios.jcms.Content" debatable="false" unitFieldEdition="true" audienced="false" categoryTab="true" readRightTab="true" updateRightTab="true" templateTab="true" workflowTab="true" advancedTab="true">
+  <label xml:lang="fr">Fiche collectionneur</label>
+  <title ml="true">
+    <label xml:lang="en">Title</label>
+    <label xml:lang="fr">Titre</label>
+  </title>
+  <fields>
+    <field name="description" editor="wysiwyg" required="true" type="String" searchable="true" abstract="true" wysiwygConfigurationId="default" ml="true">
+      <label xml:lang="en">Description</label>
+      <label xml:lang="fr">Description</label>
+    </field>
+    <field name="visuel" editor="link" required="false" compactDisplay="false" type="generated.CarouselElement" parent="false">
+      <label xml:lang="fr">Visuel</label>
+    </field>
+    <field name="nom" editor="textfield" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Nom</label>
+    </field>
+    <field name="dateDeNaissance" editor="date" required="false" compactDisplay="false" type="java.util.Date" future="true" past="true" dateOnly="false" dateFormat="short">
+      <label xml:lang="fr">Date de naissance</label>
+    </field>
+    <field name="dateDeMort" editor="date" required="false" compactDisplay="false" type="java.util.Date" future="true" past="true" dateOnly="false" dateFormat="short">
+      <label xml:lang="fr">Date de mort</label>
+    </field>
+    <field name="domaine" editor="category" required="false" compactDisplay="false" type="java.util.TreeSet" chooser="tree" exclusive="false" root="fde_5050">
+      <label xml:lang="fr">Domaine</label>
+    </field>
+    <field name="documentTelechargeable" editor="url" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" openWindow="false">
+      <label xml:lang="fr">Document téléchargeable</label>
+    </field>
+    <field name="ressourcesAssociees" editor="link" required="false" compactDisplay="false" type="generated.FicheObjetBaseDeDonnees[]">
+      <label xml:lang="fr">Ressources associées</label>
+    </field>
+  </fields>
+</type>
+

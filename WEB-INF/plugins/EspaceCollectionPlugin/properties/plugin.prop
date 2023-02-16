@@ -1,4 +1,9 @@
 
+# a sup en prod
+jcmsplugin.socle.css-urls:https://dev-design.loire-atlantique.fr/css/cd44.css https://dev-design.loire-atlantique.fr/css/icons.css
+jcmsplugin.socle.js-urls:https://dev-design.loire-atlantique.fr/js/cd44.js
+
+
 # ----------------------------------------------------------------------
 # Templates {usage = jcmsplugin.plugin.sample}
 # ----------------------------------------------------------------------
@@ -16,18 +21,55 @@
 
 # LESS
 # channel.less.plugins/{Name}/css/plugin.css:    plugins/{Name}/css/plugin.less
-channel.less.plugins/EspaceEnseignantPlugin/css/plugin.css:    plugins/EspaceCollectionPlugin/css/plugin.less
+channel.less.plugins/EspaceCollectionPlugin/css/plugin.css:    plugins/EspaceCollectionPlugin/css/plugin.less
 channel.css.all.200.fo: plugins/EspaceCollectionPlugin/css/plugin.css
 
 jcmsplugin.socle.site.src.logo: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
 jcmsplugin.espaceCollection.site.src.logo-gpla: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
 
+jcmsplugin.espaceCollection.image.src.cube-3d: plugins/EspaceCollectionPlugin/images/cube-3d.png
+
 fr.jcmsplugin.seo.meta-title: Espace collection
+
+# Keepeek
+jcmsplugin.espacecollection.keepeek.url: https://dam-gpla.loire-atlantique.fr/
+jcmsplugin.espacecollection.keepeek.login:
+jcmsplugin.espacecollection.keepeek.password.pwd:
+
+# recherche
+$jcmsplugin.socle.recherche.facettes.portal: fde_5017
+$jcmsplugin.espacecollection.recherche.filtre.Keepeek.root.chooser-category: por_5176
+jcmsplugin.espacecollection.recherche.filtre.Keepeek.get.schedule: 00 05 * * * *
+
+# Home
+jcmsplugin.espacecollection.home.recherche.title: Base de donnée des collections
+jcmsplugin.espacecollection.home.recherche.desc.area: Nous vous invitons à découvrir les trésors qui se cachent dans le musée et les collectionneurs qui ont fait son histoire.
 
 ## Surcharge module socle
 # Menu principal
 jcmsplugin.socle.site.menu.cat.root: fde_5005
 jcmsplugin.socle.site.submenu.cat.root: fde_5006
+jcmsplugin.socle.portlet.filariane.id: oga_5201
 
 # désactive le btn par défaut et ajoute un cat custom
 jcmsplugin.socle.site.header.show.rechercher: false
+
+
+# Media Template
+media.data-template.card-home.FicheCollectionneur: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionneurCardHome.jsp
+media.data-template.card.FicheCollectionneur: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionneurCard.jsp
+
+media.data-template.card.FicheObjetBaseDeDonnees: /plugins/EspaceCollectionPlugin/templates/doFicheObjetBaseDeDonneesCard.jsp
+media.data-template.card.FicheObjetMediatisee: /plugins/EspaceCollectionPlugin/templates/doFicheObjetMediatiseeCard.jsp
+
+media.data-template.card-verticale.FicheCollection: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionCardVerticale.jsp
+media.data-template.card-horizontale.FicheCollection: /plugins/EspaceCollectionPlugin/templates/doFicheCollectionCardHorizontale.jsp
+
+
+# Portlet ref
+jcmsplugin.espaceCollection.portlet-liste-collections.chooser-publication: oga_5167
+jcmsplugin.espaceCollection.portlet-liste-collectionneurs.chooser-publication: oga_5177
+jcmsplugin.espaceCollection.portlet-liste-objet-incontournables.chooser-publication: oga_5185
+
+# Texte
+jcmsplugin.espaceCollection.portlet-liste-collectionneurs.title-main-tuile:  L’armateur d’art : Thomas I Dobrée

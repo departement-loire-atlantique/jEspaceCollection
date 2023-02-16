@@ -1,0 +1,20 @@
+
+<jalios:if predicate="<%= Util.notEmpty(obj.getGalerieDeVisuels()) %>">
+  <button  type="button" data-target="#overlay-images-all" data-js="ds44-modal">
+    <span class="ds44-btnInnerText ">
+      <i class="icon icon-visuel" aria-hidden="true"></i> 
+      <a><%=glp("jcmsplugin.espaceCollection.objet.tuile.telecharger.images")%></a>
+    </span>
+  </button>
+  <section class="ds44-modal-container" id="overlay-images-all" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="overlay-images-all-title">
+      <div class="ds44-modal-box">
+          <button class="ds44-btnOverlay--modale ds44-btnOverlay--closeOverlay" type="button" title="Fermer la boîte de dialogue : [titre de la modale]" data-js="ds44-modal-action-close"><i class="icon icon-cross icon--xlarge" aria-hidden="true"></i><span class="ds44-btnInnerText--bottom">Fermer</span></button>
+          <h1 id="overlay-images-all-title" class="h3-like"><%=glp("jcmsplugin.espaceCollection.modal.images.telecharger")%></h1>
+          <div class="ds44-modal-gab">
+            <p><%=glp("jcmsplugin.espaceCollection.modal.images.conditions-utilisation")%></p>        
+            <button class="ds44-btnStd"><span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.btn.valider")%></span><i class="icon icon-long-arrow-right" aria-hidden="true"></i></button>
+            <p><%=glp("jcmsplugin.espaceCollection.modal.images.hd")%></p>
+          </div>
+      </div>
+  </section>
+</jalios:if>

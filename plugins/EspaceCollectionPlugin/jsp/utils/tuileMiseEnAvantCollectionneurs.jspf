@@ -1,0 +1,51 @@
+<% 
+FicheCollectionneur tuileCollectionneur = null;
+if(box.getLienInterne() instanceof FicheCollectionneur) {
+	tuileCollectionneur = (FicheCollectionneur)box.getLienInterne();
+}
+%>
+
+<jalios:if predicate="<%= Util.notEmpty(tuileCollectionneur) %>">
+  <div class="ds44-inner-container ds44-mtb3">
+    <div class="ds44-grid12-offset-2">
+      <h3 class="h3-like"><%= channel.getProperty("jcmsplugin.espaceCollection.portlet-liste-collectionneurs.title-main-tuile")%></h3>
+
+      <section class="ds44-card ds44-js-card ds44-card--horizontal">
+        <div class="ds44-flex-container ds44-flex-valign-center">
+          <div class="ds44-card__section--horizontal--img">
+            <picture class="ds44-container-imgRatio ds44-container-imgRatio--carre">
+              <jalios:if predicate="<%= Util.notEmpty(tuileCollectionneur.getVisuel()) %>">
+                <% CarouselElement image = (CarouselElement)channel.getData(CarouselElement.class, tuileCollectionneur.getVisuel().getId()); %>
+                <img src="<%= image.getImage() %>" alt="<%= image.getImageLegend() %>" class="ds44-imgRatio"/>
+              </jalios:if>
+            </picture>
+        </div>
+          <div class="ds44-card__section--horizontal">
+            <p role="heading" aria-level="2" class="ds44-card__title">
+              <jalios:link data="<%= tuileCollectionneur %>" css="ds44-card__globalLink">
+                <%=tuileCollectionneur.getTitle()%>
+              </jalios:link>
+            </p>
+
+            <jalios:if predicate="<%= Util.notEmpty(tuileCollectionneur.getDateDeNaissance()) && Util.notEmpty(tuileCollectionneur.getDateDeMort()) %>">
+              <p class="ds44-docListElem ds44-mt-std">
+              <i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
+              <% 
+              SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY");
+              %>
+              <%= simpleDateFormat.format(tuileCollectionneur.getDateDeNaissance()).toUpperCase() %>
+                - <%= simpleDateFormat.format(tuileCollectionneur.getDateDeMort()).toUpperCase() %></p>
+            </jalios:if>
+
+            <jalios:wysiwyg css="ds44-mt-std">
+              <%= tuileCollectionneur.getDescription() %>
+            </jalios:wysiwyg>
+
+            <i class="icon icon-arrow-right ds44-cardArrow" aria-hidden="true"></i>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</jalios:if>

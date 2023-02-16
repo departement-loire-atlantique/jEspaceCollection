@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<type name="FicheObjetBaseDeDonnees" superclass="com.jalios.jcms.Content" debatable="false" unitFieldEdition="true" audienced="false" categoryTab="true" readRightTab="true" updateRightTab="true" templateTab="true" workflowTab="true" advancedTab="true">
+  <label xml:lang="fr">Fiche objet base de données</label>
+  <title ml="true">
+    <label xml:lang="en">Title</label>
+    <label xml:lang="fr">Titre</label>
+  </title>
+  <fields>
+    <field name="description" editor="wysiwyg" required="true" type="String" searchable="true" abstract="true" wysiwygConfigurationId="default" ml="true">
+      <label xml:lang="en">Description</label>
+      <label xml:lang="fr">Description</label>
+    </field>
+    <field name="visuel" editor="link" required="false" compactDisplay="false" type="generated.CarouselElement" parent="false">
+      <label xml:lang="fr">Visuel</label>
+    </field>
+    <field name="galerieDeVisuels" editor="link" required="false" compactDisplay="false" type="generated.Carousel" parent="false">
+      <label xml:lang="fr">Galerie de visuels</label>
+    </field>
+    <field name="ficheObjetMediatisee" editor="link" required="false" compactDisplay="false" type="generated.FicheObjetMediatisee" parent="false">
+      <label xml:lang="fr">Fiche objet médiatisée</label>
+    </field>
+    <field name="urlSketchfab" editor="url" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" openWindow="false">
+      <label xml:lang="fr">URL sketchfab</label>
+    </field>
+    <field name="numeroDinventaire" editor="textfield" required="false" compactDisplay="false" tab="identification" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Numéro d’inventaire</label>
+    </field>
+    <field name="departement" editor="category" required="false" compactDisplay="false" tab="identification" type="java.util.TreeSet" chooser="tree" exclusive="true" root="fde_5036">
+      <label xml:lang="fr">Département</label>
+    </field>
+    <field name="titre" editor="textfield" required="false" compactDisplay="false" tab="identification" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Titre</label>
+    </field>
+    <field name="denomination" editor="textfield" required="false" compactDisplay="false" tab="identification" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Dénomination</label>
+    </field>
+    <field name="autresDesignations" editor="textfield" required="false" compactDisplay="false" tab="identification" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Autres désignations</label>
+    </field>
+    <field name="domaine" editor="category" required="false" compactDisplay="false" tab="identification" type="java.util.TreeSet" chooser="tree" exclusive="true" root="fde_5050">
+      <label xml:lang="fr">Domaine</label>
+    </field>
+    <field name="collectionneur" editor="category" required="false" compactDisplay="false" tab="identification" type="java.util.TreeSet" chooser="tree" exclusive="true" root="fde_5037">
+      <label xml:lang="fr">Collectionneur</label>
+    </field>
+    <field name="artisteCreateur" editor="textfield" required="false" compactDisplay="false" tab="creation__execution" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Artiste / créateur</label>
+    </field>
+    <field name="dateEpoque" editor="textfield" required="false" compactDisplay="false" tab="creation__execution" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Date / époque</label>
+    </field>
+    <field name="lieuDeCreation" editor="textfield" required="false" compactDisplay="false" tab="creation__execution" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Lieu de création</label>
+    </field>
+    <field name="technique" editor="textfield" required="false" compactDisplay="false" tab="creation__execution" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Technique</label>
+    </field>
+    <field name="matiere" editor="textfield" required="false" compactDisplay="false" tab="matiere_et_technique" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Matière</label>
+    </field>
+    <field name="dimensionsEtPoids" editor="textfield" required="false" compactDisplay="false" tab="matiere_et_technique" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Dimensions et poids</label>
+    </field>
+    <field name="inscriptions" editor="textarea" required="false" compactDisplay="false" tab="inscriptions" type="String" searchable="true" rows="5" cols="80" ml="true" wiki="false" html="false" wysiwygConfigurationId="" checkHtml="true">
+      <label xml:lang="fr">Inscriptions</label>
+    </field>
+    <field name="transcription" editor="textfield" required="false" compactDisplay="false" tab="inscriptions" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Transcription</label>
+    </field>
+    <field name="fonctionnementEtContexte" editor="textarea" required="false" compactDisplay="false" tab="fonction_dusage" type="String" searchable="true" rows="5" cols="80" ml="true" wiki="false" html="false" wysiwygConfigurationId="" checkHtml="true">
+      <label xml:lang="fr">Fonctionnement et contexte</label>
+    </field>
+    <field name="utilisation" editor="textfield" required="false" compactDisplay="false" tab="fonction_dusage" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Utilisation</label>
+    </field>
+    <field name="utilisateur" editor="textfield" required="false" compactDisplay="false" tab="fonction_dusage" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Utilisateur</label>
+    </field>
+    <field name="evenementAssocieALutilisationDeL" editor="textfield" required="false" compactDisplay="false" tab="fonction_dusage" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Événement associé à l’utilisation de l’objet</label>
+    </field>
+    <field name="themesEtIconographie" editor="textfield" required="false" compactDisplay="false" tab="themes_et_iconographie" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Thèmes et iconographie</label>
+    </field>
+    <field name="personnesRepresentees" editor="textarea" required="false" compactDisplay="false" tab="themes_et_iconographie" type="String" searchable="true" rows="5" cols="80" ml="true" wiki="false" html="false" wysiwygConfigurationId="" checkHtml="true">
+      <label xml:lang="fr">Personne(s) représentée(s)</label>
+    </field>
+    <field name="lieuRepresente" editor="textfield" required="false" compactDisplay="false" tab="themes_et_iconographie" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Lieu représenté</label>
+    </field>
+    <field name="evenementRepresente" editor="textfield" required="false" compactDisplay="false" tab="themes_et_iconographie" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Événement représenté</label>
+    </field>
+    <field name="collecteur" editor="textfield" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Collecteur</label>
+    </field>
+    <field name="lieuDeLaDecouverte" editor="textfield" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Lieu de la découverte</label>
+    </field>
+    <field name="lieuDeConservation" editor="textfield" required="false" compactDisplay="false" tab="lacalisation" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Lieu de conservation</label>
+    </field>
+    <field name="localisationPermanente" editor="textfield" required="false" compactDisplay="false" tab="lacalisation" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Localisation permanente</label>
+    </field>
+    <field name="emplacementActuel" editor="textfield" required="false" compactDisplay="false" tab="lacalisation" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Emplacement actuel</label>
+    </field>
+    <field name="mouvement" editor="textfield" required="false" compactDisplay="false" tab="lacalisation" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Mouvement</label>
+    </field>
+    <field name="dateDeDebutDuMouvement" editor="textfield" required="false" compactDisplay="false" tab="lacalisation" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Date de début du mouvement</label>
+    </field>
+    <field name="dateDeFinDuMouvement" editor="textfield" required="false" compactDisplay="false" tab="lacalisation" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Date de fin du mouvement</label>
+    </field>
+    <field name="objetsAssocies" editor="textfield" required="false" compactDisplay="false" tab="autres_renseignements" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Objet(s) associé(s)</label>
+    </field>
+    <field name="statutAdministratif" editor="textfield" required="false" compactDisplay="false" tab="autres_renseignements" type="String" searchable="true" size="80" ml="true" html="false" checkHtml="true">
+      <label xml:lang="fr">Statut administratif</label>
+    </field>
+  </fields>
+  <tabs>
+    <tab id="creation__execution">
+      <label xml:lang="fr">Création / Exécution</label>
+    </tab>
+    <tab id="evenement_represente">
+      <label xml:lang="fr">Événement représenté</label>
+    </tab>
+    <tab id="fonction_dusage">
+      <label xml:lang="fr">Fonction d’usage</label>
+    </tab>
+    <tab id="histoire_de_la_collecte">
+      <label xml:lang="fr">Histoire de la collecte</label>
+    </tab>
+    <tab id="identification">
+      <label xml:lang="fr">Identification</label>
+    </tab>
+    <tab id="inscriptions">
+      <label xml:lang="fr">Inscriptions</label>
+    </tab>
+    <tab id="lacalisation">
+      <label xml:lang="fr">Localisation</label>
+    </tab>
+    <tab id="matiere_et_technique">
+      <label xml:lang="fr">Matière et technique</label>
+    </tab>
+    <tab id="themes_et_iconographie">
+      <label xml:lang="fr">Thèmes et iconographie</label>
+    </tab>
+    <tab id="autres_renseignements">
+      <label xml:lang="fr">Autres renseignements</label>
+    </tab>
+  </tabs>
+</type>
+

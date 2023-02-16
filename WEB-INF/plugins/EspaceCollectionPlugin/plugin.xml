@@ -111,6 +111,71 @@
 	  </templates>
   </types>
  -->
+ <types>
+    <type name="FicheCollection" />
+    <type name="FicheObjetMediatisee" />
+    <type name="FicheObjetBaseDeDonnees" />
+    <type name="FicheCollectionneur" />
+    <type name="PortletImageHome" />
+
+    <templates type="PortletRechercheFacettes">
+        <template name="default" file="doPortletRechercheFacettesFullDisplay.jsp" usage='full'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+    </templates>
+    
+    <templates type="FicheObjetMediatisee">
+        <template name="default" file="doFicheObjetMediatiseeFullDisplay.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit par défaut</label>
+        </template>
+    </templates>
+    <templates type="FicheObjetBaseDeDonnees">
+        <template name="default" file="doFicheObjetBaseDeDonneesFullDisplay.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit par défaut</label>
+        </template>
+    </templates>
+    <templates type="FicheCollection">
+        <template name="default" file="doFicheCollectionFullDisplay.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit par défaut</label>
+        </template>
+    </templates>
+    <templates type="FicheCollectionneur">
+        <template name="default" file="doFicheCollectionneurFullDisplay.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit par défaut</label>
+        </template>
+    </templates>
+    
+    <templates type="PortletImageHome">
+        <template name="default" file="doPortletImageHomeBoxDisplay.jsp" usage="box">
+            <label xml:lang="fr">Espace Collection : gabarit par défaut</label>
+        </template>
+    </templates>
+
+    <templates type="PortletMiseEnAvantDeContenus">
+        <template name="accueilCollections" file="doPortletMiseEnAvantDeContenusCollectionsHome.jsp" usage="box">
+            <label xml:lang="fr">Espace Collection : gabarit page d'accueil collections</label>
+        </template>
+        <template name="listeCollections" file="doPortletMiseEnAvantDeContenusCollectionsListe.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit liste des collections</label>
+        </template>
+        <template name="listeCollectionneurs" file="doPortletMiseEnAvantDeContenusCollectionneursListe.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit liste des collectionneurs</label>
+        </template>
+        <template name="listeObjets" file="doPortletMiseEnAvantDeContenusObjetsListe.jsp" usage="full">
+            <label xml:lang="fr">Espace Collection : gabarit liste des objets incontournables</label>
+        </template>
+    </templates>
+
+    <templates type="PortletCarousel">
+        <template name="carrouselCollectionneurs" file="doPortletCarouselSliderCollectionneur.jsp" usage='box'>
+          <label xml:lang="fr">Espace Collection : gabarit carrousel 4 slide collectionneurs</label>
+        </template>  
+        <template name="miseEnAvantObjet" file="doPortletCarouselSliderObjet.jsp" usage='box'>
+          <label xml:lang="fr">Espace Collection : gabarit mise en avant objets incontournables</label>
+        </template>  
+    </templates>
+
+</types>
   <!-- ============================== Workflows =========================== -->
   <!--                                                                      -->
   <!-- workflows         A list of <dependency>.                            -->
@@ -139,6 +204,10 @@
     <java package="com.example.jcmsplugin.espacecollection" />
   </java-classes>
  -->
+ 
+  <java-classes>
+    <java package="fr.digiwin.module.espacecollection" />
+  </java-classes>
   <!-- ========================== Plugin Components ======================= -->
   <!--                                                                      -->
   <!-- Plugin Components are Java classes implementing the PluginComponent  -->
@@ -434,6 +503,8 @@
     <directory path="docs" />
     <directory path="images" />
     <directory path="jsp" />
+    <directory path="types" />
+    <directory path="templates" />
     <!--    
     <directory path="images" />
     -->

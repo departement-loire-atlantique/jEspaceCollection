@@ -4,7 +4,10 @@
 // -------------------------------------------------------------------
 // PLUGINS LESS VARIABLES
 // -------------------------------------------------------------------
-
+@main-color: #FFBED2;
+@light-grey: #E6E6E6;
+@white: #fff;
+@black: #000;
 
 
 // Hook for JCMS
@@ -22,3 +25,128 @@
 //  You can also use implements PortalPolicyFilter.setupHeaders()      
 //                                                                      
 
+H1,
+H2,
+H3,
+H4,
+H5,
+H6,
+p,
+a {
+  font-family: Muli !important;
+  color: @black;
+}
+
+/* OVERRIDE DS */
+
+h1.h1-like {
+  font-weight: bold;
+}
+
+.h2-like {
+  background: transparent !important;
+}
+
+.underline {
+  background: transparent !important;
+  font-weight: bold;
+  border-bottom: 1px solid @main-color;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ds44-card .ds44-cardArrow {
+  color: @main-color !important;
+}
+
+.ds44-card.ds44-card--contact {
+  border-color: @main-color !important;
+}
+
+.ds44-theme {
+  background-color: @main-color !important;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
+}
+
+.ds44-boxPushPic {
+  align-self: center !important;
+}
+
+.ds44-modal-container {
+  display: flex !important;
+}
+
+/* --- */
+a.lien-page {
+  text-decoration: none;
+}
+
+td.table-detail {
+  text-align: left;
+
+  p.ds44-btnStd--tag {
+    cursor: pointer;
+    background-color: @black !important;
+    color: @white;
+  }
+}
+
+hr.mbs {
+  margin-bottom: 2rem;
+}
+
+.wysiwyg {
+  h3 {
+    font-size: 1.5em;
+    border: none;
+  }
+}
+
+.ds44-docListElem .wysiwyg {
+  strong{
+    font-weight:normal;
+  }
+}
+
+.caracteristique {
+  white-space: pre-line;
+}
+BODY .ds44-btn--contextual,
+BODY .ds44-btnStd.ds44-theme {
+    background-color: @main-color !important;
+    border-color: @main-color;
+    
+    &:hover,
+    &:focus{
+        background-color: @light-grey !important;
+        border-color: @light-grey;        
+    }
+}
+
+// ---------------
+// HOME
+.ds44-homepage-container {
+	.ds44-titleContainer--home {
+		.ds44-block {
+			font: normal normal bold 50px/50px Muli;
+			padding-bottom: 15px;
+		}
+		.ds44-ssTitreH1_home {
+			font: normal normal bold 28px/30px Muli;
+		}
+	}
+	
+	.vertical-container {
+		display: table;
+		& > * {
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
+}

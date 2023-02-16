@@ -1,0 +1,20 @@
+<%@ taglib prefix="ds" tagdir="/WEB-INF/tags"%>
+<%
+String cssSliderSize = "grid-4-small-1";
+String sliderAmounts = "4";
+String template = "card";
+String titreBloc = glp("jcmsplugin.espaceCollection.carrousel.oeuvre-incontournables.title");
+int collectionSize = Util.notEmpty(obj.getOeuvresLiees()) ? obj.getOeuvresLiees().length : 0;
+%>
+
+<jalios:if predicate="<%= Util.notEmpty(obj.getOeuvresLiees()) %>">
+  <jalios:buffer name="tuilesResult">
+      <jalios:foreach array="<%= obj.getOeuvresLiees() %>" type="FicheObjetBaseDeDonnees" name="itPub">
+          <li class="swiper-slide">
+              <jalios:media data="<%= itPub %>" template="<%= template %>"/>
+          </li>
+      </jalios:foreach>
+  </jalios:buffer>
+
+  <%@ include file="/plugins/EspaceCollectionPlugin/jsp/carrousel/carrouselBoxDisplay.jspf"%>
+</jalios:if>
