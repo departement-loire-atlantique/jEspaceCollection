@@ -1,4 +1,4 @@
-<%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekSearchQuery"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.search.KeepeekSearchQuery"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.MediaLight"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekApiEndPoint"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.SearchResult"%>
