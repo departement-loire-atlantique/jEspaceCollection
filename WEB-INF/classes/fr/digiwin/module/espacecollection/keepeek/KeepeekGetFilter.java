@@ -20,8 +20,6 @@ import fr.digiwin.module.espacecollection.keepeek.pojo.ThesaurusTree;
 public class KeepeekGetFilter {
 
     private static final Logger LOGGER = Logger.getLogger(KeepeekGetFilter.class);
-    private static final String PROP_ID_FILTRE_ROOT = "$jcmsplugin.espacecollection.recherche.filtre.Keepeek.root";
-    private static final int MAX_DEEP = 3; // depuis this.root
 
     public Category root;
 
@@ -31,7 +29,7 @@ public class KeepeekGetFilter {
 
     public void process() {
         LOGGER.info("Start process get filters");
-        this.root = Channel.getChannel().getCategory(PROP_ID_FILTRE_ROOT);
+        this.root = Channel.getChannel().getCategory(KeepeekConst.PROP_ID_FILTRE_ROOT);
 
         if (Util.isEmpty(this.root)) {
             // TODO error
@@ -91,7 +89,7 @@ public class KeepeekGetFilter {
             }
 
             // process subcatProcess test
-            if (deep < (MAX_DEEP - 1)) {
+            if (deep < (KeepeekConst.MAX_DEEP_FILTER - 1)) {
                 process.forEach(itCat -> this.syncProcess(itCat, deep + 1));
             }
         }

@@ -12,7 +12,6 @@ import com.jalios.jcms.Channel;
 public class KeepeekApiCache {
 
     private static final Logger LOGGER = Logger.getLogger(KeepeekApiCache.class);
-    private static final String PROP_CACHE_DELAY = "jcmsplugin.espacecollection.keepeek.cache";
     
     private static KeepeekApiCache INSTANCE;
     
@@ -53,7 +52,7 @@ public class KeepeekApiCache {
         if(!this.caches.containsKey(id)) {
             return false;
         }
-        int cacheDelay = Channel.getChannel().getIntegerProperty(PROP_CACHE_DELAY, 30);
+        int cacheDelay = Channel.getChannel().getIntegerProperty(KeepeekConst.PROP_CACHE_DELAY, 30);
         
         Date actualDate = new Date();
 
