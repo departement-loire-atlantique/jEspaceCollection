@@ -6,7 +6,7 @@ import com.jalios.jcms.Channel;
 import com.jalios.jdring.AlarmEntry;
 import com.jalios.jdring.AlarmListener;
 
-import fr.digiwin.module.espacecollection.keepeek.KeepeekGetFilter;
+import fr.digiwin.module.espacecollection.keepeek.search.KeepeekGetFilter;
 
 /**
  * 

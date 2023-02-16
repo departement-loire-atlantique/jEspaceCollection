@@ -1,4 +1,4 @@
-package fr.digiwin.module.espacecollection.keepeek;
+package fr.digiwin.module.espacecollection.keepeek.search;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,6 +14,8 @@ import com.jalios.jcms.Channel;
 import com.jalios.jcms.ControllerStatus;
 import com.jalios.util.Util;
 
+import fr.digiwin.module.espacecollection.keepeek.KeepeekApiEndPoint;
+import fr.digiwin.module.espacecollection.keepeek.KeepeekConst;
 import fr.digiwin.module.espacecollection.keepeek.pojo.ChildThesaurusTree;
 import fr.digiwin.module.espacecollection.keepeek.pojo.ThesaurusTree;
 

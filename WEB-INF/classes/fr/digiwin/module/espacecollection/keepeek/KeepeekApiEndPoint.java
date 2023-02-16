@@ -16,6 +16,7 @@ import fr.digiwin.module.espacecollection.keepeek.pojo.EmbeddedThesaurusTree;
 import fr.digiwin.module.espacecollection.keepeek.pojo.Media;
 import fr.digiwin.module.espacecollection.keepeek.pojo.SearchResult;
 import fr.digiwin.module.espacecollection.keepeek.pojo.ThesaurusTree;
+import fr.digiwin.module.espacecollection.keepeek.search.KeepeekSearchQuery;
 
 public class KeepeekApiEndPoint {
 

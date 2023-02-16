@@ -1,4 +1,4 @@
-package fr.digiwin.module.espacecollection.keepeek;
+package fr.digiwin.module.espacecollection.keepeek.search;
 
 import java.util.ArrayList;
 import java.util.HashMap;
