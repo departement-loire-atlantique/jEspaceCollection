@@ -40,7 +40,8 @@ if(null != datation ){
     <div class="ds44-card__section">
         <div class="ds44-innerBoxContainer">
             <p role="heading" aria-level="2" class="h4-like ds44-cardTitle">
-                <a href="TODO" class="ds44-card__globalLink">
+                <a href=<%="plugins/EspaceCollectionPlugin/jsp/ficheObjet/doFicheObjetFull.jsp?idKeepeek=" + media.getId() %> 
+                        class="ds44-card__globalLink">
                     <%= media.getTitle() %>
                 </a>
             </p>

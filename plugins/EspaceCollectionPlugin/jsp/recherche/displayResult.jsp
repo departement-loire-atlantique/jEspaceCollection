@@ -132,7 +132,7 @@ session.setAttribute("isSearchFacetLink", true);
     itJsonObject.addProperty("id", itMediaLight.getId());
     
     JsonObject itMetaJsonObject = new JsonObject();
-    itMetaJsonObject.addProperty("url", "TODO");
+    itMetaJsonObject.addProperty("url", "plugins/EspaceCollectionPlugin/jsp/ficheObjet/doFicheObjetFull.jsp?idKeepeek="+itMediaLight.getId());
     itMetaJsonObject.addProperty("html_list", itPubListGabarit);
     itMetaJsonObject.addProperty("html_marker", itPubListGabarit);
     itJsonObject.add("metadata", itMetaJsonObject);

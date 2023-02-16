@@ -1,3 +1,9 @@
+<%-- DEV --%>
+<%-- <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Media"%> --%>
+<%
+// Media media;
+%>
+<%-- END DEV --%>
 <% 
 if(Util.notEmpty(obj.getGalerieDeVisuels())) {
     Carousel carrousel = (Carousel)channel.getData(Carousel.class, obj.getGalerieDeVisuels().getId());

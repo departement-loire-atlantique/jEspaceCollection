@@ -1,0 +1,14 @@
+
+<jalios:foreach collection="<%= metadatas.getEmbedded().getValue() %>" type="Value" name="itDep">
+    <%--                         <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/motCle.jspf'%> --%>
+    <%
+    String[] paramNames = { "textform-element-fde_5280fde_5275[value]", "textform-element-fde_5280fde_5275[text]" };
+    String[] paramValues = { itDep.getId() + "", itDep.getId() + "" };
+    %>
+    <jalios:link id="fde_5286" paramNames='<%=paramNames%>'
+        paramValues='<%=paramValues%>' css="ds44-card__globalLink">
+        <p class="ds44-btnStd ds44-btnStd--tag ds44-btnInnerText ">
+            <%=itDep.getTitle()%>
+        </p>
+    </jalios:link>
+</jalios:foreach>
