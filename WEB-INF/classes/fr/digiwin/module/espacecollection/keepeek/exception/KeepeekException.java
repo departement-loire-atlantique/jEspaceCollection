@@ -13,7 +13,7 @@ public class KeepeekException extends Exception {
     }
     
     public KeepeekException(String msg, int code){
-        super(msg);
+        super(code + " ,msg: " + msg);
         this.code = code;
     }
 }

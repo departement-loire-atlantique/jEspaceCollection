@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
@@ -36,14 +39,31 @@ public class KeepeekApiManager {
         return Channel.getChannel().getProperty(PROP_API_URL);
     }
 
-    public static String getUrl(String url) throws KeepeekException {
-        
-        if(KeepeekApiCache.getInstance().isValid(url, true)) {
-            return KeepeekApiCache.getInstance().getRep(url);
-        }
-        
+    private static String buildToken() {
         String token = getKeepeekLogin() + ":" + getKeepeekPwd();
         String base64Token = Base64.getEncoder().encodeToString(token.getBytes());
+
+        return base64Token;
+    }
+
+    private static void testStatus(CloseableHttpResponse response, String strResponse) throws KeepeekException {
+        int statusCode = response.getStatusLine().getStatusCode();
+        if (statusCode < 200 || statusCode >=300) {
+            JsonParser jsonParser = new JsonParser();
+            JsonObject json = (JsonObject) jsonParser.parse(strResponse);
+            String message = json.get("message") != null ? json.get("message").getAsString() : "??";
+            int status = json.get("status") != null ? json.get("status").getAsInt() : -1;
+            throw new KeepeekException(message, status);
+        }
+    }
+
+    public static String getUrl(String url) throws KeepeekException {
+
+        if (KeepeekApiCache.getInstance().isValid(url, true)) {
+            return KeepeekApiCache.getInstance().getRep(url);
+        }
+
+        String base64Token = buildToken();
 
         CloseableHttpClient httpClient = HttpClientUtils.newHttpClient(20000);
 
@@ -52,18 +72,11 @@ public class KeepeekApiManager {
 
         try {
             CloseableHttpResponse response = httpClient.execute(httpGet);
-            int statusCode = response.getStatusLine().getStatusCode();
 
             String strResponse = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
 
-            if (statusCode != 200) {
-                JsonParser jsonParser = new JsonParser();
-                JsonObject json = (JsonObject) jsonParser.parse(strResponse);
-                String message = json.get("message") != null ? json.get("message").getAsString() : "??";
-                int status = json.get("status") != null ? json.get("status").getAsInt() : -1;
-                throw new KeepeekException(message, status);
-            }
-            
+            testStatus(response, strResponse);
+
             KeepeekApiCache.getInstance().add(url, strResponse);
 
             return strResponse;
@@ -72,8 +85,46 @@ public class KeepeekApiManager {
             throw new KeepeekException(e.getLocalizedMessage(), e);
         }
     }
-    
+
     public static String getEndPoint(String apiEndPoint) throws KeepeekException {
         return getUrl(getKeepeekUrl() + apiEndPoint);
+    }
+
+    public static String postUrl(String url, String body) throws KeepeekException {
+
+        // TODO
+//        if (KeepeekApiCache.getInstance().isValid(url, true)) {
+//            return KeepeekApiCache.getInstance().getRep(url);
+//        }
+
+        String base64Token = buildToken();
+
+        CloseableHttpClient httpClient = HttpClientUtils.newHttpClient(20000);
+
+        HttpPost httpPost = new HttpPost(url);
+        httpPost.addHeader("Authorization", "Basic " + base64Token);
+        httpPost.addHeader("Content-Type", "application/json");
+        
+        try {
+            HttpEntity entity = new StringEntity(body);
+            httpPost.setEntity(entity);
+            
+            CloseableHttpResponse response = httpClient.execute(httpPost);
+
+            String strResponse = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+
+            testStatus(response, strResponse);
+
+//            KeepeekApiCache.getInstance().add(url, strResponse);// TODO
+
+            return strResponse;
+        } catch (IOException e) {
+//            LOGGER.error(e.getLocalizedMessage(), e);
+            throw new KeepeekException(e.getLocalizedMessage(), e);
+        }
+    }
+
+    public static String postEndPoint(String apiEndPoint, String body) throws KeepeekException {
+        return postUrl(getKeepeekUrl() + apiEndPoint, body);
     }
 }

@@ -1,9 +1,14 @@
 package fr.digiwin.module.espacecollection.keepeek;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.jalios.jcms.Channel;
 import com.jalios.jcms.HttpUtil;
 import com.jalios.util.Util;
 
@@ -16,7 +21,9 @@ import fr.digiwin.module.espacecollection.keepeek.pojo.EmbeddedThesaurusTree;
 import fr.digiwin.module.espacecollection.keepeek.pojo.Media;
 import fr.digiwin.module.espacecollection.keepeek.pojo.SearchResult;
 import fr.digiwin.module.espacecollection.keepeek.pojo.ThesaurusTree;
+import fr.digiwin.module.espacecollection.keepeek.pojo.advSearch.NewAdvSearch;
 import fr.digiwin.module.espacecollection.keepeek.search.KeepeekSearchQuery;
+import fr.digiwin.module.espacecollection.keepeek.search.adv.KeepeekAdvSearchQuery;
 
 public class KeepeekApiEndPoint {
 
@@ -133,6 +140,61 @@ public class KeepeekApiEndPoint {
             LOGGER.error(e.getLocalizedMessage(), e);
         }
 
+        return null;
+    }
+    
+    public static NewAdvSearch createAdvancedSearch(KeepeekAdvSearchQuery advSearch) {
+        
+        HttpSession session = Channel.getChannel().getCurrentServletRequest().getSession();
+        if (Util.notEmpty(session)) {
+            String idAdvSearch = Util.getString(session.getAttribute(KeepeekConst.SESSION_ATR_ADV_SEARCH_ID), "");
+            if (Util.notEmpty(idAdvSearch)) {
+                // TODO delete KEEPEEK & cache ???
+            }
+        }
+        
+        if(advSearch.isEmpty()) {
+            return null; // TODO
+        }
+        
+        JsonArray filters = advSearch.build();
+        
+        // add def folder
+        // 22 => Fiches objets de collections
+        JsonObject filterFolder = new JsonObject();
+        filterFolder.addProperty("internalFieldName", "folderId");
+        filterFolder.addProperty("modifier", "EQUALS_ONE");
+        filterFolder.addProperty("showSub", true);
+        filterFolder.addProperty("type", "FOLDERFIELD");
+        filterFolder.addProperty("fieldType", "MEDIAFIELD");
+        JsonArray values = new JsonArray();
+        values.add(22);
+        filterFolder.add("values", values);
+        
+        filters.add(filterFolder);
+        
+        // build body
+        JsonObject filterBody = new JsonObject();
+        JsonObject embedded = new JsonObject(); 
+        embedded.add("filter", filters);
+        filterBody.add("_embedded", embedded);
+        
+        LOGGER.warn(filterBody);
+        
+        try {
+            String newAdvSearchStr = KeepeekApiManager.postEndPoint("api/dam/search/advanced", filterBody.toString());
+
+            GsonBuilder gsonBuild = new GsonBuilder();
+
+            Gson gson = gsonBuild.create();
+
+            NewAdvSearch newAdvSearch = gson.fromJson(newAdvSearchStr, NewAdvSearch.class);
+            return newAdvSearch;
+            // TODO  NewAdvSearch
+        } catch (KeepeekException e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+        }
+        
         return null;
     }
 }
