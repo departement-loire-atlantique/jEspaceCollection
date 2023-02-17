@@ -122,6 +122,9 @@
         <template name="default" file="doPortletRechercheFacettesFullDisplay.jsp" usage='full'>
           <label xml:lang="fr">DS44 : gabarit générique simple</label>
         </template>
+        <template name="default" file="doPortletRechercheFacettesFullDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
     </templates>
     
     <templates type="FicheObjetMediatisee">

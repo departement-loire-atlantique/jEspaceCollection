@@ -37,9 +37,11 @@ jcmsplugin.espacecollection.keepeek.login:
 jcmsplugin.espacecollection.keepeek.password.pwd:
 
 # recherche
-$jcmsplugin.socle.recherche.facettes.portal: fde_5017
+$jcmsplugin.socle.recherche.facettes.portal: por_7177
 $jcmsplugin.espacecollection.recherche.filtre.Keepeek.root.chooser-category: por_5176
 jcmsplugin.espacecollection.recherche.filtre.Keepeek.get.schedule: 00 05 * * * *
+
+$jcmsplugin.espacecollection.recherche.light.id: por_5166
 
 # Home
 jcmsplugin.espacecollection.home.recherche.title: Base de donnée des collections
