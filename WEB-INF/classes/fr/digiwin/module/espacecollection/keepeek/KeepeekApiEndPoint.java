@@ -206,19 +206,33 @@ public class KeepeekApiEndPoint {
 
         JsonArray filters = advSearch.build();
 
-        // add def folder
-        // 22 => Fiches objets de collections
-        JsonObject filterFolder = new JsonObject();
-        filterFolder.addProperty("internalFieldName", "folderId");
-        filterFolder.addProperty("modifier", "EQUALS_ONE");
-        filterFolder.addProperty("showSub", true);
-        filterFolder.addProperty("type", "FOLDERFIELD");
-        filterFolder.addProperty("fieldType", "MEDIAFIELD");
+        // default filter
+        
+        // 10828 => espace collections
+        JsonObject filterBlocNote = new JsonObject();
+        filterBlocNote.addProperty("internalFieldName", "bloc_note");
+        filterBlocNote.addProperty("modifier", "CONTAINS_ONE");
+        filterBlocNote.addProperty("showSub", true);
+        filterBlocNote.addProperty("type", "THESAURUSFIELD");
+        filterBlocNote.addProperty("fieldType", "METAFIELD");
         JsonArray values = new JsonArray();
-        values.add(22);
-        filterFolder.add("values", values);
+        values.add(10828);
+        filterBlocNote.add("values", values);
 
-        filters.add(filterFolder);
+        filters.add(filterBlocNote);
+        
+        // 2 => Interne
+        JsonObject filterStatus = new JsonObject();
+        filterStatus.addProperty("internalFieldName", "subStatusId");
+        filterStatus.addProperty("type", "STATUSFIELD");
+        filterStatus.addProperty("fieldType", "MEDIAFIELD");
+        JsonArray valuesStatus = new JsonArray();
+        valuesStatus.add(2);
+        filterStatus.add("values", valuesStatus);
+
+        filters.add(filterStatus);
+        
+        // END def filter
 
         // build body
         JsonObject filterBody = new JsonObject();
