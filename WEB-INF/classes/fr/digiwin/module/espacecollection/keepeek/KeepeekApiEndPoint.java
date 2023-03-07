@@ -50,14 +50,26 @@ public class KeepeekApiEndPoint {
         return searchMedia(text, searchQuery, "creationDate desc", page, size);
     }
 
+    /**
+     * Dans les media uniquement les champs : id,title,_embedded{metadata.byId(datation,numero_dinventaire)}
+     * @param text
+     * @param searchQuery
+     * @param sort
+     * @param page
+     * @param size
+     * @return
+     */
     public static SearchResult searchMedia(String text, KeepeekSearchQuery searchQuery, String sort, int page,
             int size) {
 
-        StringBuilder params = new StringBuilder();
+        StringBuilder params = new StringBuilder("forceArrays=true&");
 
         // default filter
-        params.append("fq=folderId:22&");// 22 => Fiches objets de collections
-//        params.append("f=metamodelId:4&");// 4 => 1. Fiches objets de collections KO
+        params.append("f=bloc_note:10828&");// 10828 => espace collections
+        params.append("f=subStatusId:2&");// 2 => Interne
+        
+        // selection des champs
+        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D&");
 
         if (Util.notEmpty(text)) {
             params.append("q=").append(HttpUtil.encodeForURL(text)).append("&");
@@ -111,7 +123,10 @@ public class KeepeekApiEndPoint {
             return null;
         }
 
-        StringBuilder params = new StringBuilder();
+        StringBuilder params = new StringBuilder("forceArrays=true&");
+        
+        // selection des champs
+        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D&");
 
         if (Util.notEmpty(sort)) {
             params.append("sort=").append(HttpUtil.encodeForURL(sort)).append("&");
@@ -206,19 +221,33 @@ public class KeepeekApiEndPoint {
 
         JsonArray filters = advSearch.build();
 
-        // add def folder
-        // 22 => Fiches objets de collections
-        JsonObject filterFolder = new JsonObject();
-        filterFolder.addProperty("internalFieldName", "folderId");
-        filterFolder.addProperty("modifier", "EQUALS_ONE");
-        filterFolder.addProperty("showSub", true);
-        filterFolder.addProperty("type", "FOLDERFIELD");
-        filterFolder.addProperty("fieldType", "MEDIAFIELD");
+        // default filter
+        
+        // 10828 => espace collections
+        JsonObject filterBlocNote = new JsonObject();
+        filterBlocNote.addProperty("internalFieldName", "bloc_note");
+        filterBlocNote.addProperty("modifier", "CONTAINS_ONE");
+        filterBlocNote.addProperty("showSub", true);
+        filterBlocNote.addProperty("type", "THESAURUSFIELD");
+        filterBlocNote.addProperty("fieldType", "METAFIELD");
         JsonArray values = new JsonArray();
-        values.add(22);
-        filterFolder.add("values", values);
+        values.add(10828);
+        filterBlocNote.add("values", values);
 
-        filters.add(filterFolder);
+        filters.add(filterBlocNote);
+        
+        // 2 => Interne
+        JsonObject filterStatus = new JsonObject();
+        filterStatus.addProperty("internalFieldName", "subStatusId");
+        filterStatus.addProperty("type", "STATUSFIELD");
+        filterStatus.addProperty("fieldType", "MEDIAFIELD");
+        JsonArray valuesStatus = new JsonArray();
+        valuesStatus.add(2);
+        filterStatus.add("values", valuesStatus);
+
+        filters.add(filterStatus);
+        
+        // END def filter
 
         // build body
         JsonObject filterBody = new JsonObject();

@@ -158,3 +158,23 @@ BODY .ds44-btnStd.ds44-theme {
 		}
 	}
 }
+
+// ---------------
+// RECHERCHE
+.rechercheFacette {
+	// btn selection 
+	.ds44-facette .ds44-facette-body .ds44-facetteContainer.ds44-theme .ds44-fieldContainer .ds44-select__shape {
+		background: @main-color;
+	}
+	.ds44-medium-flex-col {
+		> * {
+			margin-top: auto;
+			margin-bottom: auto;
+		}
+	}
+	// 4 résultats par ligne
+	.ds44-results .ds44-listResults .ds44-list--results > li {
+		width: calc(~"25% - 3rem");
+		max-width: calc(~"25% - 3rem");
+	}
+}
