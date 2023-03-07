@@ -14,17 +14,14 @@ if (Util.isEmpty(media)) {
 }
 
 String epoque = "";
-Metadatum datation = media.getEmbedded().getMetadata()
-    .stream()
-    .filter(it -> "datation".equalsIgnoreCase(it.getId()))
-    .findFirst()
-    .orElse(null);
+Metadatum datation = KeepeekUtil.getMediaMetadata(media, "datation");
 
 if(null != datation ){
     Value firstVal = Util.getFirst(datation.getEmbedded().getValue());
     epoque = null == firstVal ? "" : firstVal.getTitle();
 }
 
+Metadatum numInv = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
 %>
 <section
     class="ds44-card ds44-js-card ds44-card--contact ds44-box ds44-bgGray  ">
@@ -42,14 +39,18 @@ if(null != datation ){
                 </a>
             </p>
 <!--             <hr class="mbs" aria-hidden="true" /> -->
-            <p class="ds44-docListElem ds44-mt-std">
-                <i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
-                <%= epoque %>
-            </p>
-            <p class="ds44-docListElem ds44-mt-std">
-                <i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i>
-                <%= media.getId() %>
-            </p>
+            <jalios:if predicate="<%= Util.notEmpty(epoque) %>">
+                <p class="ds44-docListElem ds44-mt-std">
+                    <i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
+                    <%= epoque %>
+                </p>
+            </jalios:if>
+            <jalios:if predicate="<%= Util.notEmpty(numInv) %>">
+                <p class="ds44-docListElem ds44-mt-std">
+                    <i class="icon icon-tag ds44-docListIco" aria-hidden="true"></i>
+                    <%= numInv.getValue() %>
+                </p>
+            </jalios:if>
         </div>
 <!--         <i class="icon icon-arrow-right ds44-cardArrow" -->
 <!--             aria-hidden="true"></i> -->
