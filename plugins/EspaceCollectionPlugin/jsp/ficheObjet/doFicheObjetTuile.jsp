@@ -1,3 +1,5 @@
+<%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekUtil"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.MediaLight"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Value"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Metadatum"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Media"%>
@@ -5,13 +7,7 @@
     import="fr.digiwin.module.espacecollection.keepeek.KeepeekApiEndPoint"%>
 <%@ include file='/jcore/doInitPage.jspf'%>
 <%
-String idKeepeek = (String) request.getAttribute("idKeepeek");
-
-if (Util.isEmpty(idKeepeek)) {
-    return;
-}
-
-Media media = KeepeekApiEndPoint.getMedia(idKeepeek);
+MediaLight media = (MediaLight) request.getAttribute("itMediaLight");
 
 if (Util.isEmpty(media)) {
     return;

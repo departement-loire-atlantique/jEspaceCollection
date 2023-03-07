@@ -50,14 +50,26 @@ public class KeepeekApiEndPoint {
         return searchMedia(text, searchQuery, "creationDate desc", page, size);
     }
 
+    /**
+     * Dans les media uniquement les champs : id,title,_embedded{metadata.byId(datation,numero_dinventaire)}
+     * @param text
+     * @param searchQuery
+     * @param sort
+     * @param page
+     * @param size
+     * @return
+     */
     public static SearchResult searchMedia(String text, KeepeekSearchQuery searchQuery, String sort, int page,
             int size) {
 
-        StringBuilder params = new StringBuilder();
+        StringBuilder params = new StringBuilder("forceArrays=true&");
 
         // default filter
         params.append("f=bloc_note:10828&");// 10828 => espace collections
         params.append("f=subStatusId:2&");// 2 => Interne
+        
+        // selection des champs
+        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D&");
 
         if (Util.notEmpty(text)) {
             params.append("q=").append(HttpUtil.encodeForURL(text)).append("&");
@@ -111,7 +123,10 @@ public class KeepeekApiEndPoint {
             return null;
         }
 
-        StringBuilder params = new StringBuilder();
+        StringBuilder params = new StringBuilder("forceArrays=true&");
+        
+        // selection des champs
+        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D&");
 
         if (Util.notEmpty(sort)) {
             params.append("sort=").append(HttpUtil.encodeForURL(sort)).append("&");
