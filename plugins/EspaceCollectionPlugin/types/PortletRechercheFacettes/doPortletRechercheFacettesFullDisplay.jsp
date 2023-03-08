@@ -35,7 +35,7 @@
 %>
 
 
-<div class="ds44-container-large">
+<div class="ds44-container-large rechercheFacette">
 
 <jalios:if predicate="<%= isInRechercheFacette %>">
     <%-- <ds:titleNoBanner title="<%= obj.getTitre(userLang) %>" breadcrumb="true"></ds:titleNoBanner> --%>
