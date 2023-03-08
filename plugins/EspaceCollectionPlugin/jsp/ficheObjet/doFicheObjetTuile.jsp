@@ -16,7 +16,7 @@ if (Util.isEmpty(media)) {
 String epoque = "";
 Metadatum datation = KeepeekUtil.getMediaMetadata(media, "datation");
 
-if(null != datation ){
+if(null != datation && null != datation.getEmbedded()){
     Value firstVal = Util.getFirst(datation.getEmbedded().getValue());
     epoque = null == firstVal ? "" : firstVal.getTitle();
 }
