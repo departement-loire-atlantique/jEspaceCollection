@@ -130,7 +130,7 @@
 		
 					<jalios:if predicate='<%= Util.notEmpty(obj.getFacettesSecondaires()) %>'>
 						<div class="ds44-fg1 ds44-flex-container ds44-medium-flex-col">
-							<p class="ds44-heading ds44-small-fg1"><%= glp("jcmsplugin.socle.facette.filtrer-par") %></p>
+							<p class="ds44-heading ds44-small-fg1">Affiner par</p>
 		
 							<% 
 								int maxFacettesSecondaires = SocleUtils.getNbrFacetteBeforeMaxWeight(8, obj.getFacettesSecondaires(), loggedMember); 
