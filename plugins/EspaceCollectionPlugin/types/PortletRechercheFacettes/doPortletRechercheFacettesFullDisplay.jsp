@@ -126,7 +126,7 @@
 			</div>
 		
 			<jalios:if predicate="<%= showFiltres %>">
-				<div class="ds44-facetteContainer ds44-theme ds44-flex-container ds44-medium-flex-col">
+				<div class="ds44-facetteContainer ds44-theme ds44-flex-container ds44-medium-flex-col filtres">
 		
 					<jalios:if predicate='<%= Util.notEmpty(obj.getFacettesSecondaires()) %>'>
 						<div class="ds44-fg1 ds44-flex-container ds44-medium-flex-col">
@@ -167,6 +167,10 @@
                                     <a href="<%= channel.getCategory("por_5206").getDisplayUrl(userLocale) %>">Recherche avancée</a>
                                     <%-- por_5206 => nav recherche avancée --%>
                                 </li>
+                                <li class="ds44-docListElem">
+                                    <i class="icon icon-cross ds44-docListIco" aria-hidden="true"></i>
+                                    <a href="#" id="clear-filter">Tout décocher</a>
+                                </li>
 							  <jalios:if predicate="<%= obj.getAfficherSelection() %>">
 								<li class="ds44-docListElem">
                                     <i class="icon icon-star-empty ds44-docListIco" aria-hidden="true"></i>
@@ -194,7 +198,7 @@
 				
 				
 			    <jalios:if predicate='<%= Util.notEmpty(obj.getFacettesTertiaire()) && isInRechercheFacette %>'>
-			      <div class="ds44-facetteContainer ds44-theme ds44-flex-container ds44-medium-flex-col ds44--noPdg-t">
+			      <div class="ds44-facetteContainer ds44-theme ds44-flex-container ds44-medium-flex-col ds44--noPdg-t filtres filtres-L2">
                      <div class="ds44-fg1 ds44-flex-container ds44-medium-flex-col">
    
      
@@ -329,4 +333,22 @@
 <% 
 request.removeAttribute("rechercheId");
 %>
-
+<jalios:javascript>
+MiscEvent.addListener('click', ()=>{
+    let param = "";
+    const valText = document.getElementsByName("textform-element-por_5166por_7188")[0].value;
+    
+    if(valText){
+    param += "textform-element-por_5166por_7188[value]=" + valText;
+    param += "&textform-element-por_5166por_7188[text]=" + valText;
+    }
+    
+    let url = window.location.origin + window.location.pathname;
+    if (url.indexOf('?') > -1){
+       url += '&' + param;
+    } else {
+       url += '?' + param;
+    }
+    window.location.href = url;
+}, document.getElementById("clear-filter"));
+</jalios:javascript>
