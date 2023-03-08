@@ -19,8 +19,8 @@ if ("recherche".equalsIgnoreCase(typeRecherche)) {
         // textform-element-por_5166por_5165[value]=aquam&textform-element-por_5166por_5165[text]=aquam
 //         textQueryUrl += "#textform-element-por_5166por_5165[value]=" + textQuery
 //             + "&textform-element-por_5166por_5165[text]=" + textQuery + "&textform-element-por_5166por_5165[metadata]=";
-        parametersMap.put("textform-element-por_5166por_5165[value]", textQueryArray);
-        parametersMap.put("textform-element-por_5166por_5165[text]", textQueryArray);
+        parametersMap.put("textform-element-por_5166por_7188[value]", textQueryArray);
+        parametersMap.put("textform-element-por_5166por_7188[text]", textQueryArray);
     }
 } else {
     redirectUrl = rechrecheAv;
