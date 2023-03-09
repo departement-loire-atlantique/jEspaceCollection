@@ -1,9 +1,9 @@
 <%@page import="fr.digiwin.module.espacecollection.exportZip.ExportZip"%>
+
+<jalios:if predicate="<%= Util.notEmpty(obj) && Util.notEmpty(obj.getGalerieDeVisuels()) %>">
 <% 
 session.setAttribute("idObjet", String.valueOf(obj.getId())); 
 %>
-
-<jalios:if predicate="<%= Util.notEmpty(obj.getGalerieDeVisuels()) %>">
   <%-- BUTTON --%>
   <button  type="button" data-target="#overlay-images-all" data-js="ds44-modal">
     <span class="ds44-btnInnerText ">
