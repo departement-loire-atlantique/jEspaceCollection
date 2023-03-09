@@ -29,7 +29,12 @@ if (Util.isEmpty(media)) {
 Metadatum metadatas = null; // For include
 
 // Obj JCMS
-FicheObjetBaseDeDonnees obj = (FicheObjetBaseDeDonnees)request.getAttribute(PortalManager.PORTAL_PUBLICATION); 
+FicheObjetBaseDeDonnees obj = null;
+Publication pub = (Publication) request.getAttribute(PortalManager.PORTAL_PUBLICATION);
+
+if(pub instanceof FicheObjetBaseDeDonnees){
+    obj = (FicheObjetBaseDeDonnees) pub; 
+}
 
 if(Util.isEmpty(obj)){
     obj = null; // TODO get with idKeepeek

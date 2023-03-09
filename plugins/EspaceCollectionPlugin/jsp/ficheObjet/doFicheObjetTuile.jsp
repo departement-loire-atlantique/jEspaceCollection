@@ -33,10 +33,9 @@ Metadatum numInv = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
     <div class="ds44-card__section">
         <div class="ds44-innerBoxContainer">
             <p role="heading" aria-level="2" class="h4-like ds44-cardTitle">
-                <a href=<%="plugins/EspaceCollectionPlugin/jsp/ficheObjet/doFicheObjetFull.jsp?idKeepeek=" + media.getId() %> 
-                        class="ds44-card__globalLink">
+                <jalios:link id="por_7226" css="ds44-card__globalLink" params='<%= "idKeepeek=" + media.getId() %>'>
                     <%= media.getTitle() %>
-                </a>
+                </jalios:link>
             </p>
 <!--             <hr class="mbs" aria-hidden="true" /> -->
             <jalios:if predicate="<%= Util.notEmpty(epoque) %>">
