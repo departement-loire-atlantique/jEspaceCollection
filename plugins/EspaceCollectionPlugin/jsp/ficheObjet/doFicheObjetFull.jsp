@@ -90,13 +90,16 @@ if(Util.isEmpty(obj)){
             </section>
         </jalios:if>
 
-<!--         <section class="ds44-contenuArticle" id="section2"> -->
-<%--           <h2 class="h2-like underline center"> <%= glp("jcmsplugin.espaceCollection.title.image") %></h2> --%>
-<!--           <p class="ds44-mb2"> -->
-<%--             <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.en-image.desc") %> --%>
-<!--           </p> -->
-<%--             <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/imageMosaique.jspf'%> --%>
-<!--         </section> -->
+        <%-- JCMS --%>
+        <jalios:if predicate="<%= Util.notEmpty(obj) %>">
+            <section class="ds44-contenuArticle" id="section2">
+              <h2 class="h2-like underline center"> <%= glp("jcmsplugin.espaceCollection.title.image") %></h2>
+              <p class="ds44-mb2">
+                <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.en-image.desc") %>
+              </p>
+                <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/imageMosaique.jspf'%>
+            </section>
+        </jalios:if>
 
         <%-- JCMS --%>
         <jalios:if predicate="<%= Util.notEmpty(obj) %>">
