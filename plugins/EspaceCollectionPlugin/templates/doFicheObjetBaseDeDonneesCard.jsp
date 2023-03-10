@@ -1,3 +1,8 @@
+<%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekUtil"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Metadatum"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Media"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Value"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekApiEndPoint"%>
 <%@ include file='/jcore/doInitPage.jspf' %><%
 %><%@ page import="com.jalios.jcms.taglib.card.*" %><%
 %><%@ include file='/jcore/media/mediaTemplateInit.jspf' %><%
@@ -7,6 +12,14 @@ if (data == null) {
 }
 
 FicheObjetBaseDeDonnees obj = (FicheObjetBaseDeDonnees) data;
+
+//Obj Keepeek
+Media media = null;
+String idKeepeek = obj.getNumeroDinventaire();
+
+if(Util.notEmpty(idKeepeek)){
+    media = KeepeekApiEndPoint.getMedia(idKeepeek);
+}
 %>
   <section class="ds44-card ds44-js-card ds44-card--contact ds44-box ds44-darkContext ">
       <picture class="ds44-container-imgRatio">
@@ -23,20 +36,26 @@ FicheObjetBaseDeDonnees obj = (FicheObjetBaseDeDonnees) data;
         <div class="ds44-innerBoxContainer">
             <p role="heading" aria-level="2" class="ds44-card__title">
               <jalios:link data="<%= obj %>" css="ds44-card__globalLink">
-                <%=obj.getTitle()%>
+                <%= Util.notEmpty(media) ? media.getTitle() : obj.getTitle() %>
               </jalios:link>
             </p>
-            <jalios:if predicate="<%= Util.notEmpty(obj.getDateEpoque()) %>">
+            <%
+            Metadatum datation = KeepeekUtil.getMediaMetadata(media, "datation");
+            %>
+            <jalios:if predicate="<%= Util.notEmpty(datation) %>">
               <p class="ds44-docListElem ds44-mt-std">
                 <i class="icon icon-date ds44-docListIco" aria-hidden="true"></i>
-                <%= obj.getDateEpoque() %>
+                <%= Util.getFirst(datation.getEmbedded().getValue()).getTitle() %>
               </p>
             </jalios:if>
-            <jalios:if predicate="<%= Util.notEmpty(obj.getCollectionneur(loggedMember)) %>">
+            <%
+            Metadatum collectioneur = KeepeekUtil.getMediaMetadata(media, "collection");
+            %>
+            <jalios:if predicate="<%= Util.notEmpty(collectioneur) %>">
               <p class="ds44-docListElem ds44-mt-std">
                 <i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
-                <jalios:foreach collection="<%= obj.getCollectionneur(loggedMember) %>" type="Category" name="itCategory" >
-                    <%= itCategory.getName() %>
+                <jalios:foreach collection="<%= datation.getEmbedded().getValue() %>" type="Value" name="itCollectioneur" >
+                    <%= itCollectioneur.getTitle() %>
                 </jalios:foreach>
               </p>
             </jalios:if>
