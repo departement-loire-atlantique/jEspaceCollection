@@ -566,15 +566,22 @@ if(Util.isEmpty(obj)){
       <aside class="col-4 ds44-hide-tinyToLarge ds44-js-aside-summary">
         <section class="ds44-box">
           <section class="ds44-box ds44-mb3 ">
-            <jalios:if predicate="<%= Util.notEmpty(obj) && Util.notEmpty(obj.getVisuel()) %>">
-                <% CarouselElement image = (CarouselElement)channel.getData(CarouselElement.class, obj.getVisuel().getId()); %>
-                <picture class="ds44-container-imgRatio">
-                    <img src="<%= image.getImage() %>" alt="<%= image.getImageLegend() %>" class="ds44-imgRatio"/>
-                    <jalios:if predicate="<%= Util.notEmpty(image.getImageCopyright()) %>">
-                        <figcaption class="ds44-imgCaption"><%= image.getImageCopyright() %></figcaption>
-                    </jalios:if>
-                </picture>
-            </jalios:if>
+            <jalios:select>
+                <jalios:if predicate="<%= Util.notEmpty(obj) && Util.notEmpty(obj.getVisuel()) %>">
+                    <% CarouselElement image = obj.getVisuel(); %>
+                    <picture class="ds44-container-imgRatio">
+                        <img src="<%= image.getImage() %>" alt="<%= image.getImageLegend() %>" class="ds44-imgRatio"/>
+                        <jalios:if predicate="<%= Util.notEmpty(image.getImageCopyright()) %>">
+                            <figcaption class="ds44-imgCaption"><%= image.getImageCopyright() %></figcaption>
+                        </jalios:if>
+                    </picture>
+                </jalios:if>
+                <jalios:if predicate="<%= Util.notEmpty(media.getLinks().getPreview()) %>">
+                    <picture class="ds44-container-imgRatio">
+                        <img src="<%= media.getLinks().getPreview().getHref() %>" class="ds44-imgRatio"/>
+                    </picture>
+                </jalios:if>
+            </jalios:select>
           </section>
 
           <section class="ds44-box ds44-theme">
