@@ -43,7 +43,7 @@
 <!--                    unless you need to override default behavior      -->
 <!--                    [com.example.Plugin]                              -->
 <!--                                                                      -->
-<plugin name="EspaceCollectionPlugin" version="0.1" author="Digiwin" license="Digiwin" initialize="true" jcms="" order="0" url="" jsync="false" appserver="">
+<plugin name="EspaceCollectionPlugin" version="0.2.0" author="Digiwin" license="Digiwin" initialize="true" jcms="" order="0" url="" jsync="false" appserver="">
   <!-- ======================== Label and Descriptions ==================== -->
   <!--                                                                      -->
   <!-- Plugin's label and description.  Because JCMS is multilingual,       -->
@@ -117,9 +117,13 @@
     <type name="FicheObjetBaseDeDonnees" />
     <type name="FicheCollectionneur" />
     <type name="PortletImageHome" />
+    <type name="PortletFacetteText"></type>
 
     <templates type="PortletRechercheFacettes">
         <template name="default" file="doPortletRechercheFacettesFullDisplay.jsp" usage='full'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
+        <template name="default" file="doPortletRechercheFacettesFullDisplay.jsp" usage='box'>
           <label xml:lang="fr">DS44 : gabarit générique simple</label>
         </template>
     </templates>
@@ -173,6 +177,12 @@
         <template name="miseEnAvantObjet" file="doPortletCarouselSliderObjet.jsp" usage='box'>
           <label xml:lang="fr">Espace Collection : gabarit mise en avant objets incontournables</label>
         </template>  
+    </templates>
+    
+    <templates type="PortletFacetteText">
+        <template name="default" file="doPortletFacetteTextBoxDisplay.jsp" usage='box'>
+          <label xml:lang="fr">DS44 : gabarit générique simple</label>
+        </template>
     </templates>
 
 </types>

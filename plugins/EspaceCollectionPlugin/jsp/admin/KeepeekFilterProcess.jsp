@@ -1,4 +1,4 @@
-<%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekGetFilter"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.search.KeepeekGetFilter"%>
 <%@ include file='/jcore/doInitPage.jspf'%>
 <%
 if (!loggedMember.isAdmin()) {

@@ -55,7 +55,15 @@ h1.h1-like {
 
 .center {
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; 
+}
+
+.fix-width {
+  width: fit-content !important;
+}
+
+.checkbox-pos {
+  position: static !important;
 }
 
 .ds44-card .ds44-cardArrow {
@@ -147,6 +155,39 @@ BODY .ds44-btnStd.ds44-theme {
 		& > * {
 			display: table-cell;
 			vertical-align: middle;
+		}
+	}
+}
+
+// ---------------
+// RECHERCHE
+.rechercheFacette {
+	.ds44-facette .ds44-facette-body {
+		// btn selection 
+		.ds44-facetteContainer {
+			&.ds44-theme .ds44-fieldContainer .ds44-select__shape {
+				background: @main-color;
+			}
+			&.filtres-L2 {
+				.ds44-flex-container {
+					max-width: 100%;
+				}
+				.ds44-fieldContainer {
+					flex: 1;
+				}
+			}
+		}
+	}
+	// 4 résultats par ligne
+	.ds44-results .ds44-listResults .ds44-list--results > li {
+		width: calc(~"25% - 3rem");
+		max-width: calc(~"25% - 3rem");
+	}
+	@media (max-width: 47.9375em) {
+		.ds44-medium-flex-col.ds44-flex-valign-center {
+			-webkit-box-align: initial;
+			-ms-flex-align: initial;
+			align-items: initial;
 		}
 	}
 }

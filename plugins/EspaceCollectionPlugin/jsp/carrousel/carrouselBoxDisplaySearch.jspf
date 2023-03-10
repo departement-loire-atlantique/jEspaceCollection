@@ -7,7 +7,13 @@
           </p>
         </header>
     </div>
-<%-- search bar --%>
+    <%-- search bar --%>
+    <%
+    Publication portletRecherche = channel.getPublication("$jcmsplugin.espacecollection.recherche.light.id");
+    %>
+    <jalios:if predicate='<%= Util.notEmpty(portletRecherche) %>'>
+        <jalios:include pub="<%= portletRecherche %>"/>
+    </jalios:if>
     <jalios:if predicate='<%= Util.notEmpty(tuilesResult) %>'>
         <div class="ds44-container-large">
             <div class="mod--hidden ds44-list swipper-carousel-wrap ds44-posRel" data-nb-visible-slides="<%= collectionSize < 4 ? collectionSize : sliderAmounts %>">

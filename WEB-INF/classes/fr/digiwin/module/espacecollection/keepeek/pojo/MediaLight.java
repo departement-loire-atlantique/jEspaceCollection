@@ -38,6 +38,9 @@ public class MediaLight {
     @SerializedName("_links")
     @Expose
     private LinksMediaResult links;
+    @SerializedName("_embedded")
+    @Expose
+    private Embedded embedded;
 
     public Integer getId() {
         return id;
@@ -119,6 +122,14 @@ public class MediaLight {
         this.links = links;
     }
 
+    public Embedded getEmbedded() {
+        return embedded;
+    }
+
+    public void setEmbedded(Embedded embedded) {
+        this.embedded = embedded;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -162,6 +173,10 @@ public class MediaLight {
         sb.append("links");
         sb.append('=');
         sb.append(((this.links == null)?"<null>":this.links));
+        sb.append(',');
+        sb.append("embedded");
+        sb.append('=');
+        sb.append(((this.embedded == null)?"<null>":this.embedded));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');

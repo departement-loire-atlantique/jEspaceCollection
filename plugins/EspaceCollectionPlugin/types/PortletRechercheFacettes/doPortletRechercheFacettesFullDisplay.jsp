@@ -35,25 +35,27 @@
 %>
 
 
-<div class="ds44-container-large">
+<div class="ds44-container-large rechercheFacette">
 
-<%-- <ds:titleNoBanner title="<%= obj.getTitre(userLang) %>" breadcrumb="true"></ds:titleNoBanner> --%>
-<div class="">
-    <div class="ds44--xl-padding-t pbs large-w66 mauto">
-        <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")) %>'>
-            <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id") %>'/>
-        </jalios:if>
-        <h1 class="h2-like mbm mtm" id="titre-recherche"><%= obj.getTitre(userLang) %></h1>
+<jalios:if predicate="<%= isInRechercheFacette %>">
+    <%-- <ds:titleNoBanner title="<%= obj.getTitre(userLang) %>" breadcrumb="true"></ds:titleNoBanner> --%>
+    <div class="">
+        <div class="ds44--xl-padding-t pbs large-w66 mauto">
+            <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")) %>'>
+                <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id") %>'/>
+            </jalios:if>
+            <h1 class="h2-like mbm mtm" id="titre-recherche"><%= obj.getTitre(userLang) %></h1>
+        </div>
+        
+        <div class="ds44-inner-container ds44--mobile--m-padding-b">
+            <header class="ds44--l-padding-b">
+                <p class="/*ds44-component-chapo*/ ds44-centeredBlock">
+                    <%= obj.getSoustitre(userLang) %>
+                </p>
+            </header>
+        </div>
     </div>
-    
-    <div class="ds44-inner-container ds44--mobile--m-padding-b">
-        <header class="ds44--l-padding-b">
-            <p class="/*ds44-component-chapo*/ ds44-centeredBlock">
-                <%= obj.getSoustitre(userLang) %>
-            </p>
-        </header>
-    </div>
-</div>
+</jalios:if>
 
 <div class="ds44-loader-text visually-hidden" tabindex="-1" aria-live="polite"></div>
 <div class="ds44-loader hidden">
@@ -69,19 +71,7 @@
 
 
 <div class="ds44-facette">
-	<div class="ds44-facette-body">
-	
-	    <jalios:if predicate='<%= obj.getAfficherResultatDansLannuaire() || (!isInRechercheFacette && Util.notEmpty(obj.getTitre(userLang))) %>'>
-			<div class="ds44-inner-container ds44--mobile--m-padding-b">
-				<header class="txtcenter ds44--l-padding-b">
-					<h2 class="h2-like center"><%= obj.getTitre(userLang) %></h2>
-					<jalios:if predicate='<%= Util.notEmpty(obj.getSoustitre(userLang)) %>'>
-						<p class="ds44-component-chapo ds44-centeredBlock"><%= obj.getSoustitre(userLang) %></p>
-					</jalios:if>
-				</header>
-			</div>
-		</jalios:if>
-		
+	<div class="ds44-facette-body">		
 		
 		<% 
 	    // Url en utilsant le titre de la facette et non le titre du portal général facette
@@ -136,46 +126,51 @@
 			</div>
 		
 			<jalios:if predicate="<%= showFiltres %>">
-				<div class="ds44-facetteContainer ds44-theme ds44-flex-container ds44-medium-flex-col">
+				<div class="ds44-facetteContainer ds44-theme ds44-flex-container ds44-medium-flex-col filtres">
 		
 					<jalios:if predicate='<%= Util.notEmpty(obj.getFacettesSecondaires()) %>'>
 						<div class="ds44-fg1 ds44-flex-container ds44-medium-flex-col">
-							<p class="ds44-heading ds44-small-fg1"><%= glp("jcmsplugin.socle.facette.filtrer-par") %></p>
-		
-							<% 
-								int maxFacettesSecondaires = SocleUtils.getNbrFacetteBeforeMaxWeight(8, obj.getFacettesSecondaires(), loggedMember); 
-								request.setAttribute("isFilter", true);
-							%>
-
-							<jalios:foreach array="<%= obj.getFacettesSecondaires() %>" name="itFacette" type="AbstractPortletFacette" max="<%= maxFacettesSecondaires %>">
-		
-		                        <jalios:buffer name="itFacetteBuffer">
-		                          <jalios:include pub="<%= itFacette %>" usage="box"/>
-		                        </jalios:buffer>
-		
-								<% Boolean isSelect = Util.notEmpty(request.getAttribute("isSelectFacette")) ? (Boolean) request.getAttribute("isSelectFacette") : false ; %>
-		                        <% Boolean isBoolean = itFacette instanceof PortletFacetteBooleen; %>
-		
-								<div class='ds44-fieldContainer ds44-fg1 <%= isBoolean ? "all-wauto" : "" %> <%= isSelect ? "ds44-fieldContainer--select" : "" %>'>
-                                    <%= itFacetteBuffer %>
-								</div>
-		  
-		                        <% request.removeAttribute("isSelectFacette"); %>
-		
-							</jalios:foreach>
-
-							<% request.removeAttribute("isFilter"); %>
+							<p class="ds44-heading ds44-small-fg1">Affiner par</p>
+		                    <div class="ds44-flex-container ds44-flex-wrap ds44-flex-valign-center ds44-medium-flex-col">
+    							<% 
+    								int maxFacettesSecondaires = SocleUtils.getNbrFacetteBeforeMaxWeight(8, obj.getFacettesSecondaires(), loggedMember); 
+    								request.setAttribute("isFilter", true);
+    							%>
+    
+    							<jalios:foreach array="<%= obj.getFacettesSecondaires() %>" name="itFacette" type="AbstractPortletFacette" max="<%= maxFacettesSecondaires %>">
+    		
+    		                        <jalios:buffer name="itFacetteBuffer">
+    		                          <jalios:include pub="<%= itFacette %>" usage="box"/>
+    		                        </jalios:buffer>
+    		
+    								<% Boolean isSelect = Util.notEmpty(request.getAttribute("isSelectFacette")) ? (Boolean) request.getAttribute("isSelectFacette") : false ; %>
+    		                        <% Boolean isBoolean = itFacette instanceof PortletFacetteBooleen; %>
+    		
+    								<div class='ds44-fieldContainer ds44-fg1 <%= isBoolean ? "all-wauto" : "" %> <%= isSelect ? "ds44-fieldContainer--select" : "" %>'>
+                                        <%= itFacetteBuffer %>
+    								</div>
+    		  
+    		                        <% request.removeAttribute("isSelectFacette"); %>
+    		
+    							</jalios:foreach>
+    
+    							<% request.removeAttribute("isFilter"); %>
+                            </div>
 						</div>
 					</jalios:if>
 					
 	
-					<jalios:if predicate="<%= hasFonctionsAdditionnelles %>">
+					<jalios:if predicate="<%= hasFonctionsAdditionnelles && isInRechercheFacette %>">
 						<div class="ds44-push ds44-small-fg1 ds44-hide-tiny-to-medium ds44-show-medium">
 							<ul class="ds44-list">
                                 <li class="ds44-docListElem">
                                     <i class="icon icon-etudes ds44-docListIco" aria-hidden="true"></i>
                                     <a href="<%= channel.getCategory("por_5206").getDisplayUrl(userLocale) %>">Recherche avancée</a>
                                     <%-- por_5206 => nav recherche avancée --%>
+                                </li>
+                                <li class="ds44-docListElem">
+                                    <i class="icon icon-cross ds44-docListIco" aria-hidden="true"></i>
+                                    <a href="#" id="clear-filter">Tout décocher</a>
                                 </li>
 							  <jalios:if predicate="<%= obj.getAfficherSelection() %>">
 								<li class="ds44-docListElem">
@@ -203,10 +198,11 @@
 				
 				
 				
-			    <jalios:if predicate='<%= Util.notEmpty(obj.getFacettesTertiaire()) %>'>
-			      <div class="ds44-facetteContainer ds44-theme ds44-flex-container ds44-medium-flex-col ds44--noPdg-t">
+			    <jalios:if predicate='<%= Util.notEmpty(obj.getFacettesTertiaire()) && isInRechercheFacette %>'>
+			      <div class="ds44-facetteContainer ds44-theme ds44-flex-container ds44-medium-flex-col ds44--noPdg-t filtres filtres-L2">
                      <div class="ds44-fg1 ds44-flex-container ds44-medium-flex-col">
-   
+	                   <div class="ds44-fg1">
+	                   <div class="ds44-fg1 ds44-flex-container ds44-medium-flex-col ds44--l-padding-b">
      
                          <% 
                              int maxFacettesTertiaire = SocleUtils.getNbrFacetteBeforeMaxWeight(8, obj.getFacettesTertiaire(), loggedMember); 
@@ -233,6 +229,8 @@
                          </jalios:foreach>
                          <% request.removeAttribute("isFilter"); %>
 
+                        </div>
+                        </div>
                      </div>
                    </div>
                  </jalios:if>
@@ -339,4 +337,22 @@
 <% 
 request.removeAttribute("rechercheId");
 %>
-
+<jalios:javascript>
+MiscEvent.addListener('click', ()=>{
+    let param = "";
+    const valText = document.getElementsByName("textform-element-por_5166por_7188")[0].value;
+    
+    if(valText){
+    param += "textform-element-por_5166por_7188[value]=" + valText;
+    param += "&textform-element-por_5166por_7188[text]=" + valText;
+    }
+    
+    let url = window.location.origin + window.location.pathname;
+    if (url.indexOf('?') > -1){
+       url += '&' + param;
+    } else {
+       url += '?' + param;
+    }
+    window.location.href = url;
+}, document.getElementById("clear-filter"));
+</jalios:javascript>

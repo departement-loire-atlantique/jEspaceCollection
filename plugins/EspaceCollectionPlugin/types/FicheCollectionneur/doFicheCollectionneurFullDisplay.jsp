@@ -1,12 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %><%
-%><%-- This file has been automatically generated. --%><%
-%><%--
-  @Summary: FicheCollectionneur display page
-  @Category: Generated
-  @Author: JCMS Type Processor
-  @Customizable: True
-  @Requestable: True
---%><%
 %><%@ include file='/jcore/doInitPage.jspf' %><%
 %><% FicheCollectionneur obj = (FicheCollectionneur)request.getAttribute(PortalManager.PORTAL_PUBLICATION); %><%
 %>
@@ -98,6 +90,3 @@
 </section>
 
 <%@ include file='/plugins/EspaceCollectionPlugin/jsp/carrousel/carrouselCollectionneurOeuvres.jspf'%>
-
-<%-- **********4A616C696F73204A434D53 *** SIGNATURE BOUNDARY * DO NOT EDIT ANYTHING BELOW THIS LINE *** --%><%
-%><%-- bsJv6FhJmTuU+sAELhsRwg== --%>

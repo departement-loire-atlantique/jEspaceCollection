@@ -39,8 +39,13 @@ jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.localisation: Localisation
 jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.autre: Autres renseignements
 
 jcmsplugin.espaceCollection.modal.images.telecharger: Télécharger toutes les images
-jcmsplugin.espaceCollection.modal.images.conditions-utilisation: J’ai lu et j’accepte les Conditions générales d’utilisation du site.
-jcmsplugin.espaceCollection.modal.images.hd :Pour toute demande de photographie Haute Définition, cliquez ici
+jcmsplugin.espaceCollection.modal.images.telecharger.image: Cette image
+jcmsplugin.espaceCollection.modal.images.telecharger.toutes-images: Toutes les images
+jcmsplugin.espaceCollection.modal.images.conditions-utilisation.lu: J’ai lu et j’accepte les
+jcmsplugin.espaceCollection.modal.images.conditions-utilisation.conditions: Conditions générales
+jcmsplugin.espaceCollection.modal.images.conditions-utilisation.site: du site.
+jcmsplugin.espaceCollection.modal.images.hd.title :Pour toute demande de photographie Haute Définition,
+jcmsplugin.espaceCollection.modal.images.hd.click :cliquez ici
 
 jcmsplugin.espaceCollection.carrousel.oeuvre-incontournables.title: Oeuvres en relation
 
@@ -59,6 +64,8 @@ jcmsplugin.espacecollection.keepeek.password: Mot de passe Keepeek
 # recherche
 $jcmsplugin.espacecollection.recherche.filtre.Keepeek.root: Categorie racine des filtres de la recherche
 jcmsplugin.espacecollection.recherche.filtre.Keepeek.get.schedule: Process filter Keepeek
+
+$jcmsplugin.espacecollection.recherche.light.id: Id portlet recherche light
 
 # Home
 jcmsplugin.espacecollection.home.recherche.title: Titre recherche rapide home

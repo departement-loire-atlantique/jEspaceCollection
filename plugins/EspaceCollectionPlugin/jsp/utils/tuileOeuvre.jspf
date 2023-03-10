@@ -1,5 +1,4 @@
 <section class="ds44-box ds44-theme">
-
 	<jalios:if predicate="<%=Util.notEmpty(obj.getGalerieDeVisuels())%>">
 		<%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/imageCarrousel.jspf'%>
 	</jalios:if>
@@ -65,6 +64,7 @@
 						</a>
 					</span>
 				</jalios:if>
+				
 				<span>
 	          <%@ include file='/plugins/EspaceCollectionPlugin/jsp/modal/modalToutesLesImages.jspf'%>
 				</span>

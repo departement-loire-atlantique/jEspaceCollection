@@ -8,7 +8,7 @@ String sousTitreBloc = glp("jcmsplugin.espaceCollection.carrousel.collectionneur
 int collectionSize = Util.notEmpty(obj.getRessourcesAssociees()) ? obj.getRessourcesAssociees().length : 0;
 %>
 
-<jalios:if predicate="<%= Util.notEmpty(obj.getRessourcesAssociees()) %>">
+<jalios:if predicate="<%= Util.notEmpty(obj.getRessourcesAssociees()) || true%>"><%-- TODO --%>
   <jalios:buffer name="tuilesResult">
       <jalios:foreach array="<%= obj.getRessourcesAssociees() %>" type="FicheObjetBaseDeDonnees" name="itPub">
           <li class="swiper-slide">

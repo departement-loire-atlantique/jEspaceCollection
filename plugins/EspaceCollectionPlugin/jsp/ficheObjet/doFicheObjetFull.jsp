@@ -29,7 +29,12 @@ if (Util.isEmpty(media)) {
 Metadatum metadatas = null; // For include
 
 // Obj JCMS
-FicheObjetBaseDeDonnees obj = (FicheObjetBaseDeDonnees)request.getAttribute(PortalManager.PORTAL_PUBLICATION); 
+FicheObjetBaseDeDonnees obj = null;
+Publication pub = (Publication) request.getAttribute(PortalManager.PORTAL_PUBLICATION);
+
+if(pub instanceof FicheObjetBaseDeDonnees){
+    obj = (FicheObjetBaseDeDonnees) pub; 
+}
 
 if(Util.isEmpty(obj)){
     obj = null; // TODO get with idKeepeek
@@ -176,31 +181,45 @@ if(Util.isEmpty(obj)){
             </table>
             <hr class="mbs" aria-hidden="true" />
 
-<%-- TODO --%>
             <%-- Création / Exécution --%>
             <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.crea") %></h3>
             <table>
               <tbody>
-                <jalios:if predicate="<%=Util.notEmpty(obj.getArtisteCreateur(userLang))%>">
+                <%
+                Metadatum artisteCreateur = KeepeekUtil.getMediaMetadata(media, "personnes");
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(artisteCreateur)%>">
                 <tr>
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "artisteCreateur", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getArtisteCreateur(userLang) %></td>
+                  <td class="table-detail"><b>Artiste / créateur</b></td>
+                  <td class="table-detail"><%= artisteCreateur.getValue() %></td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
 
-                <jalios:if predicate="<%=Util.notEmpty(obj.getDateEpoque(userLang))%>">
+                <%
+                Metadatum datation = KeepeekUtil.getMediaMetadata(media, "datation");
+                metadatas = datation;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(datation)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "dateEpoque", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getDateEpoque(userLang) %></td>
+                  <td class="table-detail"><b>Date / époque</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
                 
-                <jalios:if predicate="<%=Util.notEmpty(obj.getLieuDeCreation(userLang))%>">
+                <%
+                Metadatum lieuCreation = KeepeekUtil.getMediaMetadata(media, "lieu");
+                metadatas = lieuCreation;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(lieuCreation)%>">
                 <tr>
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "lieuDeCreation", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getLieuDeCreation(userLang) %></td>
+                  <td class="table-detail"><b>Lieu de création</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
               </tbody>
             </table>
             <hr class="mbs" aria-hidden="true" />
@@ -209,26 +228,41 @@ if(Util.isEmpty(obj)){
             <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.matiere") %></h3>
             <table>
               <tbody>
-                <jalios:if predicate="<%=Util.notEmpty(obj.getMatiere(userLang))%>">
+                <%
+                Metadatum matiere = KeepeekUtil.getMediaMetadata(media, "matiere");
+                metadatas = matiere;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(matiere)%>">
                 <tr>
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "matiere", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getMatiere(userLang) %></td>
+                  <td class="table-detail"><b>Matière</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
 
-                <jalios:if predicate="<%=Util.notEmpty(obj.getTechnique(userLang))%>">
+                <%
+                Metadatum technique = KeepeekUtil.getMediaMetadata(media, "technique");
+                metadatas = technique;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(technique)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "technique", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getTechnique(userLang) %></td>
+                  <td class="table-detail"><b>Technique</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
-                
-                <jalios:if predicate="<%=Util.notEmpty(obj.getDimensionsEtPoids(userLang))%>">
+                </jalios:if>
+
+                <%
+                Metadatum mesures = KeepeekUtil.getMediaMetadata(media, "mesures");
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(mesures)%>">
                 <tr>
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "dimensionsEtPoids", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getDimensionsEtPoids(userLang) %></td>
+                  <td class="table-detail"><b>Dimensions et poids</b></td>
+                  <td class="table-detail"><%= mesures.getValue() %></td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
               </tbody>
             </table>
             <hr class="mbs" aria-hidden="true" />
@@ -237,19 +271,28 @@ if(Util.isEmpty(obj)){
             <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.inscriptions") %></h3>
             <table>
               <tbody>
-                <jalios:if predicate="<%=Util.notEmpty(obj.getInscriptions(userLang))%>">
+                <%
+                Metadatum typeDinscription = KeepeekUtil.getMediaMetadata(media, "type_dinscription");
+                metadatas = typeDinscription;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(typeDinscription)%>">
                 <tr>
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "inscriptions", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getInscriptions(userLang) %></td>
+                  <td class="table-detail"><b>Inscriptions</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
-
-                <jalios:if predicate="<%=Util.notEmpty(obj.getTranscription(userLang))%>">
+                </jalios:if>
+                
+                <%
+                Metadatum transcription = KeepeekUtil.getMediaMetadata(media, "transcription_de_linscription");
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(transcription)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "transcription", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getTranscription(userLang) %></td>
+                  <td class="table-detail"><b>Transcription</b></td>
+                  <td class="table-detail"><%= transcription.getValue() %></td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
               </tbody>
             </table>
             <hr class="mbs" aria-hidden="true" />
@@ -258,33 +301,49 @@ if(Util.isEmpty(obj)){
             <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.usage") %></h3>
             <table>
               <tbody>
-                <jalios:if predicate="<%=Util.notEmpty(obj.getFonctionnementEtContexte(userLang))%>">
+                
+                <%
+                Metadatum foncEtContext = KeepeekUtil.getMediaMetadata(media, "fonctionnement_et_contexte");
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(foncEtContext)%>">
                 <tr>
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "fonctionnementEtContexte", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getFonctionnementEtContexte(userLang) %></td>
+                  <td class="table-detail"><b>Fonctionnement et contexte</b></td>
+                  <td class="table-detail"><%= foncEtContext.getValue() %></td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
 
-                <jalios:if predicate="<%=Util.notEmpty(obj.getFonctionnementEtContexte(userLang))%>">
+                <%
+                Metadatum utilisation = KeepeekUtil.getMediaMetadata(media, "utilisation");
+                metadatas = utilisation;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(utilisation)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "utilisation", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getFonctionnementEtContexte(userLang) %></td>
+                  <td class="table-detail"><b>Utilisation</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
 
-                <jalios:if predicate="<%=Util.notEmpty(obj.getUtilisateur(userLang))%>">
+                <%
+                Metadatum utilisateur = KeepeekUtil.getMediaMetadata(media, "utilisateur");
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(utilisateur)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "utilisateur", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getUtilisateur(userLang) %></td>
+                  <td class="table-detail"><b>Utilisateur</b></td>
+                  <td class="table-detail"><%= utilisateur.getValue() %></td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
 
-                <jalios:if predicate="<%=Util.notEmpty(obj.getEvenementAssocieALutilisationDeL(userLang))%>">
+                <%
+                Metadatum evenementAssocie = KeepeekUtil.getMediaMetadata(media, "evenement_associe");
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(evenementAssocie)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "evenementAssocieALutilisationDeL", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getEvenementAssocieALutilisationDeL(userLang) %></td>
+                  <td class="table-detail"><b>Événement associé à l’utilisation de l’objet</b></td>
+                  <td class="table-detail"><%= evenementAssocie.getValue() %></td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
               </tbody>
             </table>
             <hr class="mbs" aria-hidden="true" />
@@ -293,33 +352,52 @@ if(Util.isEmpty(obj)){
             <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.theme") %></h3>
             <table>
               <tbody>
-                <jalios:if predicate="<%=Util.notEmpty(obj.getThemesEtIconographie(userLang))%>">
+              
+                <%
+                Metadatum themes = KeepeekUtil.getMediaMetadata(media, "thesaurus_garnier_theme");
+                metadatas = themes;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(themes)%>">
                 <tr>
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "themesEtIconographie", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getThemesEtIconographie(userLang) %></td>
+                  <td class="table-detail"><b>Thèmes et iconographie</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
-
-                <jalios:if predicate="<%=Util.notEmpty(obj.getPersonnesRepresentees(userLang))%>">
+                </jalios:if>
+                
+                <%
+                Metadatum personnesRepresentees = KeepeekUtil.getMediaMetadata(media, "personnes_representees");
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(personnesRepresentees)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "personnesRepresentees", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getPersonnesRepresentees(userLang) %></td>
+                  <td class="table-detail"><b>Personne(s) représentée(s)</b></td>
+                  <td class="table-detail"><%= personnesRepresentees.getValue() %></td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
 
-                <jalios:if predicate="<%=Util.notEmpty(obj.getLieuRepresente(userLang))%>">
+                <%
+                Metadatum lieuRepresente = KeepeekUtil.getMediaMetadata(media, "lieu_represente");
+                metadatas = lieuRepresente;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(lieuRepresente)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "lieuRepresente", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getLieuRepresente(userLang) %></td>
+                  <td class="table-detail"><b>Lieu représenté</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
 
-                <jalios:if predicate="<%=Util.notEmpty(obj.getEvenementRepresente(userLang))%>">
+                <%
+                Metadatum evenementRepresente = KeepeekUtil.getMediaMetadata(media, "evenement_represente");
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(evenementRepresente)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "evenementRepresente", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getEvenementRepresente(userLang) %></td>
+                  <td class="table-detail"><b>Événement représenté</b></td>
+                  <td class="table-detail"><%= evenementRepresente.getValue() %></td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
               </tbody>
             </table>
             <hr class="mbs" aria-hidden="true" />
@@ -328,19 +406,29 @@ if(Util.isEmpty(obj)){
             <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.collecte") %></h3>
             <table>
               <tbody>
-                <jalios:if predicate="<%=Util.notEmpty(obj.getCollecteur(userLang))%>">
+              
+                <%
+                Metadatum collecteur = KeepeekUtil.getMediaMetadata(media, "collecteur");
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(collecteur)%>">
                 <tr>
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "collecteur", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getCollecteur(userLang) %></td>
+                  <td class="table-detail"><b>Collecteur</b></td>
+                  <td class="table-detail"><%= collecteur.getValue() %></td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
 
-                <jalios:if predicate="<%=Util.notEmpty(obj.getLieuDeLaDecouverte(userLang))%>">
+                <%
+                Metadatum provenanceGeographique = KeepeekUtil.getMediaMetadata(media, "provenance_geographique");
+                metadatas = provenanceGeographique;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(provenanceGeographique)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "lieuDeLaDecouverte", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getLieuDeLaDecouverte(userLang) %></td>
+                  <td class="table-detail"><b>Lieu de la découverte</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
               </tbody>
             </table>
             <hr class="mbs" aria-hidden="true" />
@@ -349,47 +437,80 @@ if(Util.isEmpty(obj)){
             <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.localisation") %></h3>
             <table>
               <tbody>
-                <jalios:if predicate="<%=Util.notEmpty(obj.getLieuDeConservation(userLang))%>">
+
+                <%
+                Metadatum lieuConservation = KeepeekUtil.getMediaMetadata(media, "lieu_de_conservation");
+                metadatas = lieuConservation;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(lieuConservation)%>">
                 <tr>
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "lieuDeConservation", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getLieuDeConservation(userLang) %></td>
+                  <td class="table-detail"><b>Lieu de conservation</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
 
-                <jalios:if predicate="<%=Util.notEmpty(obj.getLocalisationPermanente(userLang))%>">
+                <%
+                Metadatum localisation = KeepeekUtil.getMediaMetadata(media, "localisation");
+                metadatas = localisation;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(localisation)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "localisationPermanente", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getLocalisationPermanente(userLang) %></td>
+                  <td class="table-detail"><b>Localisation permanente</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
+                
+                <jalios:if predicate='<%=Util.notEmpty("")%>'><%-- TODO --%>
+                <tr>  
+                  <td class="table-detail"><b>Emplacement actuel</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
+                </tr>
+                </jalios:if>
 
-                <jalios:if predicate="<%=Util.notEmpty(obj.getEmplacementActuel(userLang))%>">
+                <%
+                Metadatum mouvement = KeepeekUtil.getMediaMetadata(media, "mouvement");
+                metadatas = mouvement;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(mouvement)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "emplacementActuel", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getEmplacementActuel(userLang) %></td>
+                  <td class="table-detail"><b>Mouvement</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
-
-                <jalios:if predicate="<%=Util.notEmpty(obj.getMouvement(userLang))%>">
+                </jalios:if>
+                
+                <%
+                Metadatum mouvementDebut = KeepeekUtil.getMediaMetadata(media, "date_de_debut_du_mouvement");
+                metadatas = mouvementDebut;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(mouvementDebut)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "mouvement", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getMouvement(userLang) %></td>
+                  <td class="table-detail"><b>Date de début du mouvement</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
-
-                <jalios:if predicate="<%=Util.notEmpty(obj.getDateDeDebutDuMouvement(userLang))%>">
+                </jalios:if>
+                
+                <%
+                Metadatum mouvementFin = KeepeekUtil.getMediaMetadata(media, "date_de_fin_du_mouvement");
+                metadatas = mouvementFin;
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(mouvementFin)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "dateDeDebutDuMouvement", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getDateDeDebutDuMouvement(userLang) %></td>
+                  <td class="table-detail"><b>Date de fin du mouvement</b></td>
+                  <td class="table-detail">
+                    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/keepeekMetadataDisplay.jspf'%>
+                  </td>
                 </tr>
-                        </jalios:if>
-
-                <jalios:if predicate="<%=Util.notEmpty(obj.getDateDeFinDuMouvement(userLang))%>">
-                <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "dateDeFinDuMouvement", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getDateDeFinDuMouvement(userLang) %></td>
-                </tr>
-                        </jalios:if>
+                 </jalios:if>
               </tbody>
             </table>
             <hr class="mbs" aria-hidden="true" />
@@ -398,19 +519,26 @@ if(Util.isEmpty(obj)){
             <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.autre") %></h3>
             <table>
               <tbody>
-                <jalios:if predicate="<%=Util.notEmpty(obj.getObjetsAssocies(userLang))%>">
+                
+                <%
+                Metadatum objetsAssocies = KeepeekUtil.getMediaMetadata(media, "objets_associes");
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(objetsAssocies)%>">
                 <tr>
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "objetsAssocies", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getObjetsAssocies(userLang) %></td>
+                  <td class="table-detail"><b>Objet(s) associé(s)</b></td>
+                  <td class="table-detail"><%= objetsAssocies.getValue() %></td>
                 </tr>
-                        </jalios:if>
-
-                <jalios:if predicate="<%=Util.notEmpty(obj.getStatutAdministratif(userLang))%>">
+                </jalios:if>
+                
+                <%
+                Metadatum statutAdministratif = KeepeekUtil.getMediaMetadata(media, "statut_administratif");
+                %>
+                <jalios:if predicate="<%=Util.notEmpty(statutAdministratif)%>">
                 <tr>  
-                  <td class="table-detail"><b><%= channel.getTypeFieldLabel(FicheObjetBaseDeDonnees.class, "statutAdministratif", userLang) %></b></td>
-                  <td class="table-detail"><%= obj.getStatutAdministratif(userLang) %></td>
+                  <td class="table-detail"><b>Statut administratif</b></td>
+                  <td class="table-detail"><%= statutAdministratif.getValue() %></td>
                 </tr>
-                        </jalios:if>
+                </jalios:if>
               </tbody>
             </table>
             <hr class="mbs" aria-hidden="true" />
@@ -423,7 +551,7 @@ if(Util.isEmpty(obj)){
       <aside class="col-4 ds44-hide-tinyToLarge ds44-js-aside-summary">
         <section class="ds44-box">
           <section class="ds44-box ds44-mb3 ">
-            <jalios:if predicate="<%= Util.notEmpty(obj.getVisuel()) %>">
+            <jalios:if predicate="<%= Util.notEmpty(obj) && Util.notEmpty(obj.getVisuel()) %>">
                 <% CarouselElement image = (CarouselElement)channel.getData(CarouselElement.class, obj.getVisuel().getId()); %>
                 <picture class="ds44-container-imgRatio">
                     <img src="<%= image.getImage() %>" alt="<%= image.getImageLegend() %>" class="ds44-imgRatio"/>
@@ -436,7 +564,7 @@ if(Util.isEmpty(obj)){
 
           <section class="ds44-box ds44-theme">
             <div class="ds44-innerBoxContainer">
-              <jalios:if predicate="<%=Util.notEmpty(obj.getFicheObjetMediatisee())%>">
+              <jalios:if predicate="<%= Util.notEmpty(obj) && Util.notEmpty(obj.getFicheObjetMediatisee())%>">
                 <jalios:link data="<%= obj.getFicheObjetMediatisee() %>" css="ds44-btnStd ds44-btn--invert ds44-mb1">
                   <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.fiche-media")%></span>
                   <i class="icon icon-long-arrow-right" aria-hidden="true"></i>
