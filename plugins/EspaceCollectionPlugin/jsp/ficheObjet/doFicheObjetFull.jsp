@@ -1,3 +1,4 @@
+<%@page import="com.jalios.jcms.handler.QueryHandler"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Metadatum"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekUtil"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Media"%>
@@ -37,7 +38,18 @@ if(pub instanceof FicheObjetBaseDeDonnees){
 }
 
 if(Util.isEmpty(obj)){
-    obj = null; // TODO get with idKeepeek
+    QueryHandler ficheObjetQH = new QueryHandler();
+    ficheObjetQH.setLoggedMember(loggedMember);
+    ficheObjetQH.setTypes(new String[] { FicheObjetBaseDeDonnees.class.getName() } );
+    ficheObjetQH.setMode(QueryHandler.TEXT_MODE_ADVANCED);
+    ficheObjetQH.setText("numeroDinventaire:"+idKeepeek);
+    
+    Set<Publication> result = ficheObjetQH.getResultSet();
+    
+    if(Util.notEmpty(result)){
+        obj = (FicheObjetBaseDeDonnees) Util.getFirst(result);
+        request.setAttribute(PortalManager.PORTAL_PUBLICATION, obj);
+    }
 }
 %>
 <%@ include file='/front/doFullDisplay.jspf' %>
@@ -48,7 +60,10 @@ if(Util.isEmpty(obj)){
       <div
         class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt">
         <div class="ds44-grid12-offset-2">
-                    <!-- Fil d'ariane -->
+          <!-- Fil d'ariane -->
+          <%
+          request.setAttribute(PortalManager.PORTAL_CURRENTCATEGORY, channel.getCategory("fde_5008"));
+          %>
           <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id"))%>'>
             <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' />
           </jalios:if>
