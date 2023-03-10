@@ -22,6 +22,11 @@ if(null != datation && null != datation.getEmbedded()){
 }
 
 Metadatum numInv = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
+
+String title = media.getTitle();
+if(Util.notEmpty(numInv.getValue())){
+    title = title.replace(numInv.getValue() + " ", "");
+}
 %>
 <section
     class="ds44-card ds44-js-card ds44-card--contact ds44-box ds44-bgGray  ">
@@ -33,8 +38,8 @@ Metadatum numInv = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
     <div class="ds44-card__section">
         <div class="ds44-innerBoxContainer">
             <p role="heading" aria-level="2" class="h4-like ds44-cardTitle">
-                <jalios:link id="por_7226" css="ds44-card__globalLink" params='<%= "idKeepeek=" + media.getId() %>'>
-                    <%= media.getTitle() %>
+                <jalios:link id="por_7226" css="ds44-card__globalLink text-capitalize-first" params='<%= "idKeepeek=" + media.getId() %>'>
+                    <%= title %>
                 </jalios:link>
             </p>
 <!--             <hr class="mbs" aria-hidden="true" /> -->

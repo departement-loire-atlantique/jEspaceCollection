@@ -51,6 +51,16 @@ if(Util.isEmpty(obj)){
         request.setAttribute(PortalManager.PORTAL_PUBLICATION, obj);
     }
 }
+
+// Build title
+String title = media.getTitle();
+
+Metadatum numInvMetadata = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
+String numInv = Util.notEmpty(numInvMetadata) ? numInvMetadata.getValue() : "";
+if(Util.notEmpty(numInv)){
+    title = title.replace(numInv + " ", "");
+    title += " (" + numInv + ")";
+}
 %>
 <%@ include file='/front/doFullDisplay.jspf' %>
 
@@ -67,8 +77,8 @@ if(Util.isEmpty(obj)){
           <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id"))%>'>
             <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' />
           </jalios:if>
-          <h1 class="h1-like">
-            <%= media.getTitle() %>
+          <h1 class="h1-like text-capitalize-first">
+            <%= title %>
           </h1>
         </div>
       </div>
@@ -115,12 +125,12 @@ if(Util.isEmpty(obj)){
               <tbody>
               
                 <%
-                Metadatum numInv = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
+//                 Metadatum numInv = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
                 %>
                 <jalios:if predicate="<%=Util.notEmpty(numInv)%>">
                 <tr>
                   <td class="table-detail"><b>Numéro d’inventaire</b></td>
-                  <td class="table-detail"><%= numInv.getValue() %></td>
+                  <td class="table-detail"><%= numInv %></td>
                 </tr>
                 </jalios:if>
 

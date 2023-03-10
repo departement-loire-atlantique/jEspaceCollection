@@ -37,6 +37,13 @@ a {
   color: @black;
 }
 
+.text-capitalize-first{
+	display: block;
+	&::first-letter {
+		text-transform: capitalize;
+	}
+}
+
 /* OVERRIDE DS */
 
 h1.h1-like {
