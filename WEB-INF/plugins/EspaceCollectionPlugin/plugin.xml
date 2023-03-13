@@ -274,6 +274,9 @@
     <jsynclistener         class="com.example.jcmsplugin.espacecollection.EspaceCollectionJSyncListener" />
   </plugincomponents>
 -->
+  <plugincomponents>
+    <channellistener class="fr.digiwin.module.espacecollection.keepeek.alarm.KeepeekFilterChannelListenner" />
+  </plugincomponents>
   <!-- ============================= Hibernate ============================ -->
   <!--                                                                      -->
   <!-- Plugin's Hibernate mapping                                           -->
