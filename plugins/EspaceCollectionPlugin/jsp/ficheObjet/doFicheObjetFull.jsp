@@ -576,7 +576,7 @@ if(Util.notEmpty(numInv)){
 
       <div class="col-1 grid-offset ds44-hide-tiny-to-medium"></div>
 
-      <aside class="col-4 ds44-hide-tinyToLarge ds44-js-aside-summary">
+      <aside class="col-4 /*ds44-hide-tinyToLarge*/ ds44-js-aside-summary">
         <section class="ds44-box">
           <section class="ds44-box ds44-mb3 ">
             <jalios:select>
