@@ -2,6 +2,8 @@ package fr.digiwin.module.espacecollection.keepeek;
 
 import org.apache.log4j.Logger;
 
+import com.jalios.util.Util;
+
 import fr.digiwin.module.espacecollection.keepeek.pojo.Embedded;
 import fr.digiwin.module.espacecollection.keepeek.pojo.Media;
 import fr.digiwin.module.espacecollection.keepeek.pojo.MediaLight;
@@ -20,10 +22,10 @@ public class KeepeekUtil {
     }
     
     public static Metadatum getMediaMetadata(Media media, String idMetadata) {
-        return getMetadataById(media.getEmbedded(), idMetadata);
+        return Util.isEmpty(media) || Util.isEmpty(idMetadata) ? null : getMetadataById(media.getEmbedded(), idMetadata);
     }
     
     public static Metadatum getMediaMetadata(MediaLight media, String idMetadata) {
-        return getMetadataById(media.getEmbedded(), idMetadata);
+        return Util.isEmpty(media) || Util.isEmpty(idMetadata) ? null : getMetadataById(media.getEmbedded(), idMetadata);
     }
 }
