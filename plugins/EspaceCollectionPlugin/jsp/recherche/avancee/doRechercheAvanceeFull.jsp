@@ -86,10 +86,10 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                             <div class="ds44-form__container">
                                 <div class="ds44-select__shape ds44-inpStd">
                                     <p class="ds44-selectLabel" aria-hidden="true">Filtre</p>
-                                    <div id="form-element-filtre" data-name="form-element-filtre" class="ds44-js-select-standard ds44-selectDisplay" ></div>
-                                    <button type="button" id="button-form-element-filtre" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false">
+                                    <div id="form-line-element-filtre" data-name="form-line-element-filtre" class="ds44-js-select-standard ds44-selectDisplay" ></div>
+                                    <button type="button" id="button-form-line-element-filtre" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false">
                                         <i class="icon icon-down icon--sizeL" aria-hidden="true"></i>
-                                        <span id="button-message-form-element-filtre" class="visually-hidden">Filtre</span>
+                                        <span id="button-message-form-line-element-filtre" class="visually-hidden">Filtre</span>
                                     </button>
                                     <button class="ds44-reset" type="button">
                                         <i class="icon icon-cross icon--sizeL" aria-hidden="true"></i>
@@ -98,11 +98,11 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                                 </div>
                                 <div class="ds44-select-container hidden">
                                     <div class="ds44-listSelect">
-                                        <ul class="ds44-list" role="listbox" id="listbox-form-element-filtre" aria-labelledby="button-message-form-element-filtre" >
+                                        <ul class="ds44-list" role="listbox" id="listbox-form-line-element-filtre" aria-labelledby="button-message-form-line-element-filtre" >
                                             <jalios:foreach name="itFilter" type="Category" collection="<%= filters %>">
                                                 <li
                                                     class="ds44-select-list_elem"
-                                                    data-value="<%= Util.getFirst(itFilter.getSynonyms()) %>:<%= itFilter.getDescription() %>"
+                                                    data-value="<%= itFilter.getId() %>"
                                                     tabindex="0"
                                                     role="option">
                                                     <%= itFilter.getName(userLang) %>
@@ -118,10 +118,10 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                             <div class="ds44-form__container">
                                 <div class="ds44-select__shape ds44-inpStd">
                                     <p class="ds44-selectLabel" aria-hidden="true">Modifieur</p>
-                                    <div id="form-element-modifieur" data-name="form-element-modifieur" class="ds44-js-select-standard ds44-selectDisplay" ></div>
-                                    <button type="button" id="button-form-element-modifieur" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false">
+                                    <div id="form-line-element-modifieur" data-name="form-line-element-modifieur" class="ds44-js-select-standard ds44-selectDisplay" ></div>
+                                    <button type="button" id="button-form-line-element-modifieur" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false">
                                         <i class="icon icon-down icon--sizeL" aria-hidden="true"></i>
-                                        <span id="button-message-form-element-modifieur" class="visually-hidden">Modifieur</span>
+                                        <span id="button-message-form-line-element-modifieur" class="visually-hidden">Modifieur</span>
                                     </button>
                                     <button class="ds44-reset" type="button">
                                         <i class="icon icon-cross icon--sizeL" aria-hidden="true"></i>
@@ -130,7 +130,7 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                                 </div>
                                 <div class="ds44-select-container hidden">
                                     <div class="ds44-listSelect">
-                                        <ul class="ds44-list" role="listbox" id="listbox-form-element-modifieur" aria-labelledby="button-message-form-element-modifieur" >
+                                        <ul class="ds44-list" role="listbox" id="listbox-form-line-element-modifieur" aria-labelledby="button-message-form-line-element-modifieur" >
                                             <jalios:foreach name="itModif" type="EModifier" array="<%= EModifier.values() %>">
                                                 <li
                                                     class="ds44-select-list_elem"
@@ -150,9 +150,9 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                             <%--
                             <div class="ds44-form__container">
                                 <div class="ds44-posRel">
-                                    <label for="form-element-70478" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span>Champ standard</span></span></label>
+                                    <label for="form-line-element-70478" class="ds44-formLabel"><span class="ds44-labelTypePlaceholder"><span>Champ standard</span></span></label>
                                     
-                                    <input type="text" id="form-element-70478" name="form-element-70478" value="" class="ds44-inpStd"      />
+                                    <input type="text" id="form-line-element-70478" name="form-line-element-70478" value="" class="ds44-inpStd"      />
                                     
                                     <button class="ds44-reset" type="button"><i class="icon icon-cross icon--sizeL" aria-hidden="true"></i><span class="visually-hidden">Effacer le contenu saisi dans le champ : Champ standard</span></button>
                                 
@@ -160,14 +160,15 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                             </div>
                             data-latence="1000"
                             --%>
-                            <ds:facetteAutoCompletion idFormElement='<%= ServletUtil.generateUniqueDOMId(request, glp("jcmsplugin.socle.facette.form-element")) %>'
-                                name="form-element-text"
+                            <ds:facetteAutoCompletion idFormElement='<%= ServletUtil.generateUniqueDOMId(request, glp("jcmsplugin.socle.facette.form-line-element")) %>'
+                                name="form-line-element-text"
                                 request="<%= request %>"
                                 isFacetteObligatoire='<%= false %>'
                                 dataUrl='<%= "plugins/EspaceCollectionPlugin/jsp/recherche/avancee/acFieldText.jsp?filtre=$parentValue" %>'
                                 label="Une recherche précise, tapez le n° d’inventaire... ou le nom d’une oeuvre."
                                 isLarge="<%= false %>"
-                                dataMode="select-only"/>
+                                dataMode="free-text"/>
+                                <%-- select-only --%>
                         </div>
                         <%-- Btn --%>
                         <div class="ds44-fieldContainer ds44-small-fg1" data-line-add data-no-duplicate>
