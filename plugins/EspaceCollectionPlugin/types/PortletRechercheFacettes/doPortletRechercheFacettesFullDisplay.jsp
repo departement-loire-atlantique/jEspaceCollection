@@ -246,6 +246,10 @@
 		    <jalios:if predicate='<%= HttpUtil.hasParameter(request, "") %>'>
 		      <input type="hidden" name="redirectUrl" value="<%= request.getParameter("redirectUrl") %>" data-technical-field />
 		    </jalios:if>
+            
+            <jalios:if predicate="<%= !isInRechercheFacette %>"><%-- TODO --%>
+              <input type="hidden" name="cids" value="nocommit_7128" data-technical-field />
+            </jalios:if>
 		</form>
 	</div>
 	
