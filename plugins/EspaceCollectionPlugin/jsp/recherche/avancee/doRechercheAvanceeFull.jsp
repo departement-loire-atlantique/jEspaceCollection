@@ -82,7 +82,7 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                     <%-- Ligne --%>
                     <div class="ds44-flex-container ds44--l-padding-b ds44-medium-flex-col" data-duplicate-line>
                         <%-- Field 1 --%>
-                        <div class="ds44-fieldContainer ds44-fg1 ds44-fieldContainer--select">
+                        <div class="ds44-fieldContainer ds44-fg1 ds44-fieldContainer--select ds44-js-linked-fields" data-linked-fields-content=".ds44-js-linked-fields-content-__LINE_DUPLICATE_ID__">
                             <div class="ds44-form__container">
                                 <div class="ds44-select__shape ds44-inpStd">
                                     <p class="ds44-selectLabel" aria-hidden="true">Filtre</p>
@@ -146,7 +146,7 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                             </div>
                         </div>
                         <%-- Field 3 --%>
-                        <div class="ds44-fieldContainer ds44-fg1">
+                        <div class="ds44-fieldContainer ds44-fg1 ds44-js-linked-fields-content-__LINE_DUPLICATE_ID__">
                             <%--
                             <div class="ds44-form__container">
                                 <div class="ds44-posRel">
@@ -167,8 +167,8 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                                 dataUrl='<%= "plugins/EspaceCollectionPlugin/jsp/recherche/avancee/acFieldText.jsp?filtre=$parentValue" %>'
                                 label="Une recherche précise, tapez le n° d’inventaire... ou le nom d’une oeuvre."
                                 isLarge="<%= false %>"
-                                dataMode="free-text"/>
-                                <%-- select-only --%>
+                                dataMode="select-only"/>
+                                <%-- select-only | free-text --%>
                         </div>
                         <%-- Btn --%>
                         <div class="ds44-fieldContainer ds44-small-fg1" data-line-add data-no-duplicate>

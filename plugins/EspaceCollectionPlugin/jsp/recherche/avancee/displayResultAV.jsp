@@ -1,3 +1,8 @@
+<%@page import="java.util.regex.Matcher"%>
+<%@page import="java.util.regex.Pattern"%>
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="java.util.stream.Collector"%>
+<%@page import="okhttp3.internal.annotations.EverythingIsNonNull"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekConst"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.advSearch.NewAdvSearch"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.search.adv.EModifier"%>
@@ -29,7 +34,7 @@ response.setContentType("application/json");
 // Pager
 boolean hasPager = true; //box.getPager();
 Integer pager = getIntParameter("page", 1);
-int maxResult = 20; //box.getMaxResults(); TODO
+int maxResult = 20; //box.getMaxResults(); TODO prop nb result in page
 
 %><%
 String oldIdAdvSearch = Util.getString(session.getAttribute(KeepeekConst.SESSION_ATR_ADV_SEARCH_ID), "");
@@ -38,33 +43,50 @@ String idAdvSearch = "";
 if (pager > 1 && Util.notEmpty(oldIdAdvSearch)) {
     idAdvSearch = oldIdAdvSearch;
 } else {
-    int nbL = getIntParameter("nbL", 1);
+    
+    String regexParamForm = "line\\[([a-zA-Z0-9]*)\\]\\[form-line-element-([a-zA-Z0-9]*)\\]";
+    Pattern patternParamForm = Pattern.compile(regexParamForm);
 
-    // Prefix
-    String sep = "-";
-    String ligne = "L";
-    String fieldFilter = "filter";
-    String fieldText = "field-text";
-    String fieldModifieur = "field-modifieur";
+    // set id lignes
+    HashSet<String> idLignes = new HashSet<>();
+    
+    // find id lignes
+    for(String itParamName : Collections.list(request.getParameterNames())){
+        Matcher matcher = patternParamForm.matcher(itParamName);
+        if (matcher.find()) {
+            idLignes.add(matcher.group(1));
+        }
+    }
+
+    // line[SV9g][form-line-element-filtre]
+    // line[<idLigne>][form-line-element-<idChanp>]
+    String paramFormDef = "line[{0}][form-line-element-{1}]";
 
     KeepeekAdvSearchQuery advSearchQuery = new KeepeekAdvSearchQuery();
 
-    for (int l = 1; l <= nbL; l++) {
-        String filterVal = getStringParameter(fieldFilter + sep + ligne + l, "", ".*");
-        String textVal = getStringParameter(fieldText + sep + ligne + l, "", ".*");
-        String modifVal = getStringParameter(fieldModifieur + sep + ligne + l, "", ".*");
+    for (String idLigne : idLignes) {
+        String paramForLigne = paramFormDef.replace("{0}", idLigne);
+        
+        String filterVal = getStringParameter(paramForLigne.replace("{1}", "filtre"), "", ".*");
+        String textVal = getStringParameter(paramForLigne.replace("{1}", "text"), "", ".*");
+        String modifVal = getStringParameter(paramForLigne.replace("{1}", "modifieur"), "", ".*");
+        
+        Category filterValCat = channel.getCategory(filterVal);
+        Category textValCat = channel.getCategory(textVal);
 
-        if (Util.notEmpty(filterVal)) {
-            String[] filterValSplit = filterVal.split(":");
-            if (filterValSplit.length == 2) {
-                filterVal = filterValSplit[0];
-            } else {
-                filterVal = "";
-            }
+        String filterKey = "";
+        if (Util.notEmpty(filterValCat)) {
+            String[] catSynonym = filterValCat.getSynonyms();
+            filterKey = Util.getFirst(catSynonym);
         }
 
-        if (Util.notEmpty(filterVal) && Util.notEmpty(textVal) && Util.notEmpty(modifVal)) {
-            advSearchQuery.add(filterVal, EModifier.valueOf(modifVal), textVal);
+        String value = "";
+        if (Util.notEmpty(textValCat)) {
+            value = textValCat.getDescription();
+        }
+
+        if (Util.notEmpty(filterKey) && Util.notEmpty(value) && Util.notEmpty(modifVal)) {
+            advSearchQuery.add(filterKey, EModifier.valueOf(modifVal), value);
         }
     }
     if (!advSearchQuery.isEmpty()) {
@@ -80,7 +102,9 @@ if (Util.notEmpty(idAdvSearch)) {
     
     searchResult = KeepeekApiEndPoint.advSearchMedia(idAdvSearch, pager, maxResult);
 
-    collection = searchResult.getEmbeddedResult().getMedias();
+    if(Util.notEmpty(searchResult.getEmbeddedResult())){
+        collection = searchResult.getEmbeddedResult().getMedias();
+    }
 }
 %>
 
