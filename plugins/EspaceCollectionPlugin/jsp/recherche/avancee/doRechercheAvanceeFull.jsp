@@ -40,7 +40,7 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
 %>
 
 
-<div class="ds44-container-large">
+<div class="ds44-container-large rechercheAv">
 
     <%-- <ds:titleNoBanner title="<%= obj.getTitre(userLang) %>" breadcrumb="true"></ds:titleNoBanner> --%>
     <div class="">

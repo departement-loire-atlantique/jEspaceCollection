@@ -1,10 +1,12 @@
 <div class="ds44-lightBG ds44-posRel">
   <div
-    class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt">
+    class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt cd44-header cd44-header-img">
     <div class="ds44-grid12-offset-2">
-				<!-- Fil d'ariane -->
+	  <%-- Fil d'ariane --%>
       <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id"))%>'>
-        <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' />
+        <div class="fil-ariane">
+            <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' />
+        </div>
       </jalios:if>
 
       <h1 class="h1-like">

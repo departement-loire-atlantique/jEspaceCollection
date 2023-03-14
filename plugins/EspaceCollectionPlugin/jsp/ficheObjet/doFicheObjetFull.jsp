@@ -53,35 +53,23 @@ if(Util.isEmpty(obj)){
 }
 
 // Build title
-String title = media.getTitle();
+String titleBuild = media.getTitle();
 
 Metadatum numInvMetadata = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
 String numInv = Util.notEmpty(numInvMetadata) ? numInvMetadata.getValue() : "";
 if(Util.notEmpty(numInv)){
-    title = title.replace(numInv + " ", "");
-    title += " (" + numInv + ")";
+    titleBuild = titleBuild.replace(numInv + " ", "");
+    titleBuild += " (" + numInv + ")";
 }
 %>
 <%@ include file='/front/doFullDisplay.jspf' %>
 <section class="ds44-container-large">
-<%--     <%@ include file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%> --%>
-    <div class="ds44-lightBG ds44-posRel ds44--m-padding-b">
-      <div
-        class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt">
-        <div class="ds44-grid12-offset-2">
-          <!-- Fil d'ariane -->
-          <%
-          request.setAttribute(PortalManager.PORTAL_CURRENTCATEGORY, channel.getCategory("fde_5008"));
-          %>
-          <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id"))%>'>
-            <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' />
-          </jalios:if>
-          <h1 class="h1-like text-capitalize-first">
-            <%= title %>
-          </h1>
-        </div>
-      </div>
-    </div>
+    <%
+    request.setAttribute(PortalManager.PORTAL_CURRENTCATEGORY, channel.getCategory("fde_5008"));
+    request.setAttribute("titleHeader", titleBuild);
+    request.setAttribute("dataInHeaderStr", media.getUpdateDate());
+    %>
+    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%>
 
   <div class="ds44-inner-container ds44-mt3 ds44--l-padding-t">
     <div class="grid-12-small-1">
@@ -466,10 +454,10 @@ if(Util.notEmpty(numInv)){
               <tbody>
 
                 <%
-                Metadatum lieuConservation = KeepeekUtil.getMediaMetadata(media, "lieu_de_conservation");
-                metadatas = lieuConservation;
+                Metadatum visibiliteOeuvre = KeepeekUtil.getMediaMetadata(media, "visibilite_de_loeuvre");
+                metadatas = visibiliteOeuvre;
                 %>
-                <jalios:if predicate="<%=Util.notEmpty(lieuConservation)%>">
+                <jalios:if predicate="<%=Util.notEmpty(visibiliteOeuvre)%>">
                 <tr>
                   <td class="table-detail"><b>Lieu de conservation</b></td>
                   <td class="table-detail">
@@ -490,8 +478,12 @@ if(Util.notEmpty(numInv)){
                   </td>
                 </tr>
                 </jalios:if>
-                
-                <jalios:if predicate='<%=Util.notEmpty("")%>'><%-- TODO --%>
+
+                <%
+                Metadatum lieuConservation = KeepeekUtil.getMediaMetadata(media, "lieu_de_conservation");
+                metadatas = lieuConservation;
+                %>
+                <jalios:if predicate='<%=Util.notEmpty(lieuConservation)%>'>
                 <tr>  
                   <td class="table-detail"><b>Emplacement actuel</b></td>
                   <td class="table-detail">

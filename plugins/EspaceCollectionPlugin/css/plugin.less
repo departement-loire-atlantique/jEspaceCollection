@@ -205,6 +205,28 @@ BODY .ds44-btnStd.ds44-theme {
 }
 
 // ---------------
+// Header Article
+.cd44-header {
+	.fil-ariane + H1 {
+		padding-top: 25px;
+	}
+	H1 {
+		margin-bottom: 17px;
+		font-size: 3.125em;
+	}
+	.ds44-textLegend {
+		margin-bottom: 12px;
+	}
+	
+	&.cd44-header-encart {
+		H1 {
+			margin-bottom: 23px;
+		}
+	}
+	
+}
+
+// ---------------
 // HOME
 .ds44-homepage-container {
 	.ds44-titleContainer--home {
@@ -230,7 +252,7 @@ BODY .ds44-btnStd.ds44-theme {
 
 // ---------------
 // RECHERCHE
-.rechercheFacette {
+.rechercheFacette, .rechercheAv {
 	.ds44-facette .ds44-facette-body {
 
 		// btn selection 
@@ -262,6 +284,12 @@ BODY .ds44-btnStd.ds44-theme {
 			-webkit-box-align: initial;
 			-ms-flex-align: initial;
 			align-items: initial;
+		}
+		
+		// 4 résultats par ligne (mobile 1)
+		.ds44-results .ds44-listResults .ds44-list--results>li {
+			width: 100%;
+			max-width: 100%;
 		}
 	}
 }
