@@ -100,6 +100,10 @@ public class KeepeekGetFilter {
     private Map<Category, Integer> finAllSubRoot() {
         Map<Category, Integer> subRoot = new HashMap<>();
         this.root.getChildrenSet().forEach(itCat -> {
+            String[] synonymes = itCat.getSynonyms();
+            if(synonymes.length >= 2 && "no-sync".equalsIgnoreCase(synonymes[1])) {
+                return;
+            }
             if (Util.notEmpty(itCat.getDescription())) {
                 subRoot.put(itCat, 1);
             } else {
