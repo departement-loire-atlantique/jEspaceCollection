@@ -70,20 +70,6 @@ if(Util.notEmpty(numInv)){
     request.setAttribute("dataInHeaderStr", media.getUpdateDate());
     %>
     <%@ include file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%>
-<!--     <div class="ds44-lightBG ds44-posRel ds44--m-padding-b cd44-header"> -->
-<!--       <div -->
-<!--         class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt"> -->
-<!--         <div class="ds44-grid12-offset-2"> -->
-<!--           Fil d'ariane -->
-<%--           <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id"))%>'> --%>
-<%--             <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' /> --%>
-<%--           </jalios:if> --%>
-<!--           <h1 class="h1-like text-capitalize-first"> -->
-<%--             <%= title %> --%>
-<!--           </h1> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div> -->
 
   <div class="ds44-inner-container ds44-mt3 ds44--l-padding-t">
     <div class="grid-12-small-1">
