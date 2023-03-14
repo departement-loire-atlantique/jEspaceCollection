@@ -42,7 +42,7 @@ FicheCollectionneur obj = (FicheCollectionneur)request.getAttribute(PortalManage
 
           <section class="ds44-box ds44-theme">
             <div class="ds44-innerBoxContainer">
-              <div class="ds44-mb3">
+              <div class="ds44-mb2">
                 <jalios:if predicate="<%= Util.notEmpty(obj.getNom()) %>">
                   <p class="ds44-docListElem mts">
                     <i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
@@ -78,16 +78,6 @@ FicheCollectionneur obj = (FicheCollectionneur)request.getAttribute(PortalManage
                   </a>
                 </jalios:if>
                 
-				        <button data-select-button-id='<%= "search-result-" + obj.getId() %>' 
-                  class='ds44-btnStd ds44-js-select-button <%= (Util.isEmpty(panierSet) || !panierSet.contains(obj.getId())) ? "" : "is-select" %>' 
-                  data-url="plugins/SoclePlugin/jsp/panier/select-enabled.jsp?pubId=<%= obj.getId() %>" 
-                  data-titles='{ "enabled": "<%=glp("jcmsplugin.espaceCollection.objet.tuile.suppr-selection")%>", "disabled": "<%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%>"}' 
-                  data-icons='{ "enabled": "icon-star-full", "disabled": "icon-star-empty"}' 
-                  type="button" 
-                  aria-describedby='card_<%= obj.getId()%>'>
-                  <i class="icon icon-star-empty" data-icon aria-hidden="true"></i>
-                  <span class="ds44-btnInnerText" data-entitled><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
-              </button>
               </div>
 
             </div>
