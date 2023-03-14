@@ -1,6 +1,6 @@
 
-# a sup en prod
-jcmsplugin.socle.css-urls:https://dev-design.loire-atlantique.fr/css/cd44.css https://dev-design.loire-atlantique.fr/css/icons.css
+# "dev-" a sup en prod
+jcmsplugin.socle.css-urls:https://dev-design.loire-atlantique.fr/css/cd44.css https://dev-design.loire-atlantique.fr/css/icons.css plugins/EspaceCollectionPlugin/css/plugin.css
 jcmsplugin.socle.js-urls:https://dev-design.loire-atlantique.fr/js/cd44.js
 
 
@@ -23,9 +23,6 @@ jcmsplugin.socle.js-urls:https://dev-design.loire-atlantique.fr/js/cd44.js
 # channel.less.plugins/{Name}/css/plugin.css:    plugins/{Name}/css/plugin.less
 channel.less.plugins/EspaceCollectionPlugin/css/plugin.css:    plugins/EspaceCollectionPlugin/css/plugin.less
 channel.css.all.200.fo: plugins/EspaceCollectionPlugin/css/plugin.css
-
-# Overide Socle
-jcmsplugin.socle.css-urls:https://design.loire-atlantique.fr/css/cd44.css https://design.loire-atlantique.fr/css/icons.css plugins/EspaceCollectionPlugin/css/plugin.css
 
 jcmsplugin.socle.site.src.logo: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
 jcmsplugin.espaceCollection.site.src.logo-gpla: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
