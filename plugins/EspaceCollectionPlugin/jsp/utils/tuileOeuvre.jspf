@@ -1,3 +1,5 @@
+<% Set<String> panierSet = (Set<String>) session.getAttribute("panier"); %>
+
 <section class="ds44-box ds44-theme">
 	<jalios:if predicate="<%=Util.notEmpty(obj.getGalerieDeVisuels())%>">
 		<%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/imageCarrousel.jspf'%>
@@ -49,10 +51,16 @@
 					</jalios:link>
 				</jalios:if>
 
-				<button class="ds44-btnStd">
-					<i class="icon icon-star-empty" aria-hidden="true"></i> <span
-						class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
-				</button>
+				<button data-select-button-id='<%= "search-result-" + obj.getId() %>' 
+                  class='ds44-btnStd ds44-js-select-button <%= (Util.isEmpty(panierSet) || !panierSet.contains(obj.getId())) ? "" : "is-select" %>' 
+                  data-url="plugins/SoclePlugin/jsp/panier/select-enabled.jsp?pubId=<%= obj.getId() %>" 
+                  data-titles='{ "enabled": "<%=glp("jcmsplugin.espaceCollection.objet.tuile.suppr-selection")%>", "disabled": "<%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%>"}' 
+                  data-icons='{ "enabled": "icon-star-full", "disabled": "icon-star-empty"}' 
+                  type="button" 
+                  aria-describedby='card_<%= obj.getId()%>'>
+                  <i class="icon icon-star-empty" data-icon aria-hidden="true"></i>
+                  <span data-entitled><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
+            </button>
 			</div>
 			<div class="ds44-grid12-offset-1">
 			

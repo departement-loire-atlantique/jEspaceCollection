@@ -78,6 +78,8 @@ FicheCollection obj = (FicheCollection) request.getAttribute(PortalManager.PORTA
 			</div>
 		</div>
 	</section>
+	
+<%@ include file='/plugins/EspaceCollectionPlugin/jsp/carrousel/carrouselCollectionOeuvres.jspf'%>
 <%-- **********4A616C696F73204A434D53 *** SIGNATURE BOUNDARY * DO NOT EDIT ANYTHING BELOW THIS LINE *** --%>
 <%
 

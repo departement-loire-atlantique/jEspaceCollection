@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %><%
 %><%@ include file='/jcore/doInitPage.jspf' %><%
-%><% FicheCollectionneur obj = (FicheCollectionneur)request.getAttribute(PortalManager.PORTAL_PUBLICATION); %><%
+%><% 
+Set<String> panierSet = (Set<String>) session.getAttribute("panier"); 
+
+FicheCollectionneur obj = (FicheCollectionneur)request.getAttribute(PortalManager.PORTAL_PUBLICATION); %><%
 %>
 
 <section class="ds44-container-large">
@@ -74,11 +77,17 @@
                     <i class="icon icon-long-arrow-right" aria-hidden="true"></i>
                   </a>
                 </jalios:if>
-
-                <button class="ds44-btnStd"> 
-                  <i class="icon icon-star-empty" aria-hidden="true"></i>
-                  <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
-                </button>
+                
+				        <button data-select-button-id='<%= "search-result-" + obj.getId() %>' 
+                  class='ds44-btnStd ds44-js-select-button <%= (Util.isEmpty(panierSet) || !panierSet.contains(obj.getId())) ? "" : "is-select" %>' 
+                  data-url="plugins/SoclePlugin/jsp/panier/select-enabled.jsp?pubId=<%= obj.getId() %>" 
+                  data-titles='{ "enabled": "<%=glp("jcmsplugin.espaceCollection.objet.tuile.suppr-selection")%>", "disabled": "<%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%>"}' 
+                  data-icons='{ "enabled": "icon-star-full", "disabled": "icon-star-empty"}' 
+                  type="button" 
+                  aria-describedby='card_<%= obj.getId()%>'>
+                  <i class="icon icon-star-empty" data-icon aria-hidden="true"></i>
+                  <span class="ds44-btnInnerText" data-entitled><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
+              </button>
               </div>
 
             </div>

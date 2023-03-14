@@ -5,6 +5,7 @@
 if (data == null) {
   return;
 }
+Set<String> panierSet = (Set<String>) session.getAttribute("panier"); 
 
 FicheCollectionneur obj = (FicheCollectionneur) data;
 %>
@@ -18,8 +19,19 @@ FicheCollectionneur obj = (FicheCollectionneur) data;
       
       <div class="ds44-card__section ">
         <p class="ds44-cardSelect pa0 ma0">
-            <button class="pas" type="button" aria-describedby="cs6" title="Sélectionner Confort service"><i class="icon icon-star-empty" aria-hidden="true"></i><span class="visually-hidden">Sélection</span></button>
+            <button data-select-button-id='<%= "search-result-" + obj.getId() %>' 
+                  class='ds44-js-select-button <%= (Util.isEmpty(panierSet) || !panierSet.contains(obj.getId())) ? "" : "is-select" %>' 
+                  data-url="plugins/SoclePlugin/jsp/panier/select-enabled.jsp?pubId=<%= obj.getId() %>" 
+                  data-titles='{ "enabled": "Deselectionner <%= obj.getTitle() %>", "disabled": "Selectionner <%= obj.getTitle() %>"}' 
+                  data-icons='{ "enabled": "icon-star-full", "disabled": "icon-star-empty"}' 
+                  type="button" 
+                  aria-describedby='card_<%= obj.getId()%>'>
+                  <i class="icon icon-star-empty" data-icon aria-hidden="true"></i>
+                  <span class="visually-hidden" data-entitled><%= glp("jcmsplugin.socle.selectionner") %></span>
+            </button>
         </p>
+        
+     
         <div class="ds44-innerBoxContainer">
             <p role="heading" aria-level="2" class="ds44-card__title">
               <jalios:link data="<%= obj %>" css="ds44-card__globalLink">

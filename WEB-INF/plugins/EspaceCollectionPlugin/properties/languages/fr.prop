@@ -8,8 +8,12 @@ jcmsplugin.espaceCollection.btn.valider: Valider
 jcmsplugin.espaceCollection.btn.telecharger: Télécharger
 jcmsplugin.espaceCollection.btn.mail: Pour en savoir plus
 
+jcmsplugin.espaceCollection.favoris.find: Retrouvez ici la liste de vos favoris
+jcmsplugin.espaceCollection.favoris.allSuppr: Tout retirer de ma sélection
+
 jcmsplugin.espaceCollection.objet.tuile.retrouvez: Retrouvez cet objet :
-jcmsplugin.espaceCollection.objet.tuile.ajout-selection: Ajouter à ma selection
+jcmsplugin.espaceCollection.objet.tuile.ajout-selection: Ajouter à ma sélection
+jcmsplugin.espaceCollection.objet.tuile.suppr-selection: Supprimer de ma sélection
 jcmsplugin.espaceCollection.objet.tuile.fiche-bdd: Accéder à la fiche base de données
 jcmsplugin.espaceCollection.objet.tuile.fiche-media: Accéder à la fiche médiatisée
 jcmsplugin.espaceCollection.objet.tuile.telecharger.pdf: Télécharger la fiche
@@ -48,6 +52,10 @@ jcmsplugin.espaceCollection.modal.images.hd.title :Pour toute demande de photogr
 jcmsplugin.espaceCollection.modal.images.hd.click :cliquez ici
 
 jcmsplugin.espaceCollection.carrousel.oeuvre-incontournables.title: Oeuvres en relation
+jcmsplugin.espaceCollection.carrousel.collectionneur.title: Quelques oeuvres phares de sa collection
+jcmsplugin.espaceCollection.carrousel.collectionneur.subtitle: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
+jcmsplugin.espaceCollection.carrousel.collection.title: Rechercher dans ce département
+jcmsplugin.espaceCollection.carrousel.collection.subtitle: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
 
 # Edition Module
 jcmsplugin.espaceCollection.portlet-liste-collections: Portlet Liste collectionneurs

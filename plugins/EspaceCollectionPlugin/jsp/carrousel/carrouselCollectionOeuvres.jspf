@@ -1,0 +1,29 @@
+<%@ taglib prefix="ds" tagdir="/WEB-INF/tags"%>
+<%
+String cssSliderSize = "grid-4-small-1";
+String sliderAmounts = "4";
+String template = "card";
+String titreBloc = glp("jcmsplugin.espaceCollection.carrousel.collection.title");
+String sousTitreBloc = glp("jcmsplugin.espaceCollection.carrousel.collection.subtitle");
+int collectionSize = Util.notEmpty(obj.getOeuvresLiees()) ? obj.getOeuvresLiees().length : 0;
+
+if(Util.notEmpty(obj.getCollection(loggedMember))) {
+    for(Category itCategory: obj.getCollection(loggedMember)) {
+        request.setAttribute("rechercheFilterId", itCategory.getId());
+        request.setAttribute("rechercheFilterName", "cidsform-element-por_5166por_5198");
+    }
+}
+%>
+
+<jalios:if predicate="<%= Util.notEmpty(obj.getOeuvresLiees()) || true%>"><%-- TODO --%>
+  <jalios:buffer name="tuilesResult">
+      <jalios:foreach array="<%= obj.getOeuvresLiees() %>" type="FicheObjetBaseDeDonnees" name="itPub">
+          <li class="swiper-slide">
+              <jalios:media data="<%= itPub %>" template="<%= template %>"/>
+          </li>
+      </jalios:foreach>
+  </jalios:buffer>
+
+  <%@ include file="/plugins/EspaceCollectionPlugin/jsp/carrousel/carrouselBoxDisplaySearch.jspf"%>
+
+</jalios:if>
