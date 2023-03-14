@@ -39,11 +39,11 @@ if (Util.notEmpty(collection)) {
 		          
 		        </ul>
 		    </div>
-		    <button class="swiper-button-prev swiper-button-disabled" type="button">
+		    <button class="swiper-button-prev swiper-button-disabled btn-swipper" type="button">
 		        <i class="icon icon-left" aria-hidden="true"></i>
 		        <span class="visually-hidden"></span>
 		    </button>
-		    <button class="swiper-button-next swiper-button-disabled" type="button">
+		    <button class="swiper-button-next swiper-button-disabled btn-swipper" type="button">
 		        <i class="icon icon-right" aria-hidden="true"></i>
 		        <span class="visually-hidden"></span>
 		    </button>

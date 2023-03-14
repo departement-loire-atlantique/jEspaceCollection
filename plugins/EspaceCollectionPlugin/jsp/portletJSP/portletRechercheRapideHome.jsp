@@ -39,15 +39,15 @@
                     </button>
                 </div>
             </div>
-            <button type="submit" class="ds44-fullWBtn ds44-btnStd ds44-btn--contextual"
+            <button type="submit" class="ds44-btnStd ds44-bntFullw ds44-bntALeft ds44-btn--contextual"
                 title="Valider votre recherche" data-submit-key="op" data-submit-value="recherche">
                 <span class="ds44-btnInnerText">Rechercher</span><i
                     class="icon icon-long-arrow-right"
                     aria-hidden="true"></i>
             </button>
-            <button type="submit" class="ds44-fullWBtn ds44-btnStd--tag"
+            <button type="submit" class="btn-font-size ds44-fullWBtn ds44-btnStd--tag"
                 title="Valider votre recherche avancé" data-submit-key="op" data-submit-value="RechercheAV">
-                <span class="ds44-btnInnerText">Recherche avancée</span>
+                <a class="ds44-btnInnerText">Recherche avancée</a>
             </button>
         </form>
     </section>
