@@ -53,35 +53,37 @@ if(Util.isEmpty(obj)){
 }
 
 // Build title
-String title = media.getTitle();
+String titleBuild = media.getTitle();
 
 Metadatum numInvMetadata = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
 String numInv = Util.notEmpty(numInvMetadata) ? numInvMetadata.getValue() : "";
 if(Util.notEmpty(numInv)){
-    title = title.replace(numInv + " ", "");
-    title += " (" + numInv + ")";
+    titleBuild = titleBuild.replace(numInv + " ", "");
+    titleBuild += " (" + numInv + ")";
 }
 %>
 <%@ include file='/front/doFullDisplay.jspf' %>
 <section class="ds44-container-large">
-<%--     <%@ include file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%> --%>
-    <div class="ds44-lightBG ds44-posRel ds44--m-padding-b">
-      <div
-        class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt">
-        <div class="ds44-grid12-offset-2">
-          <!-- Fil d'ariane -->
-          <%
-          request.setAttribute(PortalManager.PORTAL_CURRENTCATEGORY, channel.getCategory("fde_5008"));
-          %>
-          <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id"))%>'>
-            <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' />
-          </jalios:if>
-          <h1 class="h1-like text-capitalize-first">
-            <%= title %>
-          </h1>
-        </div>
-      </div>
-    </div>
+    <%
+    request.setAttribute(PortalManager.PORTAL_CURRENTCATEGORY, channel.getCategory("fde_5008"));
+    request.setAttribute("titleHeader", titleBuild);
+    request.setAttribute("dataInHeaderStr", media.getUpdateDate());
+    %>
+    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%>
+<!--     <div class="ds44-lightBG ds44-posRel ds44--m-padding-b cd44-header"> -->
+<!--       <div -->
+<!--         class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt"> -->
+<!--         <div class="ds44-grid12-offset-2"> -->
+<!--           Fil d'ariane -->
+<%--           <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id"))%>'> --%>
+<%--             <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' /> --%>
+<%--           </jalios:if> --%>
+<!--           <h1 class="h1-like text-capitalize-first"> -->
+<%--             <%= title %> --%>
+<!--           </h1> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
 
   <div class="ds44-inner-container ds44-mt3 ds44--l-padding-t">
     <div class="grid-12-small-1">
