@@ -63,7 +63,6 @@ if(Util.notEmpty(numInv)){
 }
 %>
 <%@ include file='/front/doFullDisplay.jspf' %>
-
 <section class="ds44-container-large">
 <%--     <%@ include file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%> --%>
     <div class="ds44-lightBG ds44-posRel ds44--m-padding-b">
@@ -611,7 +610,7 @@ if(Util.notEmpty(numInv)){
                 <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
               </button>
               
-              <%@ include file='/plugins/EspaceCollectionPlugin/jsp/modal/modalToutesLesImages.jspf'%>
+              <%@ include file='/plugins/EspaceCollectionPlugin/jsp/modal/modalToutesLesImagesDetails.jspf'%>
             </div>
           </section>
         </section>
