@@ -43,7 +43,7 @@ if(box.getLienInterne() instanceof CarouselElement) {
     </header>
 
     <div class="ds44-mobile-extra-smt">
-	    <div class="mod--hidden ds44-list swipper-carousel-wrap ds44-posRel ds44-container-large" data-nb-visible-slides="5" data-mobile-only="true">
+	    <div class="mod--hidden ds44-list swipper-carousel-wrap ds44-posRel ds44-container-large" data-nb-visible-slides="3" data-mobile-only="true">
 		    <div class="swiper-container">
 		        <ul class="swiper-wrapper ds44-list grid-3-small-1 has-gutter-l ds44-carousel-swiper">
 		            <jalios:foreach name="itContent" type="Content" collection="<%= allContents %>" max="<%= box.getMaxResults() %>">
@@ -53,11 +53,11 @@ if(box.getLienInterne() instanceof CarouselElement) {
 		            </jalios:foreach>
 		        </ul>
 		    </div>
-		    <button class="swiper-button-prev swiper-button-disabled" type="button">
+		    <button class="swiper-button-prev swiper-button-disabled black-btn-swiper" type="button">
 		        <i class="icon icon-left" aria-hidden="true"></i>
 		        <span class="visually-hidden"></span>
 		    </button>
-		    <button class="swiper-button-next swiper-button-disabled" type="button">
+		    <button class="swiper-button-next swiper-button-disabled black-btn-swiper" type="button">
 		        <i class="icon icon-right" aria-hidden="true"></i>
 		        <span class="visually-hidden"></span>
 		    </button>
