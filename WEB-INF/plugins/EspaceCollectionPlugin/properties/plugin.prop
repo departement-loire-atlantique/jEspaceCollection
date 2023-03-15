@@ -32,6 +32,8 @@ jcmsplugin.espaceCollection.image.src.cube-3d: plugins/EspaceCollectionPlugin/im
 
 fr.jcmsplugin.seo.meta-title: Espace collection
 
+$id.plugin.socle.page-principale.cat: por_7250
+
 # Keepeek
 jcmsplugin.espacecollection.keepeek.url: https://dam-gpla.loire-atlantique.fr/
 jcmsplugin.espacecollection.keepeek.login:
