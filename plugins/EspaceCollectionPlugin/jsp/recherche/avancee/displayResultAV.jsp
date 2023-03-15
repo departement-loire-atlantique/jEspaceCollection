@@ -1,3 +1,4 @@
+<%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekUtil"%>
 <%@page import="java.util.regex.Matcher"%>
 <%@page import="java.util.regex.Pattern"%>
 <%@page import="java.util.stream.Collectors"%>
@@ -34,7 +35,7 @@ response.setContentType("application/json");
 // Pager
 boolean hasPager = true; //box.getPager();
 Integer pager = getIntParameter("page", 1);
-int maxResult = 20; //box.getMaxResults(); TODO prop nb result in page
+int maxResult = KeepeekUtil.getNbResultsByPage(); //box.getMaxResults();
 
 %><%
 String oldIdAdvSearch = Util.getString(session.getAttribute(KeepeekConst.SESSION_ATR_ADV_SEARCH_ID), "");

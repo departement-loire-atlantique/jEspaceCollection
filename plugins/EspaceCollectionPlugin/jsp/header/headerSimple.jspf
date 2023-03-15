@@ -12,12 +12,14 @@ if(Util.isEmpty(title)){
 }
 String dataInHeaderStr = Util.getString(request.getAttribute("dataInHeaderStr"), "");
 Date dataInHeader = Util.notEmpty(obj) ? obj.getUdate() : null;
-try {
-//     dataInHeader = LocalDateTime.parse(dataInHeaderStr);
-    OffsetDateTime offsetDateTime = OffsetDateTime.parse(dataInHeaderStr);
-    dataInHeader = new Date(dataInHeader.toInstant().toEpochMilli());
-} catch(DateTimeParseException ex) {
-    logger.error(ex);
+if(Util.notEmpty(dataInHeaderStr)){
+    try {
+    //     dataInHeader = LocalDateTime.parse(dataInHeaderStr);
+        OffsetDateTime offsetDateTime = OffsetDateTime.parse(dataInHeaderStr);
+        dataInHeader = new Date(offsetDateTime.toInstant().toEpochMilli());
+    } catch(DateTimeParseException ex) {
+        logger.error(ex, ex);
+    }
 }
 %>
 <div class="ds44-lightBG ds44-posRel ds44--m-padding-b cd44-header">

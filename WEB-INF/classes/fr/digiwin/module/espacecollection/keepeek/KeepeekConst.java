@@ -8,4 +8,6 @@ public abstract class KeepeekConst {
     
     public static final String SESSION_ATR_ADV_SEARCH_ID = "jcmsplugin.espacecollection.recherche.adv.id";
     
+    public static final String NB_RESULT_BY_PAGE_PROP = "jcmsplugin.espacecollection.recherche.result.by.page";
+    
 }
