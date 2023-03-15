@@ -57,10 +57,38 @@ jcmsplugin.espaceCollection.carrousel.collectionneur.subtitle: Lorem ipsum dolor
 jcmsplugin.espaceCollection.carrousel.collection.title: Rechercher dans ce département
 jcmsplugin.espaceCollection.carrousel.collection.subtitle: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
 
+jcmsplugin.espaceCollection.contact.title: Nous contacter
+jcmsplugin.espaceCollection.contact.subtitle: Une réponse vous sera faite par mail (proposition de rendez-vous au centre de ressources ou envoi de l’information).
+jcmsplugin.espaceCollection.contact.conditions-utilisation.lu: J’accepte les
+jcmsplugin.espaceCollection.contact.conditions-utilisation.conditions: conditions générales d'utilisation
+jcmsplugin.espaceCollection.contact.reglementation: RÈGLEMENTATION EUROPÉENNE – PROTECTION DES DONNÉES PERSONNELLES Le Département de Loire-Atlantique en sa qualité de responsable du traitement, collecte vos données à caractère personnel. Vous disposez d’un droit d’accès, de rectification ou d’effacement de vos données, de limitation ou d’opposition au traitement et du droit à la portabilité. L’exercice de ces droits se fait auprès du Délégué à la protection des données, par courriel à dpd@loire-atlantique.fr ou par courrier adressé au 3 Quai Ceineray, CS 94109, 44041 Nantes Cedex 1. Vous avez le droit d’introduire une réclamation auprès de l’autorité de contrôle (CNIL - 3 Place de Fontenoy - TSA 80715 - 75334 PARIS CEDEX 07 - 
+jcmsplugin.espaceCollection.contact.onglet.phototheque: La photothèque
+jcmsplugin.espaceCollection.contact.onglet.documentation: La documentation
+jcmsplugin.espaceCollection.contact.onglet.bibliotheque: La bibliothèque
+jcmsplugin.espaceCollection.contact.onglet.conservation: La conservation
+jcmsplugin.espaceCollection.contact.title.phototheque: Contactez la photothèque
+jcmsplugin.espaceCollection.contact.title.documentation: Contactez la documentation
+jcmsplugin.espaceCollection.contact.title.bibliotheque: Contactez la bibliothèque
+jcmsplugin.espaceCollection.contact.title.conservation: Contactez la conservation
+jcmsplugin.espaceCollection.contact.champs.orga: Organisme/Institution de rattachement
+jcmsplugin.espaceCollection.contact.champs.recherche: Type de recherche
+jcmsplugin.espaceCollection.contact.champs.utilisation: Utilisation envisagée
+jcmsplugin.espaceCollection.contact.champs.inv: Numéro d’inventaire de l’œuvre
+jcmsplugin.espaceCollection.contact.champs.media: Identifiant média
+jcmsplugin.espaceCollection.contact.champs.autre: Autre demande
+jcmsplugin.espaceCollection.contact.champs.objet: Objet de la demande
+jcmsplugin.espaceCollection.contact.champs.livre: Livre
+jcmsplugin.espaceCollection.contact.champs.periodique: Périodique ou revue
+jcmsplugin.espaceCollection.contact.champs.recherche.opt1: Recherche professionnelle
+jcmsplugin.espaceCollection.contact.champs.recherche.opt2: Recherche universitaire
+jcmsplugin.espaceCollection.contact.champs.recherche.opt3: Recherche personnelle
+jcmsplugin.espaceCollection.contact.champs.recherche.opt4: Autres 
+
 # Edition Module
-jcmsplugin.espaceCollection.portlet-liste-collections: Portlet Liste collectionneurs
+jcmsplugin.espaceCollection.portlet-liste-collections: Portlet Liste collections
 jcmsplugin.espaceCollection.portlet-liste-collectionneurs: Portlet Liste collectionneurs
 jcmsplugin.espaceCollection.portlet-liste-objet-incontournables: Portlet Objet incontournables
+jcmsplugin.espaceCollection.portlet-contact: Portlet Contact
 
 jcmsplugin.espaceCollection.portlet-liste-collectionneurs.title-main-tuile: Texte tuile mise en avant page liste collectionneurs
 

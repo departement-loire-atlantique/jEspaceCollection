@@ -69,6 +69,7 @@ media.data-template.card-horizontale.FicheCollection: /plugins/EspaceCollectionP
 
 
 # Portlet ref
+jcmsplugin.espaceCollection.portlet-contact.chooser-publication: oga_7255
 jcmsplugin.espaceCollection.portlet-liste-collections.chooser-publication: oga_5167
 jcmsplugin.espaceCollection.portlet-liste-collectionneurs.chooser-publication: oga_5177
 jcmsplugin.espaceCollection.portlet-liste-objet-incontournables.chooser-publication: oga_5185
