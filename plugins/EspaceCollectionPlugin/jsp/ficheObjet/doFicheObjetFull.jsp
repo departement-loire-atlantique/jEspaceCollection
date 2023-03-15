@@ -453,11 +453,11 @@ if(Util.notEmpty(numInv)){
             <table>
               <tbody>
 
-                <%
-                Metadatum visibiliteOeuvre = KeepeekUtil.getMediaMetadata(media, "visibilite_de_loeuvre");
-                metadatas = visibiliteOeuvre;
+              <%
+                Metadatum lieuConservation = KeepeekUtil.getMediaMetadata(media, "lieu_de_conservation");
+                metadatas = lieuConservation;
                 %>
-                <jalios:if predicate="<%=Util.notEmpty(visibiliteOeuvre)%>">
+                <jalios:if predicate="<%=Util.notEmpty(lieuConservation)%>">
                 <tr>
                   <td class="table-detail"><b>Lieu de conservation</b></td>
                   <td class="table-detail">
@@ -480,10 +480,10 @@ if(Util.notEmpty(numInv)){
                 </jalios:if>
 
                 <%
-                Metadatum lieuConservation = KeepeekUtil.getMediaMetadata(media, "lieu_de_conservation");
-                metadatas = lieuConservation;
-                %>
-                <jalios:if predicate='<%=Util.notEmpty(lieuConservation)%>'>
+                Metadatum visibiliteOeuvre = KeepeekUtil.getMediaMetadata(media, "visibilite_de_loeuvre");
+                metadatas = visibiliteOeuvre;
+                %>  
+                <jalios:if predicate='<%=Util.notEmpty(visibiliteOeuvre)%>'>
                 <tr>  
                   <td class="table-detail"><b>Emplacement actuel</b></td>
                   <td class="table-detail">
