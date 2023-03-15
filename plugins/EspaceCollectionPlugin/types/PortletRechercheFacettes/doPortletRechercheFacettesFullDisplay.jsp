@@ -34,7 +34,6 @@
 	request.setAttribute("rechercheId", obj.getId());
 %>
 
-
 <div class="ds44-container-large rechercheFacette">
 
 <jalios:if predicate="<%= isInRechercheFacette %>">
@@ -240,12 +239,15 @@
 			</jalios:if>
 			
 			<%@ include file='/plugins/SoclePlugin/types/PortletRechercheFacettes/doSearchHiddenParams.jspf' %>
-		
-	
 		    
 		    <jalios:if predicate='<%= HttpUtil.hasParameter(request, "") %>'>
 		      <input type="hidden" name="redirectUrl" value="<%= request.getParameter("redirectUrl") %>" data-technical-field />
 		    </jalios:if>
+            
+            <jalios:if predicate="<%= !isInRechercheFacette %>"><%-- TODO --%>
+            	<input type="hidden" name="<%= request.getAttribute("rechercheFilterName") %>" value="<%= request.getAttribute("rechercheFilterId") %>" data-technical-field />
+            	<%-- <input type="hidden" name="<%= request.getAttribute("rechercheFilterName") + "[text]"  %>" value="<%= channel.getCategory(Util.getString(request.getAttribute("rechercheFilterId"), "")).getName() %>" data-technical-field /> --%>
+						</jalios:if>
 		</form>
 	</div>
 	
@@ -336,6 +338,8 @@
 
 <% 
 request.removeAttribute("rechercheId");
+request.removeAttribute("rechercheFilterId");
+request.removeAttribute("rechercheFilterName");
 %>
 <jalios:javascript>
 MiscEvent.addListener('click', ()=>{

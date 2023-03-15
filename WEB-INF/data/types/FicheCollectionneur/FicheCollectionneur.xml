@@ -22,7 +22,7 @@
     <field name="dateDeMort" editor="date" required="false" compactDisplay="false" type="java.util.Date" future="true" past="true" dateOnly="false" dateFormat="short">
       <label xml:lang="fr">Date de mort</label>
     </field>
-    <field name="domaine" editor="category" required="false" compactDisplay="false" type="java.util.TreeSet" chooser="tree" exclusive="false" root="fde_5050">
+    <field name="domaine" editor="category" required="false" compactDisplay="false" type="java.util.TreeSet" chooser="tree" exclusive="false" root="fde_5036" ml="false" descriptionType="tooltip" searchable="false" html="false" checkHtml="true" displayRoot="false">
       <label xml:lang="fr">Domaine</label>
     </field>
     <field name="documentTelechargeable" editor="url" required="false" compactDisplay="false" type="String" searchable="true" size="80" ml="true" openWindow="false">
@@ -30,6 +30,9 @@
     </field>
     <field name="ressourcesAssociees" editor="link" required="false" compactDisplay="false" type="generated.FicheObjetBaseDeDonnees[]">
       <label xml:lang="fr">Ressources associées</label>
+    </field>
+    <field name="collectionneur" editor="category" required="false" compactDisplay="false" type="java.util.TreeSet" chooser="tree" exclusive="true" root="por_5181">
+      <label xml:lang="fr">Collectionneur</label>
     </field>
   </fields>
 </type>

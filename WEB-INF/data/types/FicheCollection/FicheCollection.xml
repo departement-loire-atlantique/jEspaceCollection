@@ -25,6 +25,12 @@
     <field name="mail" editor="email" required="false" compactDisplay="false" type="String" searchable="true" size="50" ml="true">
       <label xml:lang="fr">Mail</label>
     </field>
+    <field name="oeuvresLiees" editor="link" required="false" compactDisplay="false" type="generated.FicheObjetBaseDeDonnees[]">
+      <label xml:lang="fr">Oeuvres liées</label>
+    </field>
+    <field name="collection" editor="category" required="false" compactDisplay="false" type="java.util.TreeSet" chooser="tree" exclusive="true" root="por_5178" ml="false" descriptionType="tooltip" searchable="false" html="false" checkHtml="true" displayRoot="false">
+      <label xml:lang="fr">Collection</label>
+    </field>
   </fields>
 </type>
 

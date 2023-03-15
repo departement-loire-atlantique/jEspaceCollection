@@ -6,7 +6,14 @@ String template = "card";
 String titreBloc = glp("jcmsplugin.espaceCollection.carrousel.collectionneur.title");
 String sousTitreBloc = glp("jcmsplugin.espaceCollection.carrousel.collectionneur.subtitle");
 int collectionSize = Util.notEmpty(obj.getRessourcesAssociees()) ? obj.getRessourcesAssociees().length : 0;
-%>
+
+if(Util.notEmpty(obj.getCollectionneur(loggedMember))) {
+    for(Category itCategory: obj.getCollectionneur(loggedMember)) {
+        request.setAttribute("rechercheFilterId", itCategory.getId());
+        request.setAttribute("rechercheFilterName", "cidsform-element-por_5166por_5199");
+    }
+}
+%> 
 
 <jalios:if predicate="<%= Util.notEmpty(obj.getRessourcesAssociees()) || true%>"><%-- TODO --%>
   <jalios:buffer name="tuilesResult">

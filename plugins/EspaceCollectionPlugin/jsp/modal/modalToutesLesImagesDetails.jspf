@@ -1,9 +1,9 @@
 <%@page import="fr.digiwin.module.espacecollection.exportZip.ExportZip"%>
+<jalios:if predicate="<%= Util.notEmpty(obj) && Util.notEmpty(obj.getGalerieDeVisuels()) %>">
+
 <% 
 session.setAttribute("idObjet", String.valueOf(obj.getId())); 
 %>
-
-<jalios:if predicate="<%= Util.notEmpty(obj.getGalerieDeVisuels()) %>">
   <%-- BUTTON --%>
   <button  type="button" data-target="#overlay-images-all" data-js="ds44-modal">
     <span class="ds44-btnInnerText ">
@@ -17,21 +17,21 @@ session.setAttribute("idObjet", String.valueOf(obj.getId()));
       <div class="ds44-modal-box">
           <button class="ds44-btnOverlay--modale ds44-btnOverlay--closeOverlay" type="button" title="Fermer la boîte de dialogue : [titre de la modale]" data-js="ds44-modal-action-close"><i class="icon icon-cross icon--xlarge" aria-hidden="true"></i><span class="ds44-btnInnerText--bottom">Fermer</span></button>
               
-          <form role="search" method="post" action="plugins/EspaceCollectionPlugin/jsp/modal/downloadZipBDD.jsp">
+          <form method="GET" action="plugins/EspaceCollectionPlugin/jsp/modal/downloadZipBDD.jsp" id="formImages">
             <div class="ds44-modal-gab">
               <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/imageCredits.jspf'%>
               
-              <p class="ds44-mtb2">
-                <%=glp("jcmsplugin.espaceCollection.btn.telecharger")%> :
-                <span class=ds44-mlr1>
-                  <input type="radio" class="checkbox-pos" name="telechargerImage" value="0">
-                  <label><%=glp("jcmsplugin.espaceCollection.modal.images.telecharger.image")%></label>
-                </span>
-                <span class=ds44-mlr1>
-                  <input type="radio" class="checkbox-pos" name="telechargerImage" value="1">
-                  <label><%=glp("jcmsplugin.espaceCollection.modal.images.telecharger.toutes-images")%></label>
-                </span>
-              </p>  
+                <div id="form-element-34807" data-name="telechargerImage" class="ds44-form__radio_container ds44-form__container form-radio"  data-required="true">
+                  <p class="ds44-mr-std"><%=glp("jcmsplugin.espaceCollection.btn.telecharger")%> :</p>
+                  <div class="ds44-form__container ds44-checkBox-radio_list ">
+                    <input type="radio" name="telechargerImage" value="0" id="label-radio-form-element-img" class="ds44-radio" required  aria-describedby="mandatory-message-form-element-img" />
+                    <label id="label-radio-form-element-img" for="label-radio-form-element-img" class="ds44-radioLabel"><%=glp("jcmsplugin.espaceCollection.modal.images.telecharger.image")%></label>
+                  </div> 
+                  <div class="ds44-form__container ds44-checkBox-radio_list ">
+                    <input type="radio" name="telechargerImage" value="1" id="label-radio-form-element-all-img" class="ds44-radio" required  aria-describedby="mandatory-message-form-element-all-img" />
+                    <label id="label-radio-form-element-all-img" for="label-radio-form-element-all-img" class="ds44-radioLabel"><%=glp("jcmsplugin.espaceCollection.modal.images.telecharger.toutes-images")%></label>
+                  </div> 
+                </div>
 
               <p class="ds44-mb2">
                 <input class="checkbox-pos" type="checkbox" onchange="document.getElementById('imagesTelecharger').disabled = !this.checked;">
@@ -40,12 +40,16 @@ session.setAttribute("idObjet", String.valueOf(obj.getId()));
                 <%=glp("jcmsplugin.espaceCollection.modal.images.conditions-utilisation.site")%>
               </p>  
 
-              <button type="submit" class="ds44-btnStd ds44-btn--contextual ds44-mb1" id="imagesTelecharger" disabled>
+              <button type="submit" class="ds44-btnStd ds44-btn--contextual ds44-mb1" id="imagesTelecharger"  data-js="ds44-modal-action-close" disabled>
                 <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.btn.telecharger")%></span>
                 <i class="icon icon-long-arrow-right" aria-hidden="true"></i>
               </button>
 
-              <p><%=glp("jcmsplugin.espaceCollection.modal.images.hd.title")%> <a><%=glp("jcmsplugin.espaceCollection.modal.images.hd.click")%></a></p>
+              <p><%=glp("jcmsplugin.espaceCollection.modal.images.hd.title")%> 
+                <jalios:link id='<%= channel.getProperty("jcmsplugin.espaceCollection.portlet-contact") %>'>
+                  <%=glp("jcmsplugin.espaceCollection.modal.images.hd.click")%>
+                </jalios:link>
+              </p>
             </div>
           </form>
       </div>

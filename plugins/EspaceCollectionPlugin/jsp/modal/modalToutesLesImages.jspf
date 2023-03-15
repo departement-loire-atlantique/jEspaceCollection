@@ -33,7 +33,11 @@ session.setAttribute("idObjet", String.valueOf(obj.getId()));
                 <i class="icon icon-long-arrow-right" aria-hidden="true"></i>
               </button>
 
-              <p><%=glp("jcmsplugin.espaceCollection.modal.images.hd.title")%> <a><%=glp("jcmsplugin.espaceCollection.modal.images.hd.click")%></a></p>
+              <p><%=glp("jcmsplugin.espaceCollection.modal.images.hd.title")%> 
+                <jalios:link id='<%= channel.getProperty("jcmsplugin.espaceCollection.portlet-contact") %>'>
+                  <%=glp("jcmsplugin.espaceCollection.modal.images.hd.click")%>
+                </jalios:link>
+              </p>
             </div>
           </form>
       </div>

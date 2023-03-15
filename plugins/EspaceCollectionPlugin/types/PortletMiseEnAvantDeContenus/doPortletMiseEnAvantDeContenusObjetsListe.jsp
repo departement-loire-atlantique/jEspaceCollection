@@ -30,7 +30,7 @@ String headerSubTitle = box.getTitreVisuel();
 	<section class="ds44-container-fluid ds44--xxl-padding-tb">
 
 			<div class="ds44-mobile-extra-smt">
-				<div class="mod--hidden ds44-list swipper-carousel-wrap ds44-posRel ds44-container-large" data-nb-visible-slides="5" data-mobile-only="true">
+				<div class="mod--hidden ds44-list swipper-carousel-wrap ds44-posRel ds44-container-large" data-nb-visible-slides="3" data-mobile-only="true">
 					<div class="swiper-container">
 							<ul class="swiper-wrapper ds44-list grid-3-small-1 has-gutter-l ds44-carousel-swiper">
 									<jalios:foreach name="itContent" type="Content" collection="<%= allContents %>" max="<%= box.getMaxResults() %>">

@@ -1,3 +1,4 @@
+<%@page import="com.jalios.jcms.handler.QueryHandler"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Metadatum"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekUtil"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Media"%>
@@ -37,27 +38,38 @@ if(pub instanceof FicheObjetBaseDeDonnees){
 }
 
 if(Util.isEmpty(obj)){
-    obj = null; // TODO get with idKeepeek
+    QueryHandler ficheObjetQH = new QueryHandler();
+    ficheObjetQH.setLoggedMember(loggedMember);
+    ficheObjetQH.setTypes(new String[] { FicheObjetBaseDeDonnees.class.getName() } );
+    ficheObjetQH.setMode(QueryHandler.TEXT_MODE_ADVANCED);
+    ficheObjetQH.setText("numeroDinventaire:"+idKeepeek);
+    
+    Set<Publication> result = ficheObjetQH.getResultSet();
+    
+    if(Util.notEmpty(result)){
+        obj = (FicheObjetBaseDeDonnees) Util.getFirst(result);
+        request.setAttribute(PortalManager.PORTAL_PUBLICATION, obj);
+    }
+}
+
+// Build title
+String titleBuild = media.getTitle();
+
+Metadatum numInvMetadata = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
+String numInv = Util.notEmpty(numInvMetadata) ? numInvMetadata.getValue() : "";
+if(Util.notEmpty(numInv)){
+    titleBuild = titleBuild.replace(numInv + " ", "");
+    titleBuild += " (" + numInv + ")";
 }
 %>
 <%@ include file='/front/doFullDisplay.jspf' %>
-
 <section class="ds44-container-large">
-<%--     <%@ include file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%> --%>
-    <div class="ds44-lightBG ds44-posRel ds44--m-padding-b">
-      <div
-        class="ds44-inner-container ds44--xl-padding-t ds44--m-padding-b ds44-tablette-reduced-pt">
-        <div class="ds44-grid12-offset-2">
-                    <!-- Fil d'ariane -->
-          <jalios:if predicate='<%= Util.notEmpty(Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id"))%>'>
-            <jalios:include id='<%=Channel.getChannel().getProperty("jcmsplugin.socle.portlet.filariane.id")%>' />
-          </jalios:if>
-          <h1 class="h1-like">
-            <%= media.getTitle() %>
-          </h1>
-        </div>
-      </div>
-    </div>
+    <%
+    request.setAttribute(PortalManager.PORTAL_CURRENTCATEGORY, channel.getCategory("fde_5008"));
+    request.setAttribute("titleHeader", titleBuild);
+    request.setAttribute("dataInHeaderStr", media.getUpdateDate());
+    %>
+    <%@ include file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%>
 
   <div class="ds44-inner-container ds44-mt3 ds44--l-padding-t">
     <div class="grid-12-small-1">
@@ -75,13 +87,16 @@ if(Util.isEmpty(obj)){
             </section>
         </jalios:if>
 
-<!--         <section class="ds44-contenuArticle" id="section2"> -->
-<%--           <h2 class="h2-like underline center"> <%= glp("jcmsplugin.espaceCollection.title.image") %></h2> --%>
-<!--           <p class="ds44-mb2"> -->
-<%--             <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.en-image.desc") %> --%>
-<!--           </p> -->
-<%--             <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/imageMosaique.jspf'%> --%>
-<!--         </section> -->
+        <%-- JCMS --%>
+        <jalios:if predicate="<%= Util.notEmpty(obj) %>">
+            <section class="ds44-contenuArticle" id="section2">
+              <h2 class="h2-like underline center"> <%= glp("jcmsplugin.espaceCollection.title.image") %></h2>
+              <p class="ds44-mb2">
+                <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.en-image.desc") %>
+              </p>
+                <%@ include file='/plugins/EspaceCollectionPlugin/jsp/utils/imageMosaique.jspf'%>
+            </section>
+        </jalios:if>
 
         <%-- JCMS --%>
         <jalios:if predicate="<%= Util.notEmpty(obj) %>">
@@ -97,12 +112,12 @@ if(Util.isEmpty(obj)){
               <tbody>
               
                 <%
-                Metadatum numInv = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
+//                 Metadatum numInv = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
                 %>
                 <jalios:if predicate="<%=Util.notEmpty(numInv)%>">
                 <tr>
                   <td class="table-detail"><b>Numéro d’inventaire</b></td>
-                  <td class="table-detail"><%= numInv.getValue() %></td>
+                  <td class="table-detail"><%= numInv %></td>
                 </tr>
                 </jalios:if>
 
@@ -438,7 +453,7 @@ if(Util.isEmpty(obj)){
             <table>
               <tbody>
 
-                <%
+              <%
                 Metadatum lieuConservation = KeepeekUtil.getMediaMetadata(media, "lieu_de_conservation");
                 metadatas = lieuConservation;
                 %>
@@ -463,8 +478,12 @@ if(Util.isEmpty(obj)){
                   </td>
                 </tr>
                 </jalios:if>
-                
-                <jalios:if predicate='<%=Util.notEmpty("")%>'><%-- TODO --%>
+
+                <%
+                Metadatum visibiliteOeuvre = KeepeekUtil.getMediaMetadata(media, "visibilite_de_loeuvre");
+                metadatas = visibiliteOeuvre;
+                %>  
+                <jalios:if predicate='<%=Util.notEmpty(visibiliteOeuvre)%>'>
                 <tr>  
                   <td class="table-detail"><b>Emplacement actuel</b></td>
                   <td class="table-detail">
@@ -548,18 +567,25 @@ if(Util.isEmpty(obj)){
 
       <div class="col-1 grid-offset ds44-hide-tiny-to-medium"></div>
 
-      <aside class="col-4 ds44-hide-tinyToLarge ds44-js-aside-summary">
+      <aside class="col-4 /*ds44-hide-tinyToLarge*/ ds44-js-aside-summary">
         <section class="ds44-box">
           <section class="ds44-box ds44-mb3 ">
-            <jalios:if predicate="<%= Util.notEmpty(obj) && Util.notEmpty(obj.getVisuel()) %>">
-                <% CarouselElement image = (CarouselElement)channel.getData(CarouselElement.class, obj.getVisuel().getId()); %>
-                <picture class="ds44-container-imgRatio">
-                    <img src="<%= image.getImage() %>" alt="<%= image.getImageLegend() %>" class="ds44-imgRatio"/>
-                    <jalios:if predicate="<%= Util.notEmpty(image.getImageCopyright()) %>">
-                        <figcaption class="ds44-imgCaption"><%= image.getImageCopyright() %></figcaption>
-                    </jalios:if>
-                </picture>
-            </jalios:if>
+            <jalios:select>
+                <jalios:if predicate="<%= Util.notEmpty(obj) && Util.notEmpty(obj.getVisuel()) %>">
+                    <% CarouselElement image = obj.getVisuel(); %>
+                    <picture class="ds44-container-imgRatio">
+                        <img src="<%= image.getImage() %>" alt="<%= image.getImageLegend() %>" class="ds44-imgRatio"/>
+                        <jalios:if predicate="<%= Util.notEmpty(image.getImageCopyright()) %>">
+                            <figcaption class="ds44-imgCaption"><%= image.getImageCopyright() %></figcaption>
+                        </jalios:if>
+                    </picture>
+                </jalios:if>
+                <jalios:if predicate="<%= Util.notEmpty(media.getLinks().getPreview()) %>">
+                    <picture class="ds44-container-imgRatio">
+                        <img src="<%= media.getLinks().getPreview().getHref() %>" class="ds44-imgRatio"/>
+                    </picture>
+                </jalios:if>
+            </jalios:select>
           </section>
 
           <section class="ds44-box ds44-theme">
@@ -576,7 +602,7 @@ if(Util.isEmpty(obj)){
                 <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
               </button>
               
-              <%@ include file='/plugins/EspaceCollectionPlugin/jsp/modal/modalToutesLesImages.jspf'%>
+              <%@ include file='/plugins/EspaceCollectionPlugin/jsp/modal/modalToutesLesImagesDetails.jspf'%>
             </div>
           </section>
         </section>

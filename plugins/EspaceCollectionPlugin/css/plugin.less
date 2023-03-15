@@ -33,108 +33,216 @@ H5,
 H6,
 p,
 a {
-  font-family: Muli !important;
-  color: @black;
+	font-family: Muli !important;
+	color: @black;
+}
+
+.text-capitalize-first {
+	display: block;
+
+	&::first-letter {
+		text-transform: capitalize;
+	}
 }
 
 /* OVERRIDE DS */
 
 h1.h1-like {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .h2-like {
-  background: transparent !important;
+	background: transparent !important;
 }
 
 .underline {
-  background: transparent !important;
-  font-weight: bold;
-  border-bottom: 1px solid @main-color;
+	background: transparent !important;
+	font-weight: bold;
+	border-bottom: 1px solid @main-color;
 }
 
 .center {
-  margin-left: auto;
-  margin-right: auto; 
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .fix-width {
-  width: fit-content !important;
+	width: fit-content !important;
 }
 
 .checkbox-pos {
-  position: static !important;
+	position: static !important;
+}
+
+.form-radio {
+	display: flex;
+	align-items: baseline;
+	margin: 0;
+}
+
+li .ds44-card {
+	height: 100% !important;
 }
 
 .ds44-card .ds44-cardArrow {
-  color: @main-color !important;
+	color: @main-color !important;
 }
 
 .ds44-card.ds44-card--contact {
-  border-color: @main-color !important;
+	border-color: @main-color !important;
+}
+
+.ds44-btnFullMobile {
+	width: auto !important;
 }
 
 .ds44-theme {
-  background-color: @main-color !important;
+	background-color: @main-color !important;
 }
 
 .bg-transparent {
-  background-color: transparent !important;
+	background-color: transparent !important;
 }
 
 .ds44-boxPushPic {
-  align-self: center !important;
+	align-self: center !important;
 }
 
 .ds44-modal-container {
-  display: flex !important;
+	display: flex !important;
+}
+
+.centered-block {
+	max-width: 70% !important;
+}
+
+.ds44-multiCol li>a.ds44-menuLink--subLvl {
+	display: flex;
+	align-items: flex-start;
+}
+
+.swiper-slide-visible {
+	.ds44-card__section--horizontal {
+		padding: 2rem 1.75rem;
+	}
+}
+
+
+@media only screen and (max-width: 768px) {
+	.black-btn-swiper {
+		top: calc(50%) !important;
+	}
+}
+ 
+@media only screen and (min-width: 768px) {
+	.btn-swipper {
+		top: calc(25%) !important;
+	}
+}
+
+table.selection td {
+	padding: 1rem !important;
+}
+
+@media (min-width: 64em) {
+	.btn-font-size {
+		font-size: 0.875em;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.title-home {
+		font: normal normal bold 25px/25px Muli !important;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+	}
+
+	.subtitle-home {
+		font: normal normal bold 18px/20px Muli !important;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+	}
+}
+
+.form-margin .ds44-form__container {
+	margin: 1.5rem 0;
 }
 
 /* --- */
 a.lien-page {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 td.table-detail {
-  text-align: left;
+	text-align: left;
 
-  p.ds44-btnStd--tag {
-    cursor: pointer;
-    background-color: @black !important;
-    color: @white;
-  }
+	p.ds44-btnStd--tag {
+		cursor: pointer;
+		background-color: @black !important;
+		color: @white;
+	}
 }
 
 hr.mbs {
-  margin-bottom: 2rem;
+	margin-bottom: 2rem;
 }
 
 .wysiwyg {
-  h3 {
-    font-size: 1.5em;
-    border: none;
-  }
+	h3 {
+		font-size: 1.5em;
+		border: none;
+	}
 }
 
 .ds44-docListElem .wysiwyg {
-  strong{
-    font-weight:normal;
-  }
+	strong {
+		font-weight: normal;
+	}
 }
 
 .caracteristique {
-  white-space: pre-line;
+	white-space: pre-line;
 }
+
 BODY .ds44-btn--contextual,
 BODY .ds44-btnStd.ds44-theme {
-    background-color: @main-color !important;
-    border-color: @main-color;
-    
-    &:hover,
-    &:focus{
-        background-color: @light-grey !important;
-        border-color: @light-grey;        
-    }
+	background-color: @main-color !important;
+	border-color: @main-color;
+
+	&:hover,
+	&:focus {
+		background-color: @light-grey !important;
+		border-color: @light-grey;
+	}
+}
+
+// ---------------
+// Card
+.ds44-card {
+	.ds44-cardTitle {
+		overflow-wrap: break-word;
+	}
+}
+
+
+// ---------------
+// Header Article
+.cd44-header {
+	.fil-ariane + H1 {
+		padding-top: 25px;
+	}
+	H1 {
+		margin-bottom: 17px;
+		font-size: 3.125em;
+	}
+	.ds44-textLegend {
+		margin-bottom: 12px;
+	}
+	
+	&.cd44-header-encart {
+		H1 {
+			margin-bottom: 23px;
+		}
+	}
+	
 }
 
 // ---------------
@@ -145,14 +253,16 @@ BODY .ds44-btnStd.ds44-theme {
 			font: normal normal bold 50px/50px Muli;
 			padding-bottom: 15px;
 		}
+
 		.ds44-ssTitreH1_home {
 			font: normal normal bold 28px/30px Muli;
 		}
 	}
-	
+
 	.vertical-container {
 		display: table;
-		& > * {
+
+		&>* {
 			display: table-cell;
 			vertical-align: middle;
 		}
@@ -161,33 +271,52 @@ BODY .ds44-btnStd.ds44-theme {
 
 // ---------------
 // RECHERCHE
-.rechercheFacette {
+.rechercheFacette, .rechercheAv {
 	.ds44-facette .ds44-facette-body {
+
 		// btn selection 
 		.ds44-facetteContainer {
 			&.ds44-theme .ds44-fieldContainer .ds44-select__shape {
 				background: @main-color;
 			}
+
 			&.filtres-L2 {
 				.ds44-flex-container {
 					max-width: 100%;
 				}
+
 				.ds44-fieldContainer {
 					flex: 1;
 				}
 			}
 		}
 	}
+
 	// 4 résultats par ligne
-	.ds44-results .ds44-listResults .ds44-list--results > li {
+	.ds44-results .ds44-listResults .ds44-list--results>li {
 		width: calc(~"25% - 3rem");
 		max-width: calc(~"25% - 3rem");
 	}
+
 	@media (max-width: 47.9375em) {
 		.ds44-medium-flex-col.ds44-flex-valign-center {
 			-webkit-box-align: initial;
 			-ms-flex-align: initial;
 			align-items: initial;
 		}
+		
+		// 4 résultats par ligne (mobile 1)
+		.ds44-results .ds44-listResults .ds44-list--results>li {
+			width: 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+// ---------------
+// Article
+.ds44-contenuArticle {
+	.table-detail p+p {
+		margin-top: unset;
 	}
 }

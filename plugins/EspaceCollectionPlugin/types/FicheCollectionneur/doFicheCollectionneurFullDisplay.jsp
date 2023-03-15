@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %><%
 %><%@ include file='/jcore/doInitPage.jspf' %><%
-%><% FicheCollectionneur obj = (FicheCollectionneur)request.getAttribute(PortalManager.PORTAL_PUBLICATION); %><%
+%><% 
+Set<String> panierSet = (Set<String>) session.getAttribute("panier"); 
+
+FicheCollectionneur obj = (FicheCollectionneur)request.getAttribute(PortalManager.PORTAL_PUBLICATION); %><%
 %>
 
 <section class="ds44-container-large">
@@ -23,7 +26,7 @@
 
       <div class="col-1 grid-offset ds44-hide-tiny-to-medium"></div>
 
-      <aside class="col-4 ds44-hide-tinyToLarge ds44-js-aside-summary">
+      <aside class="col-4 ds44-js-aside-summary">
         <section class="ds44-box">
           <section class="ds44-box ds44-mb3">
             <jalios:if predicate="<%= Util.notEmpty(obj.getVisuel()) %>">
@@ -39,7 +42,7 @@
 
           <section class="ds44-box ds44-theme">
             <div class="ds44-innerBoxContainer">
-              <div class="ds44-mb3">
+              <div class="ds44-mb2">
                 <jalios:if predicate="<%= Util.notEmpty(obj.getNom()) %>">
                   <p class="ds44-docListElem mts">
                     <i class="icon icon-user ds44-docListIco" aria-hidden="true"></i>
@@ -74,11 +77,7 @@
                     <i class="icon icon-long-arrow-right" aria-hidden="true"></i>
                   </a>
                 </jalios:if>
-
-                <button class="ds44-btnStd"> 
-                  <i class="icon icon-star-empty" aria-hidden="true"></i>
-                  <span class="ds44-btnInnerText"><%=glp("jcmsplugin.espaceCollection.objet.tuile.ajout-selection")%></span>
-                </button>
+                
               </div>
 
             </div>

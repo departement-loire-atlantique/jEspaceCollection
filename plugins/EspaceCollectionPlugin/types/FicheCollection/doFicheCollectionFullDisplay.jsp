@@ -28,7 +28,7 @@ FicheCollection obj = (FicheCollection) request.getAttribute(PortalManager.PORTA
 		<%@ include
 			file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%>
 
-		<div class="ds44-inner-container ds44-mt3 ds44--l-padding-t">
+		<div class="ds44-inner-container ds44-mtb3 ds44--l-padding-t">
 			<div class="grid-12-small-1">
 				<div class="col-7">
 					<section class="ds44-contenuArticle" id="section1">
@@ -44,7 +44,7 @@ FicheCollection obj = (FicheCollection) request.getAttribute(PortalManager.PORTA
 
 				<div class="col-1 grid-offset ds44-hide-tiny-to-medium"></div>
 
-				<aside class="col-4 ds44-hide-tinyToLarge ds44-js-aside-summary">
+				<aside class="col-4 ds44-js-aside-summary">
 					<section class="ds44-box">
 						<section class="ds44-box ds44-mb3">
 							<jalios:if predicate="<%= Util.notEmpty(obj.getVisuel()) %>">
@@ -64,12 +64,12 @@ FicheCollection obj = (FicheCollection) request.getAttribute(PortalManager.PORTA
 									<p role="heading" aria-level="2" class="ds44-box-heading">
 										<%= glp("jcmsplugin.espaceCollection.title.pratique") %>
 									</p>
-									<p class="ds44-docListElem mts">
-										<i class="icon icon-mail ds44-docListIco" aria-hidden="true"></i>
-										<a href="mailto:<%=obj.getMail()%>" title="Contacter par mail : <%=obj.getMail()%>">
-										<%= glp("jcmsplugin.espaceCollection.btn.mail") %>
-										</a>
-									</p>
+									<jalios:link id='<%= channel.getProperty("jcmsplugin.espaceCollection.portlet-contact") %>'>
+										<p class="ds44-docListElem mts">
+											<i class="icon icon-mail ds44-docListIco" aria-hidden="true"></i>
+											<%= glp("jcmsplugin.espaceCollection.btn.mail") %>
+										</p>
+									</jalios:link>
 								</div>
 							</section>
 						</jalios:if>
@@ -78,6 +78,8 @@ FicheCollection obj = (FicheCollection) request.getAttribute(PortalManager.PORTA
 			</div>
 		</div>
 	</section>
+	
+<%@ include file='/plugins/EspaceCollectionPlugin/jsp/carrousel/carrouselCollectionOeuvres.jspf'%>
 <%-- **********4A616C696F73204A434D53 *** SIGNATURE BOUNDARY * DO NOT EDIT ANYTHING BELOW THIS LINE *** --%>
 <%
 

@@ -1,3 +1,4 @@
+<%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekUtil"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.search.KeepeekSearchQuery"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.MediaLight"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekApiEndPoint"%>
@@ -26,7 +27,8 @@ if(Util.notEmpty(box.getIdDeLaCategorieTag())) {
 // Pager
 boolean hasPager = box.getPager();
 Integer pager = getIntParameter("page", 1);
-int maxResult = box.getMaxResults(); 
+// int maxResult = box.getMaxResults(); 
+int maxResult = KeepeekUtil.getNbResultsByPage();
 
 %><%
 // /plugins/SoclePlugin/jsp/facettes/doQueryText.jspf

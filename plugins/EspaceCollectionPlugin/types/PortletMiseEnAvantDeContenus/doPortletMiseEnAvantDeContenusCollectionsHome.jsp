@@ -18,7 +18,7 @@ if (Util.notEmpty(collection)) {
 }
 %>
 
-<div class="ds44-inner-container ds44-xl-margin-tb">
+<div class="ds44-inner-container ds44-xl-margin-b">
 <section class="ds44-container-fluid ds44--xxl-padding-tb">
     <header class="txtcenter ds44--xl-padding-b ds44-container-large">
       <h2 class="h2-like underline center" id="titreMEA<%= box.getId() %>"><%= box.getTitreVisuel(userLang) %></h2>
@@ -39,11 +39,11 @@ if (Util.notEmpty(collection)) {
 		          
 		        </ul>
 		    </div>
-		    <button class="swiper-button-prev swiper-button-disabled" type="button">
+		    <button class="swiper-button-prev swiper-button-disabled btn-swipper" type="button">
 		        <i class="icon icon-left" aria-hidden="true"></i>
 		        <span class="visually-hidden"></span>
 		    </button>
-		    <button class="swiper-button-next swiper-button-disabled" type="button">
+		    <button class="swiper-button-next swiper-button-disabled btn-swipper" type="button">
 		        <i class="icon icon-right" aria-hidden="true"></i>
 		        <span class="visually-hidden"></span>
 		    </button>

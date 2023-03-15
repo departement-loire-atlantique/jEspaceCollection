@@ -117,7 +117,11 @@
     <type name="FicheObjetBaseDeDonnees" />
     <type name="FicheCollectionneur" />
     <type name="PortletImageHome" />
-    <type name="PortletFacetteText"></type>
+    <type name="PortletFacetteText"/>
+    <type name="GPLAContact" />
+    <type name="GPLAContactConservation" />
+    <type name="GPLAContactBibliotheque" />
+    <type name="GPLAContactDocumentation" />
 
     <templates type="PortletRechercheFacettes">
         <template name="default" file="doPortletRechercheFacettesFullDisplay.jsp" usage='full'>
@@ -183,6 +187,11 @@
         <template name="default" file="doPortletFacetteTextBoxDisplay.jsp" usage='box'>
           <label xml:lang="fr">DS44 : gabarit générique simple</label>
         </template>
+    </templates>
+    <templates type="PortletNavigate">
+        <template name="breadcrumb" file="doPortletNavigateBreadcrumb.jsp" usage="box">
+            <label xml:lang="fr">DS44 : gabarit fil d'ariane</label>
+        </template> 
     </templates>
 
 </types>
@@ -274,6 +283,9 @@
     <jsynclistener         class="com.example.jcmsplugin.espacecollection.EspaceCollectionJSyncListener" />
   </plugincomponents>
 -->
+  <plugincomponents>
+    <channellistener class="fr.digiwin.module.espacecollection.keepeek.alarm.KeepeekFilterChannelListenner" />
+  </plugincomponents>
   <!-- ============================= Hibernate ============================ -->
   <!--                                                                      -->
   <!-- Plugin's Hibernate mapping                                           -->

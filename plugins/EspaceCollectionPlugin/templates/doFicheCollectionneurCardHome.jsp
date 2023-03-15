@@ -5,6 +5,7 @@
 if (data == null) {
   return;
 }
+Set<String> panierSet = (Set<String>) session.getAttribute("panier"); 
 
 FicheCollectionneur obj = (FicheCollectionneur) data;
 %>
@@ -17,9 +18,8 @@ FicheCollectionneur obj = (FicheCollectionneur) data;
         </picture>
       
       <div class="ds44-card__section ">
-        <p class="ds44-cardSelect pa0 ma0">
-            <button class="pas" type="button" aria-describedby="cs6" title="Sélectionner Confort service"><i class="icon icon-star-empty" aria-hidden="true"></i><span class="visually-hidden">Sélection</span></button>
-        </p>
+        
+     
         <div class="ds44-innerBoxContainer">
             <p role="heading" aria-level="2" class="ds44-card__title">
               <jalios:link data="<%= obj %>" css="ds44-card__globalLink">
