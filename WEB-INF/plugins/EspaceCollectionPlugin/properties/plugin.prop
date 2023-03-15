@@ -22,7 +22,8 @@ jcmsplugin.socle.js-urls:https://dev-design.loire-atlantique.fr/js/cd44.js
 # LESS
 # channel.less.plugins/{Name}/css/plugin.css:    plugins/{Name}/css/plugin.less
 channel.less.plugins/EspaceCollectionPlugin/css/plugin.css:    plugins/EspaceCollectionPlugin/css/plugin.less
-channel.css.all.200.fo: plugins/EspaceCollectionPlugin/css/plugin.css
+# ajouté dans jcmsplugin.socle.css-urls
+#channel.css.all.200.fo: plugins/EspaceCollectionPlugin/css/plugin.css
 
 jcmsplugin.socle.site.src.logo: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
 jcmsplugin.espaceCollection.site.src.logo-gpla: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
