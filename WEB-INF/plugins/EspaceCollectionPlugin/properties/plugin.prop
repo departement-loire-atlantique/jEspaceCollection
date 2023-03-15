@@ -41,6 +41,7 @@ jcmsplugin.espacecollection.keepeek.password.pwd:
 $jcmsplugin.socle.recherche.facettes.portal: por_7177
 $jcmsplugin.espacecollection.recherche.filtre.Keepeek.root.chooser-category: por_5176
 jcmsplugin.espacecollection.recherche.filtre.Keepeek.get.schedule: 00 05 * * * *
+jcmsplugin.espacecollection.recherche.result.by.page: 60
 
 $jcmsplugin.espacecollection.recherche.light.id: por_5166
 

@@ -72,6 +72,7 @@ jcmsplugin.espacecollection.keepeek.password: Mot de passe Keepeek
 # recherche
 $jcmsplugin.espacecollection.recherche.filtre.Keepeek.root: Categorie racine des filtres de la recherche
 jcmsplugin.espacecollection.recherche.filtre.Keepeek.get.schedule: Process filter Keepeek
+jcmsplugin.espacecollection.recherche.result.by.page: Nombre de résultats par page
 
 $jcmsplugin.espacecollection.recherche.light.id: Id portlet recherche light
 

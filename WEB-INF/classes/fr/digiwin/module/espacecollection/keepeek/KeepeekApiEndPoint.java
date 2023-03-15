@@ -43,11 +43,11 @@ public class KeepeekApiEndPoint {
     }
 
     public static SearchResult searchMedia(String text, KeepeekSearchQuery searchQuery) {
-        return searchMedia(text, searchQuery, "creationDate desc", 1, 20);
+        return searchMedia(text, searchQuery, "numero_dinventaire asc", 1, KeepeekUtil.getNbResultsByPage());
     }
 
     public static SearchResult searchMedia(String text, KeepeekSearchQuery searchQuery, int page, int size) {
-        return searchMedia(text, searchQuery, "creationDate desc", page, size);
+        return searchMedia(text, searchQuery, "numero_dinventaire asc", page, size);
     }
 
     /**
@@ -111,11 +111,11 @@ public class KeepeekApiEndPoint {
     }
 
     public static SearchResult advSearchMedia(String id) {
-        return advSearchMedia(id, "creationDate desc", 1, 20);
+        return advSearchMedia(id, "numero_dinventaire asc", 1, KeepeekUtil.getNbResultsByPage());
     }
 
     public static SearchResult advSearchMedia(String id, int page, int size) {
-        return advSearchMedia(id, "creationDate desc", page, size);
+        return advSearchMedia(id, "numero_dinventaire asc", page, size);
     }
 
     public static SearchResult advSearchMedia(String id, String sort, int page, int size) {
