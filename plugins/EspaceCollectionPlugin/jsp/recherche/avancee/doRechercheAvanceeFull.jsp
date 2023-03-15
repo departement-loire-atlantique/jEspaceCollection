@@ -86,7 +86,7 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                             <div class="ds44-form__container">
                                 <div class="ds44-select__shape ds44-inpStd">
                                     <p class="ds44-selectLabel" aria-hidden="true">Filtre</p>
-                                    <div id="form-line-element-filtre" data-name="form-line-element-filtre" class="ds44-js-select-standard ds44-selectDisplay" ></div>
+                                    <div id="form-line-element-filtre" data-name="form-line-element-filtre" class="ds44-js-select-standard ds44-selectDisplay" data-required="true"></div>
                                     <button type="button" id="button-form-line-element-filtre" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false">
                                         <i class="icon icon-down icon--sizeL" aria-hidden="true"></i>
                                         <span id="button-message-form-line-element-filtre" class="visually-hidden">Filtre</span>
@@ -118,7 +118,7 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                             <div class="ds44-form__container">
                                 <div class="ds44-select__shape ds44-inpStd">
                                     <p class="ds44-selectLabel" aria-hidden="true">Modifieur</p>
-                                    <div id="form-line-element-modifieur" data-name="form-line-element-modifieur" class="ds44-js-select-standard ds44-selectDisplay" ></div>
+                                    <div id="form-line-element-modifieur" data-name="form-line-element-modifieur" class="ds44-js-select-standard ds44-selectDisplay" data-required="true"></div>
                                     <button type="button" id="button-form-line-element-modifieur" class="ds44-btnIco ds44-posAbs ds44-posRi ds44-btnOpen" aria-expanded="false">
                                         <i class="icon icon-down icon--sizeL" aria-hidden="true"></i>
                                         <span id="button-message-form-line-element-modifieur" class="visually-hidden">Modifieur</span>
@@ -163,7 +163,7 @@ List<Category> filters = CollectionUtil.finAllSubRootSearch();
                             <ds:facetteAutoCompletion idFormElement='<%= ServletUtil.generateUniqueDOMId(request, glp("jcmsplugin.socle.facette.form-line-element")) %>'
                                 name="form-line-element-text"
                                 request="<%= request %>"
-                                isFacetteObligatoire='<%= false %>'
+                                isFacetteObligatoire='<%= true %>'
                                 dataUrl='<%= "plugins/EspaceCollectionPlugin/jsp/recherche/avancee/acFieldText.jsp?filtre=$parentValue" %>'
                                 label="Une recherche précise, tapez le n° d’inventaire... ou le nom d’une oeuvre."
                                 isLarge="<%= false %>"
