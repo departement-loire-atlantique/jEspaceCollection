@@ -25,8 +25,8 @@ channel.less.plugins/EspaceCollectionPlugin/css/plugin.css:    plugins/EspaceCol
 # ajouté dans jcmsplugin.socle.css-urls
 #channel.css.all.200.fo: plugins/EspaceCollectionPlugin/css/plugin.css
 
-jcmsplugin.socle.site.src.logo: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
-jcmsplugin.espaceCollection.site.src.logo-gpla: plugins/EspaceCollectionPlugin/images/logo-espace-collection.svg
+jcmsplugin.socle.site.src.logo: plugins/EspaceCollectionPlugin/images/logo-espace-collection.png
+jcmsplugin.espaceCollection.site.src.logo-gpla: plugins/EspaceCollectionPlugin/images/logo-espace-collection.png
 
 jcmsplugin.espaceCollection.image.src.cube-3d: plugins/EspaceCollectionPlugin/images/cube-3d.png
 
