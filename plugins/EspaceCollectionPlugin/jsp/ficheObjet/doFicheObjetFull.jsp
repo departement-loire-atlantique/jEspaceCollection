@@ -1,3 +1,4 @@
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.SearchResult"%>
 <%@page import="com.jalios.jcms.handler.QueryHandler"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Metadatum"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekUtil"%>
@@ -26,6 +27,8 @@ Media media = KeepeekApiEndPoint.getMedia(idKeepeek);
 if (Util.isEmpty(media)) {
     return;
 }
+
+SearchResult mediaAssocie = KeepeekApiEndPoint.getMediaAssocie(idKeepeek);
 
 Metadatum metadatas = null; // For include
 
@@ -91,7 +94,8 @@ if(Util.notEmpty(numInv)){
         </jalios:if>
 
         <%-- JCMS --%>
-        <jalios:if predicate="<%= Util.notEmpty(obj) %>">
+        <jalios:if predicate="<%= (Util.notEmpty(obj) && Util.notEmpty(obj.getGalerieDeVisuels()))
+                || Util.notEmpty(mediaAssocie.getEmbeddedResult()) %>">
             <section class="ds44-contenuArticle" id="section2">
               <h2 class="h2-like underline center"> <%= glp("jcmsplugin.espaceCollection.title.image") %></h2>
               <p class="ds44-mb2">

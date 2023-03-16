@@ -41,6 +41,23 @@ public class KeepeekApiEndPoint {
 
         return null;
     }
+    
+    public static SearchResult getMediaAssocie(String idMedia) {
+        try {
+            String strMediaAssocie = KeepeekApiManager.getEndPoint("api/dam/medias/" + idMedia + "/media-links/7/medias");
+            
+            GsonBuilder gsonBuild = new GsonBuilder();
+            gsonBuild.registerTypeAdapter(EmbeddedResult.class, new EmbeddedResultDeserializer());
+
+            Gson gson = gsonBuild.create();
+            SearchResult mediaAssocie = gson.fromJson(strMediaAssocie, SearchResult.class);
+            return mediaAssocie;
+        } catch (KeepeekException e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+        }
+
+        return null;
+    }
 
     public static SearchResult searchMedia(String text, KeepeekSearchQuery searchQuery) {
         return searchMedia(text, searchQuery, "numero_dinventaire asc", 1, KeepeekUtil.getNbResultsByPage());
