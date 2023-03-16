@@ -57,18 +57,24 @@ if(Util.notEmpty(request.getAttribute("textColor"))){
     textColorStyle = "ds44-text--colorInvert";
 }
 
+String customContentTitle = Util.getString(request.getAttribute("customContentTitleInBreadcrumb"), "");
+
 Publication obj = null;
 Publication objInRequest = (Publication) request.getAttribute(PortalManager.PORTAL_PUBLICATION);
 if(objInRequest instanceof Content){
     obj = objInRequest;
 }
 
-if(Util.notEmpty(obj)){
+if(Util.isEmpty(customContentTitle) && Util.notEmpty(obj)){
+    customContentTitle = obj.getTitle(userLang);
+}
+
+if(Util.notEmpty(customContentTitle)){
     ancestors.add(currentCategory);
 }
 %>
 
-<nav role="navigation" aria-label='<%=glp("jcmsplugin.socle.breadcrumb.position")%>' class="ds44-hide-mobile">
+<nav role="navigation" aria-label='<%=glp("jcmsplugin.socle.breadcrumb.position")%>'>
     <ul class="ds44-list ds44-breadcrumb <%=textColorStyle%>">
         <li class="ds44-breadcrumb_item">
             <a href="index.jsp" title="<%= lblAltTitle %>"><i class="icon icon-home icon--medium" aria-hidden="true"></i><span class="visually-hidden">Accueil</span></a>
@@ -110,15 +116,15 @@ if(Util.notEmpty(obj)){
         </jalios:foreach>
         
         <%-- On affiche la catégorie courante --%>
-        <jalios:if predicate="<%= Util.isEmpty(obj) %>">
+        <jalios:if predicate="<%= Util.isEmpty(customContentTitle) %>">
             <li class="ds44-breadcrumb_item" aria-current="location">
                 <%= Util.notEmpty(currentCategory.getExtraData("extra.Category.plugin.tools.synonyme.facet.title")) ? currentCategory.getExtraData("extra.Category.plugin.tools.synonyme.facet.title") : currentCategory.getName(userLang) %>
                 <% counter++; %>
             </li>
         </jalios:if>
-        <jalios:if predicate="<%= Util.notEmpty(obj) %>">
+        <jalios:if predicate="<%= Util.notEmpty(customContentTitle) %>">
             <li class="ds44-breadcrumb_item" aria-current="location">
-                <%= obj.getTitle(userLang) %>
+                <%= customContentTitle %>
                 <% counter++; %>
             </li>
         </jalios:if>

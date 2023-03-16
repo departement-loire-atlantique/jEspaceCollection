@@ -68,6 +68,9 @@ if(Util.notEmpty(numInv)){
     request.setAttribute(PortalManager.PORTAL_CURRENTCATEGORY, channel.getCategory("fde_5008"));
     request.setAttribute("titleHeader", titleBuild);
     request.setAttribute("dataInHeaderStr", media.getUpdateDate());
+    if(Util.isEmpty(obj)){
+        request.setAttribute("customContentTitleInBreadcrumb", titleBuild);
+    }
     %>
     <%@ include file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%>
 
