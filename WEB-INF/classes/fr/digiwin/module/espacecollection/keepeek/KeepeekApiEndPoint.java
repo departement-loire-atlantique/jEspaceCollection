@@ -86,7 +86,7 @@ public class KeepeekApiEndPoint {
         params.append("f=subStatusId:2&");// 2 => Interne
         
         // selection des champs
-        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D&");
+        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D,_embedded%7Blabel.byId(40)%7D&");
 
         if (Util.notEmpty(text)) {
             params.append("q=").append(HttpUtil.encodeForURL(text)).append("&");
@@ -143,7 +143,7 @@ public class KeepeekApiEndPoint {
         StringBuilder params = new StringBuilder("forceArrays=true&");
         
         // selection des champs
-        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D&");
+        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D,_embedded%7Blabel.byId(40)%7D&");
 
         if (Util.notEmpty(sort)) {
             params.append("sort=").append(HttpUtil.encodeForURL(sort)).append("&");
