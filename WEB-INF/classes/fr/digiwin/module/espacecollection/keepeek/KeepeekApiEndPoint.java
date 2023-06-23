@@ -1,7 +1,11 @@
 package fr.digiwin.module.espacecollection.keepeek;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
@@ -41,6 +45,28 @@ public class KeepeekApiEndPoint {
 
         return null;
     }
+    
+    public static SearchResult getMediaAssocie(String idMedia, String... parameters ) {
+        try {
+            String parameter = "";
+            if(Util.notEmpty(parameters)) {
+                parameter = "?" + String.join("&", parameters);
+            }
+            
+            String strMediaAssocie = KeepeekApiManager.getEndPoint("api/dam/medias/" + idMedia + "/media-links/7/medias" + parameter);
+            
+            GsonBuilder gsonBuild = new GsonBuilder();
+            gsonBuild.registerTypeAdapter(EmbeddedResult.class, new EmbeddedResultDeserializer());
+
+            Gson gson = gsonBuild.create();
+            SearchResult mediaAssocie = gson.fromJson(strMediaAssocie, SearchResult.class);
+            return mediaAssocie;
+        } catch (KeepeekException e) {
+            LOGGER.error(e.getLocalizedMessage(), e);
+        }
+
+        return null;
+    }
 
     public static SearchResult searchMedia(String text, KeepeekSearchQuery searchQuery) {
         return searchMedia(text, searchQuery, "numero_dinventaire asc", 1, KeepeekUtil.getNbResultsByPage());
@@ -69,7 +95,7 @@ public class KeepeekApiEndPoint {
         params.append("f=subStatusId:2&");// 2 => Interne
         
         // selection des champs
-        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D&");
+        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D,_embedded%7Blabel.byId(40)%7D&");
 
         if (Util.notEmpty(text)) {
             params.append("q=").append(HttpUtil.encodeForURL(text)).append("&");
@@ -126,7 +152,7 @@ public class KeepeekApiEndPoint {
         StringBuilder params = new StringBuilder("forceArrays=true&");
         
         // selection des champs
-        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D&");
+        params.append("fields=id,title,_embedded%7Bmetadata.byId(datation,numero_dinventaire)%7D,_embedded%7Blabel.byId(40)%7D&");
 
         if (Util.notEmpty(sort)) {
             params.append("sort=").append(HttpUtil.encodeForURL(sort)).append("&");

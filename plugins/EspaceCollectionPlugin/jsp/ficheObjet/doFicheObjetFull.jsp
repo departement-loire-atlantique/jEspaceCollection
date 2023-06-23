@@ -1,3 +1,4 @@
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.SearchResult"%>
 <%@page import="com.jalios.jcms.handler.QueryHandler"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Metadatum"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekUtil"%>
@@ -26,6 +27,8 @@ Media media = KeepeekApiEndPoint.getMedia(idKeepeek);
 if (Util.isEmpty(media)) {
     return;
 }
+
+SearchResult mediaAssocie = KeepeekApiEndPoint.getMediaAssocie(idKeepeek, "fields=id,title,_embedded%7Bmetadata.byId(__copyrights)%7D,_links%7Bpreview,kpk:custom-status%7D", "forceArrays=true");
 
 Metadatum metadatas = null; // For include
 
@@ -68,6 +71,9 @@ if(Util.notEmpty(numInv)){
     request.setAttribute(PortalManager.PORTAL_CURRENTCATEGORY, channel.getCategory("fde_5008"));
     request.setAttribute("titleHeader", titleBuild);
     request.setAttribute("dataInHeaderStr", media.getUpdateDate());
+    if(Util.isEmpty(obj)){
+        request.setAttribute("customContentTitleInBreadcrumb", titleBuild);
+    }
     %>
     <%@ include file='/plugins/EspaceCollectionPlugin/jsp/header/headerSimple.jspf'%>
 
@@ -88,7 +94,8 @@ if(Util.notEmpty(numInv)){
         </jalios:if>
 
         <%-- JCMS --%>
-        <jalios:if predicate="<%= Util.notEmpty(obj) %>">
+        <jalios:if predicate="<%= (Util.notEmpty(obj) && Util.notEmpty(obj.getGalerieDeVisuels()))
+                || Util.notEmpty(mediaAssocie.getEmbeddedResult()) %>">
             <section class="ds44-contenuArticle" id="section2">
               <h2 class="h2-like underline center"> <%= glp("jcmsplugin.espaceCollection.title.image") %></h2>
               <p class="ds44-mb2">
@@ -107,10 +114,7 @@ if(Util.notEmpty(numInv)){
           <h2 class="h2-like underline center"> <%= glp("jcmsplugin.espaceCollection.title.detail") %></h2>
           <section>
             <%-- Identification --%>
-            <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.identification") %></h3>
-            <table>
-              <tbody>
-              
+            <jalios:buffer name="identification">
                 <%
 //                 Metadatum numInv = KeepeekUtil.getMediaMetadata(media, "numero_dinventaire");
                 %>
@@ -192,14 +196,19 @@ if(Util.notEmpty(numInv)){
                   </td>
                 </tr>
                 </jalios:if>
-              </tbody>
-            </table>
-            <hr class="mbs" aria-hidden="true" />
+            </jalios:buffer>
+            <jalios:if predicate="<%= Util.notEmpty(identification) %>">
+                <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.identification") %></h3>
+                <table>
+                  <tbody>
+                    <%= identification %>
+                  </tbody>
+                </table>
+                <hr class="mbs" aria-hidden="true" />
+            </jalios:if>
 
             <%-- Création / Exécution --%>
-            <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.crea") %></h3>
-            <table>
-              <tbody>
+            <jalios:buffer name="creatExec">
                 <%
                 Metadatum artisteCreateur = KeepeekUtil.getMediaMetadata(media, "personnes");
                 %>
@@ -235,14 +244,19 @@ if(Util.notEmpty(numInv)){
                   </td>
                 </tr>
                 </jalios:if>
-              </tbody>
-            </table>
-            <hr class="mbs" aria-hidden="true" />
+            </jalios:buffer>
+            <jalios:if predicate="<%= Util.notEmpty(creatExec) %>">
+                <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.crea") %></h3>
+                <table>
+                  <tbody>
+                    <%= creatExec %>
+                  </tbody>
+                </table>
+                <hr class="mbs" aria-hidden="true" />
+            </jalios:if>
             
             <%-- Matière et technique --%>
-            <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.matiere") %></h3>
-            <table>
-              <tbody>
+            <jalios:buffer name="matiereTechnique">
                 <%
                 Metadatum matiere = KeepeekUtil.getMediaMetadata(media, "matiere");
                 metadatas = matiere;
@@ -272,20 +286,25 @@ if(Util.notEmpty(numInv)){
                 <%
                 Metadatum mesures = KeepeekUtil.getMediaMetadata(media, "mesures");
                 %>
-                <jalios:if predicate="<%=Util.notEmpty(mesures)%>">
+                <jalios:if predicate="<%=Util.notEmpty(mesures) && Util.notEmpty(mesures.getValue())%>">
                 <tr>
                   <td class="table-detail"><b>Dimensions et poids</b></td>
-                  <td class="table-detail"><%= mesures.getValue() %></td>
+                  <td class="table-detail"><%= mesures.getValue().replace(";", " ; ") %></td>
                 </tr>
                 </jalios:if>
-              </tbody>
-            </table>
-            <hr class="mbs" aria-hidden="true" />
+            </jalios:buffer>
+            <jalios:if predicate="<%= Util.notEmpty(matiereTechnique) %>">
+                <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.matiere") %></h3>
+                <table>
+                  <tbody>
+                    <%= matiereTechnique %>
+                  </tbody>
+                </table>
+                <hr class="mbs" aria-hidden="true" />
+            </jalios:if>
             
             <%-- Inscriptions --%>
-            <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.inscriptions") %></h3>
-            <table>
-              <tbody>
+            <jalios:buffer name="inscription">
                 <%
                 Metadatum typeDinscription = KeepeekUtil.getMediaMetadata(media, "type_dinscription");
                 metadatas = typeDinscription;
@@ -308,15 +327,20 @@ if(Util.notEmpty(numInv)){
                   <td class="table-detail"><%= transcription.getValue() %></td>
                 </tr>
                 </jalios:if>
-              </tbody>
-            </table>
-            <hr class="mbs" aria-hidden="true" />
+            </jalios:buffer>
+            <jalios:if predicate="<%= Util.notEmpty(inscription) %>">
+                <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.inscriptions") %></h3>
+                <table>
+                  <tbody>
+                    <%= inscription %>
+                  </tbody>
+                </table>
+                <hr class="mbs" aria-hidden="true" />
+            </jalios:if>
+            
             
             <%-- Fonction d’usage --%>
-            <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.usage") %></h3>
-            <table>
-              <tbody>
-                
+            <jalios:buffer name="fonctUsage">
                 <%
                 Metadatum foncEtContext = KeepeekUtil.getMediaMetadata(media, "fonctionnement_et_contexte");
                 %>
@@ -359,15 +383,19 @@ if(Util.notEmpty(numInv)){
                   <td class="table-detail"><%= evenementAssocie.getValue() %></td>
                 </tr>
                 </jalios:if>
-              </tbody>
-            </table>
-            <hr class="mbs" aria-hidden="true" />
+            </jalios:buffer>
+            <jalios:if predicate="<%= Util.notEmpty(fonctUsage) %>">
+                <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.usage") %></h3>
+                <table>
+                  <tbody>
+                    <%= fonctUsage %>
+                  </tbody>
+                </table>
+                <hr class="mbs" aria-hidden="true" />
+            </jalios:if>
             
             <%-- Thèmes et iconographie --%>
-            <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.theme") %></h3>
-            <table>
-              <tbody>
-              
+            <jalios:buffer name="themesIconigraphie">
                 <%
                 Metadatum themes = KeepeekUtil.getMediaMetadata(media, "thesaurus_garnier_theme");
                 metadatas = themes;
@@ -413,15 +441,19 @@ if(Util.notEmpty(numInv)){
                   <td class="table-detail"><%= evenementRepresente.getValue() %></td>
                 </tr>
                 </jalios:if>
-              </tbody>
-            </table>
-            <hr class="mbs" aria-hidden="true" />
+            </jalios:buffer>
+            <jalios:if predicate="<%= Util.notEmpty(themesIconigraphie) %>">
+                <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.theme") %></h3>
+                <table>
+                  <tbody>
+                    <%= themesIconigraphie %>
+                  </tbody>
+                </table>
+                <hr class="mbs" aria-hidden="true" />
+            </jalios:if>
             
             <%-- Histoire de la collecte --%>
-            <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.collecte") %></h3>
-            <table>
-              <tbody>
-              
+            <jalios:buffer name="histoireCollecte">
                 <%
                 Metadatum collecteur = KeepeekUtil.getMediaMetadata(media, "collecteur");
                 %>
@@ -444,16 +476,21 @@ if(Util.notEmpty(numInv)){
                   </td>
                 </tr>
                 </jalios:if>
-              </tbody>
-            </table>
-            <hr class="mbs" aria-hidden="true" />
+            </jalios:buffer>
+            <jalios:if predicate="<%= Util.notEmpty(histoireCollecte) %>">
+                <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.collecte") %></h3>
+                <table>
+                  <tbody>
+                    <%= histoireCollecte %>
+                    
+                  </tbody>
+                </table>
+                <hr class="mbs" aria-hidden="true" />
+            </jalios:if>
             
             <%-- Localisation --%>
-            <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.localisation") %></h3>
-            <table>
-              <tbody>
-
-              <%
+            <jalios:buffer name="localisationBf">
+                <%
                 Metadatum lieuConservation = KeepeekUtil.getMediaMetadata(media, "lieu_de_conservation");
                 metadatas = lieuConservation;
                 %>
@@ -530,22 +567,26 @@ if(Util.notEmpty(numInv)){
                   </td>
                 </tr>
                  </jalios:if>
-              </tbody>
-            </table>
-            <hr class="mbs" aria-hidden="true" />
+            </jalios:buffer>
+            <jalios:if predicate="<%= Util.notEmpty(localisationBf) %>">
+                <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.localisation") %></h3>
+                <table>
+                  <tbody>
+                    <%= localisationBf %>
+                  </tbody>
+                </table>
+                <hr class="mbs" aria-hidden="true" />
+            </jalios:if>
             
             <%-- Autre --%>
-            <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.autre") %></h3>
-            <table>
-              <tbody>
-                
+            <jalios:buffer name="autre">
                 <%
                 Metadatum objetsAssocies = KeepeekUtil.getMediaMetadata(media, "objets_associes");
                 %>
-                <jalios:if predicate="<%=Util.notEmpty(objetsAssocies)%>">
+                <jalios:if predicate="<%=Util.notEmpty(objetsAssocies) && Util.notEmpty(objetsAssocies.getValue())%>">
                 <tr>
                   <td class="table-detail"><b>Objet(s) associé(s)</b></td>
-                  <td class="table-detail"><%= objetsAssocies.getValue() %></td>
+                  <td class="table-detail"><%= objetsAssocies.getValue().replace(";", " ; ")  %></td>
                 </tr>
                 </jalios:if>
                 
@@ -558,9 +599,17 @@ if(Util.notEmpty(numInv)){
                   <td class="table-detail"><%= statutAdministratif.getValue() %></td>
                 </tr>
                 </jalios:if>
-              </tbody>
-            </table>
-            <hr class="mbs" aria-hidden="true" />
+            </jalios:buffer>
+            <jalios:if predicate="<%= Util.notEmpty(autre) %>">
+                <h3 class="h3-like"> <%= glp("jcmsplugin.espaceCollection.oeuvre-bdd.full.detail.autre") %></h3>
+                <table>
+                  <tbody>
+                    <%= autre %>
+                  </tbody>
+                </table>
+                <hr class="mbs" aria-hidden="true" />
+            </jalios:if>
+            
           </section>
         </section>
       </div>

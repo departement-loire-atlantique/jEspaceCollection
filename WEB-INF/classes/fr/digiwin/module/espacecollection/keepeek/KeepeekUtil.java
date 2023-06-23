@@ -1,5 +1,7 @@
 package fr.digiwin.module.espacecollection.keepeek;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import com.jalios.jcms.Channel;
@@ -14,20 +16,25 @@ public class KeepeekUtil {
 
     private static final Logger LOGGER = Logger.getLogger(KeepeekUtil.class);
     
-    private static Metadatum getMetadataById(Embedded embedded, String idMetadata) {
-        return embedded.getMetadata()
-                .stream()
+    public static Metadatum getMetadataById(List<Metadatum> metadatas, String idMetadata) {
+        return Util.isEmpty(metadatas) ? null : metadatas.stream()
                 .filter(it -> idMetadata.equalsIgnoreCase(it.getId()))
                 .findFirst()
                 .orElse(null);
     }
     
     public static Metadatum getMediaMetadata(Media media, String idMetadata) {
-        return Util.isEmpty(media) || Util.isEmpty(idMetadata) ? null : getMetadataById(media.getEmbedded(), idMetadata);
+        if(Util.isEmpty(media) || Util.isEmpty(idMetadata)) {
+            return null;
+        }
+        return Util.isEmpty(media.getEmbedded()) ? null : getMetadataById(media.getEmbedded().getMetadata(), idMetadata);
     }
     
     public static Metadatum getMediaMetadata(MediaLight media, String idMetadata) {
-        return Util.isEmpty(media) || Util.isEmpty(idMetadata) ? null : getMetadataById(media.getEmbedded(), idMetadata);
+        if(Util.isEmpty(media) || Util.isEmpty(idMetadata)) {
+            return null;
+        }
+        return Util.isEmpty(media.getEmbedded()) ? null : getMetadataById(media.getEmbedded().getMetadata(), idMetadata);
     }
     
     public static int getNbResultsByPage() {

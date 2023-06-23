@@ -22,7 +22,7 @@
     <field name="navigation" editor="category" required="false" compactDisplay="false" type="java.util.TreeSet" chooser="tree" exclusive="true" root="j_5">
       <label xml:lang="fr">Navigation</label>
     </field>
-    <field name="mail" editor="email" required="false" compactDisplay="false" type="String" searchable="true" size="50" ml="true">
+    <field name="mail" editor="email" required="false" compactDisplay="false" type="String" searchable="false" size="50" ml="true" hidden="true" descriptionType="tooltip" html="false" checkHtml="true">
       <label xml:lang="fr">Mail</label>
     </field>
     <field name="oeuvresLiees" editor="link" required="false" compactDisplay="false" type="generated.FicheObjetBaseDeDonnees[]">

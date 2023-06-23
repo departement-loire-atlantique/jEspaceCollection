@@ -1,69 +1,84 @@
 <%-- DEV --%>
-<%-- <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Media"%> --%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.LinksMediaResult"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Embedded"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Metadatum"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekUtil"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="generated.Carousel"%>
+<%@page import="com.jalios.util.Util"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.SearchResult"%>
+<%@page import="generated.CarouselElement"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.MediaLight"%>
 <%
-// Media media;
+// SearchResult mediaAssocie;
 %>
 <%-- END DEV --%>
 <% 
-if(Util.notEmpty(obj.getGalerieDeVisuels())) {
-    Carousel carrousel = (Carousel)channel.getData(Carousel.class, obj.getGalerieDeVisuels().getId());
-    CarouselElement[] listeElem = carrousel.getElements1();
+ArrayList<Object> medias = new ArrayList<>();
+
+if(Util.notEmpty(mediaAssocie) && Util.notEmpty(mediaAssocie.getEmbeddedResult())){
+    medias.addAll(mediaAssocie.getEmbeddedResult().getMedias());
+}
+
+if(Util.isEmpty(medias) && Util.notEmpty(obj.getGalerieDeVisuels())) {
+    Carousel carrousel = obj.getGalerieDeVisuels();
+//     CarouselElement[] listeElem = carrousel.getElements1();
+    medias.addAll(Arrays.asList(carrousel.getElements1()));
+}
+
+// filter
+for (Iterator it = medias.iterator(); it.hasNext();) {
+    Object itObj = it.next();
+    if (itObj instanceof MediaLight) {
+        LinksMediaResult links = ((MediaLight)itObj).getLinks();
+        if (Util.notEmpty(links) && Util.notEmpty(links.getKpkCustomStatus())) {
+            // status 2 => Interne
+            if(!links.getKpkCustomStatus().getHref().endsWith("2")){
+                it.remove();
+            }
+        }
+    }
+}
 %>
-<ul class="grid-3-tiny-1 ds44-mosaique ds44-gutter ds44-list">
-
-    <% 
-      for(int i = 0; i < 3; i++) {
-      CarouselElement itElem = listeElem[i];
-    %>
-    <li>
-      <figure class="ds44-legendeContainer ds44-container-imgRatio ds44-container-imgZoom " data-target="#overlay-mosaique" data-js="ds44-modal" role="figure" aria-label="<%= itElem.getImageCopyright() %>">
-        <button type="button" title="Ouvir la boîte de dialogue : <%= itElem.getTitle() %>">
-          <img src="<%= itElem.getImage() %>" alt="<%= itElem.getImageLegend() %>" class="ds44-imgRatio">
-        </button>
-        <jalios:if predicate="<%= Util.notEmpty(itElem.getImageCopyright()) %>">
-            <figcaption class="ds44-imgCaption"><%= itElem.getImageCopyright() %></figcaption>
-        </jalios:if>
-      </figure>
-    </li>
-    <% } %>
-</ul>
-
+<jalios:if predicate="<%= Util.notEmpty(medias) %>">
 <ul class="grid-3-tiny-1 ds44-mosaique ds44-gutter ds44-list">
     <% 
-      for(int i = 3; i < 5; i++) {
-      CarouselElement itElem = listeElem[i];
+      int max = Math.min(medias.size(), 5);
+      for(int i = 0; i < max; i++) {
+          Object itMedia = medias.get(i);
+          String itUrl = (itMedia instanceof CarouselElement) ? ((CarouselElement)itMedia).getImage() : ((MediaLight)itMedia).getLinks().getPreview().getHref();
+          String itTitle = (itMedia instanceof CarouselElement) ? ((CarouselElement)itMedia).getTitle() : ((MediaLight)itMedia).getTitle();
+          String itLegend = (itMedia instanceof CarouselElement) ? ((CarouselElement)itMedia).getImageLegend() : ((MediaLight)itMedia).getTitle();
+
+          String itCopyright = "";
+          if (itMedia instanceof CarouselElement) {
+              itCopyright = ((CarouselElement)itMedia).getImageCopyright();
+          } else {
+              Metadatum metadataCopyrigts = KeepeekUtil.getMediaMetadata((MediaLight)itMedia, "__copyrights");
+              itCopyright = Util.notEmpty(metadataCopyrigts) ? metadataCopyrigts.getValue() : "";
+          }
     %>
-    <% if(i < 4) { %>
-    <li>
-        <figure class="ds44-legendeContainer ds44-container-imgRatio ds44-container-imgZoom ds44-container-imgRatio--A4" data-target="#overlay-mosaique" data-js="ds44-modal" role="figure" aria-label="Légende associée © Copyright">
-          <button type="button" title="Ouvir la boîte de dialogue : <%= itElem.getTitle() %>">
-            <img src="<%= itElem.getImage() %>" alt="<%= itElem.getImageLegend() %>" class="ds44-imgRatio">
+    <li class="<%= (i + 1) % 5 == 2 ? "col-2" : "" %>">
+        <figure class="ds44-legendeContainer ds44-container-imgRatio ds44-container-imgZoom <%= (i + 1) % 5 == 1 ? "ds44-container-imgRatio--A4" : "" %>" data-target="#overlay-mosaique" data-js="ds44-modal" role="figure" aria-label="<%= itCopyright %>">
+          <button type="button" title="Ouvir la bo�te de dialogue : <%= itTitle %>">
+            <img src="<%= itUrl %>" alt="<%= itLegend %>" class="ds44-imgRatio">
           </button>
-          <jalios:if predicate="<%= Util.notEmpty(itElem.getImageCopyright()) %>">
-              <figcaption class="ds44-imgCaption"><%= itElem.getImageCopyright() %></figcaption>
+          <jalios:if predicate="<%= Util.notEmpty(itCopyright) %>">
+              <figcaption class="ds44-imgCaption"><%= itCopyright %></figcaption>
           </jalios:if>
         </figure>
     </li>
-    
-    <% } else { %>
-    <li class="col-2">
-        <figure class="ds44-legendeContainer ds44-container-imgRatio ds44-container-imgZoom " data-target="#overlay-mosaique" data-js="ds44-modal" role="figure" aria-label="Légende associée © Copyright">
-          <button type="button" title="Ouvir la boîte de dialogue : <%= itElem.getTitle() %>">
-            <img src="<%= itElem.getImage() %>" alt="<%= itElem.getImageLegend() %>" class="ds44-imgRatio">
-          </button>
-          <jalios:if predicate="<%= Util.notEmpty(itElem.getImageCopyright()) %>">
-              <figcaption class="ds44-imgCaption"><%= itElem.getImageCopyright() %></figcaption>
-          </jalios:if>
-        </figure>
-    </li>
-    <% } 
-      }%>
+    <% }%>
 </ul>
-<% } %>
+</jalios:if>
 
 <section class="ds44-modal-container" id="overlay-mosaique" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="overlay-test-title">
     <div class="ds44-modal-box">
-        <h1 id="overlay-test-title" class="h2-like visually-hidden" aria-hidden="true">Titre de l'overlay</h1>
+        <h1 id="overlay-test-title" class="h2-like visually-hidden" aria-hidden="true">Photo</h1>
         <button class="ds44-btnOverlay--modale ds44-btnOverlay--closeOverlay" type="button" title="Fermer la boîte de dialogue : [titre de la modale]" data-js="ds44-modal-action-close">
             <i class="icon icon-cross icon--xlarge" aria-hidden="true"></i><span class="ds44-btnInnerText--bottom">Fermer</span>
         </button>
