@@ -58,7 +58,7 @@ FicheCollection obj = (FicheCollection) request.getAttribute(PortalManager.PORTA
 							</jalios:if>
 						</section>
 
-            <jalios:if predicate="<%= Util.notEmpty(obj.getMail()) %>">
+            <jalios:if predicate='<%= Util.notEmpty(channel.getProperty("jcmsplugin.espaceCollection.portlet-contact")) %>'>
 							<section class="ds44-box ds44-theme">
 								<div class="ds44-innerBoxContainer">
 									<p role="heading" aria-level="2" class="ds44-box-heading">
