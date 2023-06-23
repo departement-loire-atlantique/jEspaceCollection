@@ -1,4 +1,6 @@
 <%-- DEV --%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.LinksMediaResult"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Embedded"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Metadatum"%>
 <%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekUtil"%>
@@ -26,6 +28,20 @@ if(Util.isEmpty(medias) && Util.notEmpty(obj.getGalerieDeVisuels())) {
     Carousel carrousel = obj.getGalerieDeVisuels();
 //     CarouselElement[] listeElem = carrousel.getElements1();
     medias.addAll(Arrays.asList(carrousel.getElements1()));
+}
+
+// filter
+for (Iterator it = medias.iterator(); it.hasNext();) {
+    Object itObj = it.next();
+    if (itObj instanceof MediaLight) {
+        LinksMediaResult links = ((MediaLight)itObj).getLinks();
+        if (Util.notEmpty(links) && Util.notEmpty(links.getKpkCustomStatus())) {
+            // status 2 => Interne
+            if(!links.getKpkCustomStatus().getHref().endsWith("2")){
+                it.remove();
+            }
+        }
+    }
 }
 %>
 <jalios:if predicate="<%= Util.notEmpty(medias) %>">

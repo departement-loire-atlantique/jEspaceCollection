@@ -28,7 +28,7 @@ if (Util.isEmpty(media)) {
     return;
 }
 
-SearchResult mediaAssocie = KeepeekApiEndPoint.getMediaAssocie(idKeepeek, "fields=id,title,_embedded%7Bmetadata.byId(__copyrights)%7D", "forceArrays=true");
+SearchResult mediaAssocie = KeepeekApiEndPoint.getMediaAssocie(idKeepeek, "fields=id,title,_embedded%7Bmetadata.byId(__copyrights)%7D,_links%7Bpreview,kpk:custom-status%7D", "forceArrays=true");
 
 Metadatum metadatas = null; // For include
 

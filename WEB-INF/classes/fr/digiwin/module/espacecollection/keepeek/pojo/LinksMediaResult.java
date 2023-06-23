@@ -29,6 +29,9 @@ public class LinksMediaResult {
     @SerializedName("kpk:xlarge")
     @Expose
     private KpkXlarge kpkXlarge;
+    @SerializedName("kpk:custom-status")
+    @Expose
+    private Self__1 kpkCustomStatus;
 
     public Self__1 getSelf() {
         return self;
@@ -86,6 +89,14 @@ public class LinksMediaResult {
         this.kpkXlarge = kpkXlarge;
     }
 
+    public Self__1 getKpkCustomStatus() {
+        return kpkCustomStatus;
+    }
+
+    public void setKpkCustomStatus(Self__1 kpkCustomStatus) {
+        this.kpkCustomStatus = kpkCustomStatus;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -117,6 +128,10 @@ public class LinksMediaResult {
         sb.append("kpkXlarge");
         sb.append('=');
         sb.append(((this.kpkXlarge == null)?"<null>":this.kpkXlarge));
+        sb.append(',');
+        sb.append("kpkCustomStatus");
+        sb.append('=');
+        sb.append(((this.kpkCustomStatus == null)?"<null>":this.kpkCustomStatus));
         sb.append(',');
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
