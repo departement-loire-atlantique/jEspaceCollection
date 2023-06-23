@@ -289,7 +289,7 @@ if(Util.notEmpty(numInv)){
                 <jalios:if predicate="<%=Util.notEmpty(mesures) && Util.notEmpty(mesures.getValue())%>">
                 <tr>
                   <td class="table-detail"><b>Dimensions et poids</b></td>
-                  <td class="table-detail"><%= mesures.getValue().replace(";", ", ") %></td>
+                  <td class="table-detail"><%= mesures.getValue().replace(";", " ; ") %></td>
                 </tr>
                 </jalios:if>
             </jalios:buffer>
@@ -583,10 +583,10 @@ if(Util.notEmpty(numInv)){
                 <%
                 Metadatum objetsAssocies = KeepeekUtil.getMediaMetadata(media, "objets_associes");
                 %>
-                <jalios:if predicate="<%=Util.notEmpty(objetsAssocies)%>">
+                <jalios:if predicate="<%=Util.notEmpty(objetsAssocies) && Util.notEmpty(objetsAssocies.getValue())%>">
                 <tr>
                   <td class="table-detail"><b>Objet(s) associé(s)</b></td>
-                  <td class="table-detail"><%= objetsAssocies.getValue() %></td>
+                  <td class="table-detail"><%= objetsAssocies.getValue().replace(";", " ; ")  %></td>
                 </tr>
                 </jalios:if>
                 
