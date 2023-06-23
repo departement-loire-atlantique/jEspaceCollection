@@ -1,4 +1,7 @@
 <%-- DEV --%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Embedded"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.pojo.Metadatum"%>
+<%@page import="fr.digiwin.module.espacecollection.keepeek.KeepeekUtil"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.stream.Collectors"%>
 <%@page import="java.util.Arrays"%>
@@ -33,8 +36,15 @@ if(Util.isEmpty(medias) && Util.notEmpty(obj.getGalerieDeVisuels())) {
           Object itMedia = medias.get(i);
           String itUrl = (itMedia instanceof CarouselElement) ? ((CarouselElement)itMedia).getImage() : ((MediaLight)itMedia).getLinks().getPreview().getHref();
           String itTitle = (itMedia instanceof CarouselElement) ? ((CarouselElement)itMedia).getTitle() : ((MediaLight)itMedia).getTitle();
-          String itCopyright = (itMedia instanceof CarouselElement) ? ((CarouselElement)itMedia).getImageCopyright() : ((MediaLight)itMedia).getTitle();
           String itLegend = (itMedia instanceof CarouselElement) ? ((CarouselElement)itMedia).getImageLegend() : ((MediaLight)itMedia).getTitle();
+
+          String itCopyright = "";
+          if (itMedia instanceof CarouselElement) {
+              itCopyright = ((CarouselElement)itMedia).getImageCopyright();
+          } else {
+              Metadatum metadataCopyrigts = KeepeekUtil.getMediaMetadata((MediaLight)itMedia, "__copyrights");
+              itCopyright = Util.notEmpty(metadataCopyrigts) ? metadataCopyrigts.getValue() : "";
+          }
     %>
     <li class="<%= (i + 1) % 5 == 2 ? "col-2" : "" %>">
         <figure class="ds44-legendeContainer ds44-container-imgRatio ds44-container-imgZoom <%= (i + 1) % 5 == 1 ? "ds44-container-imgRatio--A4" : "" %>" data-target="#overlay-mosaique" data-js="ds44-modal" role="figure" aria-label="<%= itCopyright %>">
@@ -52,7 +62,7 @@ if(Util.isEmpty(medias) && Util.notEmpty(obj.getGalerieDeVisuels())) {
 
 <section class="ds44-modal-container" id="overlay-mosaique" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="overlay-test-title">
     <div class="ds44-modal-box">
-        <h1 id="overlay-test-title" class="h2-like visually-hidden" aria-hidden="true">Titre de l'overlay</h1>
+        <h1 id="overlay-test-title" class="h2-like visually-hidden" aria-hidden="true">Photo</h1>
         <button class="ds44-btnOverlay--modale ds44-btnOverlay--closeOverlay" type="button" title="Fermer la boîte de dialogue : [titre de la modale]" data-js="ds44-modal-action-close">
             <i class="icon icon-cross icon--xlarge" aria-hidden="true"></i><span class="ds44-btnInnerText--bottom">Fermer</span>
         </button>

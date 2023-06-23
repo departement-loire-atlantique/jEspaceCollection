@@ -1,7 +1,11 @@
 package fr.digiwin.module.espacecollection.keepeek;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
@@ -42,9 +46,14 @@ public class KeepeekApiEndPoint {
         return null;
     }
     
-    public static SearchResult getMediaAssocie(String idMedia) {
+    public static SearchResult getMediaAssocie(String idMedia, String... parameters ) {
         try {
-            String strMediaAssocie = KeepeekApiManager.getEndPoint("api/dam/medias/" + idMedia + "/media-links/7/medias");
+            String parameter = "";
+            if(Util.notEmpty(parameters)) {
+                parameter = "?" + String.join("&", parameters);
+            }
+            
+            String strMediaAssocie = KeepeekApiManager.getEndPoint("api/dam/medias/" + idMedia + "/media-links/7/medias" + parameter);
             
             GsonBuilder gsonBuild = new GsonBuilder();
             gsonBuild.registerTypeAdapter(EmbeddedResult.class, new EmbeddedResultDeserializer());

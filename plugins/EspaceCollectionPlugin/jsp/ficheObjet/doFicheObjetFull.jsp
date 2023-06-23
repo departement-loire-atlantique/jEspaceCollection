@@ -28,7 +28,7 @@ if (Util.isEmpty(media)) {
     return;
 }
 
-SearchResult mediaAssocie = KeepeekApiEndPoint.getMediaAssocie(idKeepeek);
+SearchResult mediaAssocie = KeepeekApiEndPoint.getMediaAssocie(idKeepeek, "fields=id,title,_embedded%7Bmetadata.byId(__copyrights)%7D", "forceArrays=true");
 
 Metadatum metadatas = null; // For include
 
@@ -286,10 +286,10 @@ if(Util.notEmpty(numInv)){
                 <%
                 Metadatum mesures = KeepeekUtil.getMediaMetadata(media, "mesures");
                 %>
-                <jalios:if predicate="<%=Util.notEmpty(mesures)%>">
+                <jalios:if predicate="<%=Util.notEmpty(mesures) && Util.notEmpty(mesures.getValue())%>">
                 <tr>
                   <td class="table-detail"><b>Dimensions et poids</b></td>
-                  <td class="table-detail"><%= mesures.getValue() %></td>
+                  <td class="table-detail"><%= mesures.getValue().replace(";", ", ") %></td>
                 </tr>
                 </jalios:if>
             </jalios:buffer>
